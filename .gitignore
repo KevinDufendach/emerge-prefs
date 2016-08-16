@@ -1,0 +1,6 @@
+./data/*
+$GIT_DIR/data/*
+
+data/*.data.json
+.idea/*
+*/sandbox/*
