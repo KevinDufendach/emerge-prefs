@@ -13,7 +13,7 @@
     var self = this;
 
     var service = {
-      createVandAidField: createVandaidField,
+      createVandAidField: jsField,
       loadMetadataFieldsFromFile: loadMetadataFieldsFromFile,
       loadValuesFromFile: loadValuesFromFile,
       loadFieldValues: loadFieldValues,
@@ -24,20 +24,21 @@
     //////////////
 
     /**
-     * Constructor for a Field based on REDCap metadata
+     * Constructor for a javascript Field object based on REDCap metadata
      * Creates a field based on REDCap metadata
+     * @metadata REDCap metadata
      */
-    function createVandaidField(original) {
-      this.id = original.field_name;
-      this.type = original.field_type;
-      this.label = original.field_label || "";
-      this.field_note = origina.field_note || "";
+    function jsField(metadata) {
+      this.id = metadata.field_name;
+      this.type = metadata.field_type;
+      this.label = metadata.field_label || "";
+      this.field_note = metadata.field_note || "";
 
       // Set specific options (json formatted) for data type
       switch (this.type) {
         case "radio":
         case "checkbox":
-          var options_string = original.select_choices_or_calculations || "";
+          var options_string = metadata.select_choices_or_calculations || "";
 
           // Pattern: white space then bar then white space
           var pattern = / \| /;
