@@ -20,7 +20,7 @@
 
   });
 
-  //app.directive("expandable", function() {
+  //src.directive("expandable", function() {
   //  return {
   //    restrict: 'E',
   //    transclude: true,
