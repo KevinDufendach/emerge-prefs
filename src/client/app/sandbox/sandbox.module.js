@@ -6,6 +6,6 @@
   'use strict';
 
   angular
-    .module('app.sandbox', []);
+    .module('app.sandbox', ['krd-redcap']);
 
 })();

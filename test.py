@@ -27,26 +27,6 @@ from google.appengine.api import urlfetch
 # [END urlfetch-imports]
 
 from config import config
- 
-# import pycurl, cStringIO
-# 
-# buf = cStringIO.StringIO()
-# 
-# data = {
-#     'token': config['api_token'],
-#     'content': 'metadata',
-#     'format': 'json'
-# }
-# 
-# ch = pycurl.Curl()
-# ch.setopt(ch.URL, config['api_url'])
-# ch.setopt(ch.HTTPPOST, fields.items())
-# ch.setopt(ch.WRITEFUNCTION, buf.write)
-# ch.perform()
-# ch.close()
-# 
-# print buf.getvalue()
-# buf.close()
 
 def AsDict(guest):
     return {'id': guest.key.id(), 'first': guest.first, 'last': guest.last}
@@ -130,5 +110,5 @@ APP = webapp2.WSGIApplication([
     ('/rest/insert', InsertHandler),
     ('/rest/delete', DeleteHandler),
     ('/rest/update', UpdateHandler),
-    ('/rest/redcap', RedcapPostHandler),
+    ('/rest/redcap-metadata', RedcapPostHandler),
 ], debug=True)

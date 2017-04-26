@@ -3,16 +3,18 @@
 
   angular
     .module('krd-redcap')
-    .factory('fieldFactory', fieldFactory);
+    .factory('redcapService', redcapService);
 
-  fieldFactory.$inject = ['$http', '$q'];
+  redcapService.$inject = ['$http', '$q'];
 
-  function fieldFactory($http, $q) {
+  function redcapService($http, $q) {
     var self = this;
     var service = {
-      createVandAidField: jsField,
+      createJsField: jsField,
       retrieveFieldsFromREDCap: retrieveFieldsFromREDCap,
-      loadMetadataFieldsFromFile: loadMetadataFieldsFromFile,
+      retrieveFieldsFromUri: retrieveFieldsFromUri,
+
+      // loadMetadataFieldsFromFile: loadMetadataFieldsFromFile,
       loadValuesFromFile: loadValuesFromFile,
       loadFieldValues: loadFieldValues,
       submitData: submitData
@@ -20,6 +22,8 @@
     return service;
 
     //////////////
+
+
 
     /**
      * Constructor for a javascript Field object based on REDCap metadata
@@ -54,8 +58,32 @@
      *   )
      */
     function retrieveFieldsFromREDCap() {
+      return retrieveFieldsFromUri('rest/redcap-metadata');
+    }
+
+    /**
+     * Function to retrieve fields from a URI (could be a rest API, e.g. python script). Convenience function of
+     * retrieveFieldsFromREDCap provided
+     *
+     * @returns $q promise function with data as an array of fields. Use 'then' logic.
+     *
+     * e.g.
+     *   var rcFields;
+     *   retrieveFieldsFromUri('myREDCapMetadataExportFile').then(
+     *     // on success
+     *     function (data) {
+     *       rcFields = data;
+     *       initialize();
+     *     },
+     *     // on failure
+     *     function (response) {
+     *       console.log(response);
+     *     }
+     *   )
+     */
+    function retrieveFieldsFromUri(uri) {
       return $q(function (resolve, reject) {
-        $http.get('rest/redcap-metadata')
+        $http.get(uri)
           .then(
             // On success
             function (response) {
@@ -264,7 +292,7 @@
         );
 
       });
-    };
+    }
 
   }
 })();

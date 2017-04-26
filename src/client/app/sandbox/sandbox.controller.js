@@ -5,26 +5,25 @@
     .module('app.sandbox')
     .controller('Sandbox-Ctrl', SandboxCtrl);
 
-  SandboxCtrl.$inject = ['$http', '$q'];
+  SandboxCtrl.$inject = ['$http', '$q', 'redcapService'];
 
-  function SandboxCtrl($http, $q) {
+  function SandboxCtrl($http, $q, redcapService) {
     var vm = this;
 
     vm.status = 'nothing to do';
     vm.guests = ['empty'];
 
-    var deferred = $q.defer();
-    $http.get('rest/redcap')
-      .then(
-        // On success
-        function (data) {
-          vm.guests = data;
-          deferred.resolve();
-          vm.status = 'dormant'
-        }
-      );
-    // return deferred.promise;
-
+    vm.status = 'retrieving from REDCap';
+    redcapService.retrieveFieldsFromREDCap().then(
+      function (data) {
+        console.log('finished successful retrieval');
+        vm.guests = data;
+        vm.status = 'Completed retrieval. Dormant';
+      },
+      function (response) {
+        console.log(response);
+      }
+    );
   }
 
 })();

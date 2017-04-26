@@ -2,5 +2,6 @@
   'use strict';
 
   angular
-    .module('krd-redcap', []);
+    .module('app.tools', [])
+
 })();

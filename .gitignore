@@ -124,3 +124,8 @@ config.json
 .project
 .settings
 /python/config.py
+/.pydevproject
+
+# Python
+#########################
+*.pyc
