@@ -10,7 +10,7 @@
   function redcapService($http, $q) {
     var self = this;
     var service = {
-      createJsField: jsField,
+      fieldConstructor: fieldConstructor,
       retrieveFieldsFromREDCap: retrieveFieldsFromREDCap,
       retrieveFieldsFromUri: retrieveFieldsFromUri,
 
@@ -23,14 +23,12 @@
 
     //////////////
 
-
-
     /**
      * Constructor for a javascript Field object based on REDCap metadata
      * Creates a field based on REDCap metadata
      * @metadata REDCap metadata
      */
-    function jsField(metadata) {
+    function fieldConstructor(metadata) {
       this.id = metadata.field_name;
       this.type = metadata.field_type;
       this.label = metadata.field_label || "";

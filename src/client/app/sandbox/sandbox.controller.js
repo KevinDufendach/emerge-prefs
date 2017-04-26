@@ -5,9 +5,9 @@
     .module('app.sandbox')
     .controller('Sandbox-Ctrl', SandboxCtrl);
 
-  SandboxCtrl.$inject = ['$http', '$q', 'redcapService'];
+  SandboxCtrl.$inject = ['redcapService', 'appTools'];
 
-  function SandboxCtrl($http, $q, redcapService) {
+  function SandboxCtrl(redcapService, appTools) {
     var vm = this;
 
     vm.status = 'nothing to do';
@@ -17,7 +17,7 @@
     redcapService.retrieveFieldsFromREDCap().then(
       function (data) {
         console.log('finished successful retrieval');
-        vm.guests = data;
+        vm.guests = appTools.arrayConstructor(data, redcapService.fieldConstructor);
         vm.status = 'Completed retrieval. Dormant';
       },
       function (response) {
