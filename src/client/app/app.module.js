@@ -8,7 +8,8 @@
     'app.core',
     'app.sandbox',
     'krd-redcap',
-    'app.tools'
+    'app.tools',
+    'app.fields'
 
   ])
 })();
