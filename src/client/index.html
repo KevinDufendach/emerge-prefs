@@ -18,6 +18,14 @@
 <body>
 <p>Angular {{3-2}}s Loaded</p>
 
+<div ng-controller="Sandbox-Ctrl as vm">
+  <h1>{{vm.status}}</h1>
+
+  <pre>{{vm.guests}}</pre>
+  <textarea rows="50" cols="80" >{{vm.guests | json}}</textarea>
+
+</div>
+
 <!--<body layout="column" ng-controller="VandAIDApp as library">-->
 
 <!--&lt;!&ndash; Top identity bar &ndash;&gt;-->
@@ -72,18 +80,22 @@
 <!--</div>-->
 
 <!-- Angular Material Dependencies -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-resource.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-resource.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.js"></script>
 
 <!-- My Custom Dependencies -->
 <!--Core-->
 <script src="/app/app.module.js"></script>
 <script src="/app/core/core.module.js"></script>
 <script src="/app/core/core.palette.js"></script>
+
+<!--Sandbox-->
+<script src="/app/sandbox/sandbox.module.js"></script>
+<script src="/app/sandbox/sandbox.controller.js"></script>
 
 <!--<script src="/js/toolbox.js"></script>-->
 

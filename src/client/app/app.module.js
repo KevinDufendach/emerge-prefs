@@ -5,7 +5,8 @@
         /**
          * Angular modules
          */
-        'app.core'
+        'app.core',
+        'app.sandbox'
 
     ])
 })();

@@ -3,8 +3,8 @@ threadsafe: true
 api_version: 1
 
 handlers:
-#- url: /rest/.*
-#  script: main.APP
+- url: /rest/.*
+  script: test.APP
 
 - url: /(.+)
   static_files: src/client/\1
