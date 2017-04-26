@@ -123,3 +123,4 @@ config.json
 # Eclipse
 .project
 .settings
+/python/config.py

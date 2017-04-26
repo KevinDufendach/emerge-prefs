@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -6,12 +6,10 @@
     .factory('fieldFactory', fieldFactory);
 
 
-  fieldFactory.$inject = ['$http','$q'];
+  fieldFactory.$inject = ['$http', '$q'];
 
   function fieldFactory($http, $q) {
-
     var self = this;
-
     var service = {
       createVandAidField: jsField,
       loadMetadataFieldsFromFile: loadMetadataFieldsFromFile,
@@ -33,12 +31,25 @@
       this.type = metadata.field_type;
       this.label = metadata.field_label || "";
       this.field_note = metadata.field_note || "";
+      this.options = optionsTranslator(this.type, metadata.select_choices_or_calculations);
+    }
+
+    /**
+     * Translates an options string into an array of options
+     *
+     * @param fieldType The type of field
+     * @param options_string a REDCap string representation of choices or calculations, e.g. for a checkbox field
+     */
+    function optionsTranslator(fieldType, options_string) {
+      var options = [];
 
       // Set specific options (json formatted) for data type
-      switch (this.type) {
+      switch (fieldType) {
         case "radio":
         case "checkbox":
-          var options_string = metadata.select_choices_or_calculations || "";
+          if (!angular.isDefined(options_string)) {
+            options_string = "";
+          }
 
           // Pattern: white space then bar then white space
           var pattern = / \| /;
@@ -49,16 +60,13 @@
           // new pattern: A letter or number or underscore followed by a comma and a space
           pattern = /([a-zA-Z_0-9]+), (.*)/;
 
-          // create empty options list
-          this.options = [];
-
           // Run through the options and store each value:label pair
           var i, len, result;
           for (i = 0, len = optionList.length; i < len; i++) {
             result = pattern.exec(optionList[i]);
 
             if (result.length > 1) {
-              this.options.push(
+              options.push(
                 {
                   "value": result[1],
                   "label": result[2]
@@ -69,7 +77,7 @@
           break;
         case "yesno":
           // Create options list similar to a multiple choice radio
-          this.options = [
+          options = [
             {
               "value": true,
               "label": "yes"
@@ -81,7 +89,7 @@
           ];
           break;
         case "truefalse":
-          this.options = [
+          options = [
             {
               "value": true,
               "label": "true"
@@ -97,6 +105,9 @@
         default:
           break;
       }
+
+      return options;
+
     }
 
     /**
@@ -109,10 +120,9 @@
      * @returns Can add a promise for return once fields are loaded with data
      */
     function loadMetadataFieldsFromFile(uri, form_name) {
-
       // set up to return a promise if fields are loaded
       // ref: https://docs.angularjs.org/api/ng/service/$q
-      return $q(function(resolve, reject) {
+      return $q(function (resolve, reject) {
         // Get the data represented by the filename
         $http.get(uri).then(
           // on success
@@ -144,7 +154,7 @@
     function loadValuesFromFile(uri) {
       // set up to return a promise if fields are loaded
       // ref: https://docs.angularjs.org/api/ng/service/$q
-      return $q(function(resolve, reject) {
+      return $q(function (resolve, reject) {
         console.log("Attempting to load from " + uri);
         $http.get(uri).then(
           // on default record found and loaded
@@ -193,7 +203,7 @@
      * @param user
      */
     function submitData(data, user) {
-      return $q(function(resolve, reject) {
+      return $q(function (resolve, reject) {
         var params = {
           method: "post",
           url: "/php/saveToREDCap.php",
@@ -217,7 +227,6 @@
 
             reject();
           }
-
         );
 
       });
