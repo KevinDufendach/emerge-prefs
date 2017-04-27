@@ -9,7 +9,7 @@
       <div class="md-toolbar-tools">
         <h2 hide show-gt-xs>VandAID<span hide show-gt-sm> - Active Interface Design by Vanderbilt</span></h2>
         <span flex></span>
-        <div ng-hide="user.logged_in" layout="row">
+        <div ng-hide="vm.isLoggedIn" layout="row">
           <p>You are not logged in</p>
           <!--<md-button ng-click="showIRBDialog($event)">Show consent form</md-button>-->
         </div>
@@ -17,49 +17,7 @@
       </div>
     </md-toolbar>
     <div flex>
-      <!--<md-menu-bar ng-controller="MenuCtrl as ctrl" ng-cloak>-->
-        <!--<md-menu>-->
-          <!--<button ng-click="$mdOpenMenu()">File</button>-->
-          <!--<md-menu-content>-->
-            <!--<md-menu-item class="md-indent">-->
-              <!--<md-icon aria-label="save">save</md-icon>-->
-              <!--<md-button ng-click="saveData()">-->
-                <!--Save-->
-                <!--<span class="md-alt-text">{{ 'M-S' | keyboardShortcut }}</span>-->
-              <!--</md-button>-->
-            <!--</md-menu-item>-->
-            <!--<md-menu-item class="md-indent">-->
-              <!--<md-icon aria-label="submit">send</md-icon>-->
-              <!--<md-button ng-click="submitData()">-->
-                <!--Save and Submit-->
-                <!--&lt;!&ndash;<span class="md-alt-text">{{ 'M-U' | keyboardShortcut }}</span>&ndash;&gt;-->
-              <!--</md-button>-->
-            <!--</md-menu-item>-->
-            <!--<md-menu-divider></md-menu-divider>-->
-            <!--<md-menu-item class="md-indent">-->
-              <!--<md-icon aria-label="reset">cached</md-icon>-->
-              <!--<md-button ng-click="resetFields()">-->
-                <!--Reset-->
-                <!--<span flex></span>-->
-              <!--</md-button>-->
-            <!--</md-menu-item>-->
-          <!--</md-menu-content>-->
-        <!--</md-menu>-->
-        <!--<md-menu>-->
-          <!--<button ng-click="$mdOpenMenu()">-->
-            <!--View-->
-          <!--</button>-->
-          <!--<md-menu-content>-->
-            <!--<md-menu-item type="checkbox" ng-model="vaOptions.show_labels">Show labels</md-menu-item>-->
-          <!--</md-menu-content>-->
-        <!--</md-menu>-->
-        <!--<md-menu>-->
-          <!--<button ng-click="showInstructions($event)">-->
-            <!--<md-icon>help_outline</md-icon>-->
-          <!--</button>-->
-        <!--</md-menu>-->
-
-      <!--</md-menu-bar>-->
+      <vandaid-menu-bar></vandaid-menu-bar>
     </div>
   </div>
 </md-toolbar>
