@@ -17,23 +17,10 @@
 
 <body layout="column">
 <vandaid-identity-bar></vandaid-identity-bar>
-<div layout="row">
+<div layout="row" flex>
   <vandaid-sidenav></vandaid-sidenav>
-  <div>
-    <p>Angular {{3-2}}s Loaded</p>
-
-    <div ng-controller="Sandbox-Ctrl as vm">
-      <h1>{{vm.status}}</h1>
-
-      <pre>{{vm.guests}}</pre>
-      <textarea rows="50" cols="80">{{vm.guests | json}}</textarea>
-
-    </div>
-
-  </div>
+  <vandaid-sandbox></vandaid-sandbox>
 </div>
-
-
 
 <!--<body layout="column" ng-controller="VandAIDApp as library">-->
 
@@ -105,7 +92,7 @@
 
 <!--Sandbox-->
 <script src="/app/sandbox/sandbox.module.js"></script>
-<script src="/app/sandbox/sandbox.controller.js"></script>
+<script src="/app/sandbox/sandbox.directive.js"></script>
 
 <!--REDCap-->
 <script src="/app/redcap/redcap.module.js"></script>

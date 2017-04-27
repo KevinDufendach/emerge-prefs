@@ -3,11 +3,27 @@
 
   angular
     .module('app.sandbox')
-    .controller('Sandbox-Ctrl', SandboxCtrl);
+    .directive('vandaidSandbox', vandaidSandbox);
 
-  SandboxCtrl.$inject = ['redcapService', 'appTools', 'vandaidFieldService'];
+  vandaidSandbox.$inject = [];
 
-  function SandboxCtrl(redcapService, appTools, vandaidFieldService) {
+  /* @ngInject */
+  function vandaidSandbox() {
+    var directive = {
+      bindToController: true,
+      controller: SandboxCtrl,
+      controllerAs: 'vm',
+      restrict: 'E',
+      scope: {},
+      templateUrl: '/app/sandbox/sandbox.directive.html'
+    };
+    return directive;
+  }
+
+  SandboxCtrl.$inject = ['vandaidFieldService'];
+
+  /* @ngInject */
+  function SandboxCtrl(vandaidFieldService) {
     var vm = this;
 
     vm.status = 'nothing to do';
@@ -20,7 +36,7 @@
           console.log('fieldService initialized');
           vm.guests = fields;
         }
-      )
+      );
 
     // redcapService.retrieveFieldsFromREDCap().then(
     //   function (data) {
@@ -35,3 +51,4 @@
   }
 
 })();
+

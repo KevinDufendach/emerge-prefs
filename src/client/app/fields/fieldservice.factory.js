@@ -8,21 +8,26 @@
   fieldService.$inject = ['$q', 'redcapService', 'appTools'];
 
   function fieldService($q, redcapService, appTools) {
+    var self = this;
+
     var states = {
       UNITIALIZED: 0,
       INITIALIZING: 1,
       READY: 2
     };
-    var fields = [];
-    var state = states.UNITIALIZED;
-    var initializeResolveList = [];
-    var initializeRejectList = [];
+
+    self.fields = [];
+    self.state = states.UNITIALIZED;
+    self.initializeResolveList = [];
+    self.initializeRejectList = [];
+    self.myVar = 2.3;
 
     var service = {
-      fields: fields,
+      fields: self.fields,
       isReady: isReady,
       initialize: initialize,
       getFields: getFields
+
     };
     return service;
 
@@ -34,15 +39,19 @@
      *    Callback should be fieldService.initialize().then( function onSuccess() { // doSomething } );
      */
     function initialize() {
-      state = states.INITIALIZING;
+      self.state = states.INITIALIZING;
       return $q(function (resolve, reject) {
         redcapService.retrieveFieldsFromREDCap()
           .then(
             // On success
             function (data) {
               console.log('FieldService successfully initialized');
-              fields = appTools.arrayConstructor(data, redcapService.fieldConstructor);
-              state = states.READY;
+              for (var i = 0; i < data.length; i++) {
+                self.fields.push(new redcapService.fieldConstructor(data[i]));
+              }
+
+              // self.fields = appTools.arrayConstructor(data, redcapService.fieldConstructor);
+              self.state = states.READY;
               resolve();
             },
             // On failure
@@ -61,27 +70,27 @@
      */
     function getFields() {
       return $q(function (resolve, reject) {
-          if (state === states.READY) {
-            resolve(fields);
+          if (self.state === states.READY) {
+            resolve(self.fields);
             return;
           }
 
-          initializeResolveList.push(resolve);
-          initializeRejectList.push(reject);
+          self.initializeResolveList.push(resolve);
+          self.initializeRejectList.push(reject);
 
-          if (state === states.UNITIALIZED) {
+          if (self.state === states.UNITIALIZED) {
 
             initialize().then(
               function () {
                 var i;
-                for (i = 0; i < initializeResolveList.length; i++) {
-                  initializeResolveList[i](fields);
+                for (i = 0; i < self.initializeResolveList.length; i++) {
+                  self.initializeResolveList[i](self.fields);
                 }
               },
               function (response) {
                 var i;
-                for (i = 0; i < initializeResolveList.length; i++) {
-                  initializeRejectList[i](response);
+                for (i = 0; i < self.initializeResolveList.length; i++) {
+                  self.initializeRejectList[i](response);
                 }
               }
             );
@@ -96,7 +105,7 @@
      * @returns {boolean}
      */
     function isReady() {
-      return (state === states.READY);
+      return (self.state === states.READY);
     }
 
   }

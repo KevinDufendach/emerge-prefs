@@ -9,6 +9,9 @@
 
   function redcapService($http, $q) {
     var self = this;
+
+    var idCount = 0;
+
     var service = {
       fieldConstructor: fieldConstructor,
       retrieveFieldsFromREDCap: retrieveFieldsFromREDCap,
@@ -29,11 +32,45 @@
      * @metadata REDCap metadata
      */
     function fieldConstructor(metadata) {
+      this.order = idCount++;
       this.id = metadata.field_name;
       this.type = metadata.field_type;
       this.label = metadata.field_label || "";
       this.field_note = metadata.field_note || "";
       this.options = optionsTranslator(this.type, metadata.select_choices_or_calculations);
+      this.values = createValueObject(this)
+    }
+
+    /**
+     * Create a JavaScript-style value object (e.g. yes/no or true/false translated to T/F)
+     */
+    function createValueObject(field) {
+      var values = {};
+      switch (field.type) {
+        case "yesno":
+        case "truefalse":
+        case "radio":
+          if (field.options.length < 1) {
+            console.log("field " + field.id + " has no options to display.");
+            values[field.id] = "";
+          } else {
+            values[field.id] = field.options[0].value;
+          }
+          break;
+        case "checkbox":
+          // Create a fieldId___option1, fieldId___2, etc. value for checkboxes
+          for (var j = 0; j < field.options.length; j++) {
+            values[field.id + "___" + field.options[j].value] = false;
+          }
+          break;
+        case "text":
+        case "notes":
+        default:
+          values[field.id] = "";
+          break;
+      }
+
+      return values;
     }
 
     /**
@@ -168,40 +205,6 @@
       }
 
       return options;
-    }
-
-    /**
-     * Loads fields from a REDCap metadata file, specified by "uri."
-     * If successful, will also initialize itself with the loaded metadata.
-     * Returns a promise with field data for successful operation.
-     *
-     * @param uri of the metadata file requested
-     * @param form_name the label of the form that should be loaded
-     * @returns Can add a promise for return once fields are loaded with data
-     */
-    function loadMetadataFieldsFromFile(uri, form_name) {
-      // set up to return a promise if fields are loaded
-      // ref: https://docs.angularjs.org/api/ng/service/$q
-      return $q(function (resolve, reject) {
-        // Get the data represented by the filename
-        $http.get(uri).then(
-          // on success
-          function (data) {
-            self.initialize(data.data, form_name);
-
-            // return the promise represented by resolve, with data
-            resolve(data.data);
-          },
-
-          // on failure
-          function () {
-            console.log("failed to load fields from ", uri);
-
-            // return the promise represented by reject
-            reject();
-          }
-        );
-      });
     }
 
     /**

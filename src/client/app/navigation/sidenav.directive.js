@@ -26,6 +26,9 @@
   function SidenavController($mdSidenav, vandaidFieldService) {
     var vm = this;
     vm.fields = [];
+
+    vm.fs = vandaidFieldService;
+
     vm.toggleSidenav = toggleSidenav;
 
     activate();
