@@ -23,6 +23,11 @@
 
     //////////////////
 
+    /**
+     * Initializes the fieldservice, returning a promise which can be used to respond when the service is initialized
+     * @returns {*} Promise callback tha allows functionality after the service is initialized. Reminder:
+     *    Callback should be fieldService.initialize().then( function onSuccess() { // doSomething } );
+     */
     function initialize() {
       return $q(function (resolve, reject) {
         redcapService.retrieveFieldsFromREDCap()

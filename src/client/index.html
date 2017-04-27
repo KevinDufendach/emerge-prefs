@@ -15,7 +15,9 @@
   <title>VandAID - Active Interface Design by Vanderbilt</title>
 </head>
 
-<body>
+<body layout="column">
+<vandaid-identity-bar></vandaid-identity-bar>
+
 <p>Angular {{3-2}}s Loaded</p>
 
 <div ng-controller="Sandbox-Ctrl as vm">
@@ -28,8 +30,6 @@
 
 <!--<body layout="column" ng-controller="VandAIDApp as library">-->
 
-<!--&lt;!&ndash; Top identity bar &ndash;&gt;-->
-<!--<div ng-include="'/library/top_identity_bar.html'"></div>-->
 
 <!--<div layout="row" flex ng-cloak ng-init="sideBoxCollapsed = false">-->
   <!--&lt;!&ndash; Side Navigation Bar &ndash;&gt;-->
@@ -107,6 +107,9 @@
 <script src="/app/fields/fields.module.js"></script>
 <script src="/app/fields/fieldservice.factory.js"></script>
 
+<!--Navigation-->
+<script src="/app/navigation/nav.module.js"></script>
+<script src="/app/navigation/identitybar.directive.js"></script>
 
 <!--<script src="/js/toolbox.js"></script>-->
 
