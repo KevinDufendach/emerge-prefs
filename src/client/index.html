@@ -17,16 +17,23 @@
 
 <body layout="column">
 <vandaid-identity-bar></vandaid-identity-bar>
+<div layout="row">
+  <vandaid-sidenav></vandaid-sidenav>
+  <div>
+    <p>Angular {{3-2}}s Loaded</p>
 
-<p>Angular {{3-2}}s Loaded</p>
+    <div ng-controller="Sandbox-Ctrl as vm">
+      <h1>{{vm.status}}</h1>
 
-<div ng-controller="Sandbox-Ctrl as vm">
-  <h1>{{vm.status}}</h1>
+      <pre>{{vm.guests}}</pre>
+      <textarea rows="50" cols="80">{{vm.guests | json}}</textarea>
 
-  <pre>{{vm.guests}}</pre>
-  <textarea rows="50" cols="80" >{{vm.guests | json}}</textarea>
+    </div>
 
+  </div>
 </div>
+
+
 
 <!--<body layout="column" ng-controller="VandAIDApp as library">-->
 
@@ -43,39 +50,39 @@
     <!--</div>-->
   <!--</md-sidenav>-->
 
-  <!--<div flex layout="row" class="page-background" >-->
-    <!--&lt;!&ndash; Collapse bar &ndash;&gt;-->
-    <!--<div hide show-gt-sm class="collapse-bar md-icon-button" ng-click="sideBoxCollapsed = !sideBoxCollapsed" layout="row" layout-align="center center">-->
-      <!--<md-icon ng-hide="sideBoxCollapsed" class="material-icons" aria-label="Collapse Toolbox">-->
-        <!--chevron_left-->
-      <!--</md-icon>-->
-      <!--<md-icon ng-show="sideBoxCollapsed" class="material-icons" aria-label="Expand Toolbox">-->
-        <!--chevron_right-->
-      <!--</md-icon>-->
-    <!--</div>-->
+    <!--&lt;!&ndash;<div flex layout="row" class="page-background" >&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Collapse bar &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;<div hide show-gt-sm class="collapse-bar md-icon-button" ng-click="sideBoxCollapsed = !sideBoxCollapsed" layout="row" layout-align="center center">&ndash;&gt;-->
+    <!--&lt;!&ndash;<md-icon ng-hide="sideBoxCollapsed" class="material-icons" aria-label="Collapse Toolbox">&ndash;&gt;-->
+    <!--&lt;!&ndash;chevron_left&ndash;&gt;-->
+    <!--&lt;!&ndash;</md-icon>&ndash;&gt;-->
+    <!--&lt;!&ndash;<md-icon ng-show="sideBoxCollapsed" class="material-icons" aria-label="Expand Toolbox">&ndash;&gt;-->
+    <!--&lt;!&ndash;chevron_right&ndash;&gt;-->
+    <!--&lt;!&ndash;</md-icon>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
 
-    <!--&lt;!&ndash; Main content &ndash;&gt;-->
-    <!--<md-content id="content" class="page-container" flex>-->
-      <!--<div class="instructions">-->
-        <!--<h2>Scenario:</h2>-->
-        <!--<p>Imagine you are receiving handoff from one of your colleagues to cover a set of patients for the night.-->
-          <!--Before your handoff, your colleague will hand you a printed patient list.-->
-          <!--Below are 5 patients that might appear on that list.</p>-->
-          <!--<p>Your task is to customize this list using the toolbox to your left.-->
-            <!--When you are finished, use the "Save and Submit" button below to send your preferences to the design team.</p>-->
-      <!--</div>-->
-      <!--<div class="page" ng-style="{'font-size': fm.values.font_size + 'pt'}" flex layout="row">-->
-        <!--<div class="page-inner">-->
-          <!--<component-canvas>Loading...</component-canvas>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</md-content>-->
-  <!--</div>-->
+    <!--&lt;!&ndash;&lt;!&ndash; Main content &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;<md-content id="content" class="page-container" flex>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="instructions">&ndash;&gt;-->
+    <!--&lt;!&ndash;<h2>Scenario:</h2>&ndash;&gt;-->
+    <!--&lt;!&ndash;<p>Imagine you are receiving handoff from one of your colleagues to cover a set of patients for the night.&ndash;&gt;-->
+    <!--&lt;!&ndash;Before your handoff, your colleague will hand you a printed patient list.&ndash;&gt;-->
+    <!--&lt;!&ndash;Below are 5 patients that might appear on that list.</p>&ndash;&gt;-->
+    <!--&lt;!&ndash;<p>Your task is to customize this list using the toolbox to your left.&ndash;&gt;-->
+    <!--&lt;!&ndash;When you are finished, use the "Save and Submit" button below to send your preferences to the design team.</p>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="page" ng-style="{'font-size': fm.values.font_size + 'pt'}" flex layout="row">&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="page-inner">&ndash;&gt;-->
+    <!--&lt;!&ndash;<component-canvas>Loading...</component-canvas>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</md-content>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
 
-  <!--&lt;!&ndash; Submit button &ndash;&gt;-->
-  <!--<md-button hide show-gt-md class="submit-fab md-raised" ng-class="needsSaveTip ? 'md-warn' : 'md-accent'" aria-label="Save and Submit" ng-click="submitData()">-->
-    <!--Save and Submit-->
-  <!--</md-button>-->
+    <!--&lt;!&ndash;&lt;!&ndash; Submit button &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;<md-button hide show-gt-md class="submit-fab md-raised" ng-class="needsSaveTip ? 'md-warn' : 'md-accent'" aria-label="Save and Submit" ng-click="submitData()">&ndash;&gt;-->
+    <!--&lt;!&ndash;Save and Submit&ndash;&gt;-->
+    <!--&lt;!&ndash;</md-button>&ndash;&gt;-->
 
 <!--</div>-->
 
@@ -107,12 +114,14 @@
 <!--Fields-->
 <script src="/app/fields/fields.module.js"></script>
 <script src="/app/fields/fieldservice.factory.js"></script>
+<script src="/app/fields/fieldpane.directive.js"></script>
 
 <!--Navigation-->
 <script src="/app/navigation/nav.module.js"></script>
 <script src="/app/navigation/identitybar.directive.js"></script>
 <script src="/app/navigation/keyboardshortcut.filter.js"></script>
 <script src="/app/navigation/menubar.directive.js"></script>
+<script src="/app/navigation/sidenav.directive.js"></script>
 
 <!--User-->
 <script src="/app/user/user.module.js"></script>

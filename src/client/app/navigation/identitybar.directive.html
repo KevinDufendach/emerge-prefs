@@ -11,9 +11,11 @@
         <span flex></span>
         <div ng-hide="vm.isLoggedIn" layout="row">
           <p>You are not logged in</p>
-          <!--<md-button ng-click="showIRBDialog($event)">Show consent form</md-button>-->
         </div>
-        <md-button hide-gt-sm class="md-icon-button" ng-click="toggleSidenav('left-sidenav')"><md-icon>menu</md-icon></md-button>
+        <md-button hide-gt-sm class="md-icon-button"
+                   ng-click="vm.toggleSidenav('left-sidenav')">
+          <md-icon>menu</md-icon>
+        </md-button>
       </div>
     </md-toolbar>
     <div flex>

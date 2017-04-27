@@ -5,20 +5,20 @@
     .module('app.sandbox')
     .controller('Sandbox-Ctrl', SandboxCtrl);
 
-  SandboxCtrl.$inject = ['redcapService', 'appTools', 'fieldService'];
+  SandboxCtrl.$inject = ['redcapService', 'appTools', 'vandaidFieldService'];
 
-  function SandboxCtrl(redcapService, appTools, fieldService) {
+  function SandboxCtrl(redcapService, appTools, vandaidFieldService) {
     var vm = this;
 
     vm.status = 'nothing to do';
     vm.guests = ['empty'];
 
     vm.status = 'retrieving from REDCap';
-    fieldService.initialize()
+    vandaidFieldService.getFields()
       .then(
-        function () {
+        function (fields) {
           console.log('fieldService initialized');
-          vm.guests = fieldService.getFields();
+          vm.guests = fields;
         }
       )
 

@@ -1,0 +1,39 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-z1" flex
+            ng-class="{'collapsed' : sideBoxCollapsed, 'clickable' : sideBoxCollapsed}"
+            md-component-id="left-sidenav"
+            md-is-locked-open="$mdMedia('gt-sm')">
+
+  <div flex layout="row">
+    <md-content flex>
+
+      <md-toolbar class="md-hue-2 md-toolbar-tools">
+        <md-icon class="material-icons">build</md-icon>
+        <h2> Toolbox</h2>
+        <span flex></span>
+        <md-button hide-gt-sm class="md-icon-button" ng-click="vm.toggleSidenav('left-sidenav')">
+          <md-icon>menu</md-icon>
+        </md-button>
+      </md-toolbar>
+
+      <!-- Fields -->
+      <md-list>
+        <div ng-repeat="field in vm.fields">
+          FieldID: {{field.id}}
+          <vandaid-field-pane field="field"></vandaid-field-pane>
+        </div>
+      </md-list>
+
+      <!-- Submit button -->
+      <div layout-padding layout="row">
+        <span flex></span>
+        <md-button class="md-accent md-raised" aria-label="Save and Submit" ng-click="submitData()">
+          Save and Submit
+        </md-button>
+        <span flex></span>
+
+      </div>
+
+    </md-content>
+
+  </div>
+</md-sidenav>
