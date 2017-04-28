@@ -25,12 +25,32 @@
   <!--Side Navigation-->
   <vandaid-sidenav></vandaid-sidenav>
 
-  <!--Main Content-->
-  <div flex>
-    <vandaid-paper>
-      <p>Here is my content inside the paper</p>
-      <vandaid-sandbox></vandaid-sandbox>
-    </vandaid-paper>
+  <div flex layout="row" class="page-background">
+    <!-- Collapse bar -->
+    <div hide show-gt-sm class="collapse-bar md-icon-button" ng-click="sideBoxCollapsed = !sideBoxCollapsed" layout="row" layout-align="center center">
+      <md-icon ng-hide="sideBoxCollapsed" class="material-icons" aria-label="Collapse Toolbox">
+        chevron_left
+      </md-icon>
+      <md-icon ng-show="sideBoxCollapsed" class="material-icons" aria-label="Expand Toolbox">
+        chevron_right
+      </md-icon>
+    </div>
+
+    <!--Main Content-->
+    <md-content id="content" class="page-container" flex>
+      <div class="instructions">
+        <h2>Scenario:</h2>
+        <p>Imagine you are receiving handoff from one of your colleagues to cover a set of patients for the night.
+          Before your handoff, your colleague will hand you a printed patient list.
+          Below are 5 patients that might appear on that list.</p>
+        <p>Your task is to customize this list using the toolbox to your left.
+          When you are finished, use the "Save and Submit" button below to send your preferences to the design team.</p>
+      </div>
+      <vandaid-paper>
+        <p>Here is my content inside the paper</p>
+        <vandaid-sandbox></vandaid-sandbox>
+      </vandaid-paper>
+    </md-content>
   </div>
 </div>
 

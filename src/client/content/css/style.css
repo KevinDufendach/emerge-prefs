@@ -263,13 +263,14 @@ md-sidenav.md-closed.md-locked-open-add-active {
 }
 
 .page {
-  margin: 0 auto;
+  margin: 16px auto;
   background: url("/img/north-America-3-ring-side_96ppi.png") repeat-y;
   background-size: 81px 1056px;
   padding: 0 0 0 78px;
   min-width: 816px;
   max-width: 816px;
   min-height: 1056px;
+  max-height: 1056px;
 
   height: auto;
   box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.25);
@@ -279,7 +280,7 @@ md-sidenav.md-closed.md-locked-open-add-active {
 .page-inner {
   /*margin-left: 78px;*/
   padding: 24px 24px 24px 0;
-  width: 100%;
+  min-width: 738px;
   min-height: 100%;
   background-color: white;
 }

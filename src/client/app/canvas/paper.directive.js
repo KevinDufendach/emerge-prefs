@@ -8,6 +8,7 @@
   /* @ngInject */
   function vandaidPaper() {
     var directive = {
+      replace: true,
       transclude: true,
       restrict: 'E',
       templateUrl: '/app/canvas/paper.directive.html',
