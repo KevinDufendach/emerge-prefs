@@ -10,12 +10,12 @@
   /* @ngInject */
   function vandaidSidenav() {
     var directive = {
+      replace: true,
       bindToController: true,
       controller: SidenavController,
       controllerAs: 'vm',
       templateUrl: '/app/navigation/sidenav.directive.html',
-      restrict: 'E',
-      scope: {}
+      restrict: 'E'
     };
     return directive;
   }
