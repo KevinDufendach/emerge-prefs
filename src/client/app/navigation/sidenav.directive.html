@@ -11,23 +11,25 @@
     </md-button>
   </md-toolbar>
 
-  <md-content layout-fill>
+  <div flex layout="row">
+    <md-content layout-fill>
 
-    <!-- Fields -->
-    <md-list>
-      <div ng-repeat="field in vm.fs.fields">
-        <vandaid-field-pane field="field" type="{{field.type}}"></vandaid-field-pane>
+      <!-- Fields -->
+      <md-list>
+        <div ng-repeat="field in vm.fs.fields">
+          <vandaid-field-pane field="field" type="{{field.type}}"></vandaid-field-pane>
+        </div>
+      </md-list>
+
+      <!-- Submit button -->
+      <div layout-padding layout="row">
+        <span flex></span>
+        <md-button class="md-accent md-raised" aria-label="Save and Submit" ng-click="submitData()">
+          Save and Submit
+        </md-button>
+        <span flex></span>
       </div>
-    </md-list>
 
-    <!-- Submit button -->
-    <div layout-padding layout="row">
-      <span flex></span>
-      <md-button class="md-accent md-raised" aria-label="Save and Submit" ng-click="submitData()">
-        Save and Submit
-      </md-button>
-      <span flex></span>
-    </div>
-
-  </md-content>
+    </md-content>
+  </div>
 </md-sidenav>

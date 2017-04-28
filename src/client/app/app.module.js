@@ -10,7 +10,8 @@
     'krd-redcap',
     'app.tools',
     'app.fields',
-    'app.nav'
+    'app.nav',
+    'app.canvas'
 
   ])
 })();
