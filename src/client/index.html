@@ -26,15 +26,7 @@
   <vandaid-sidenav></vandaid-sidenav>
 
   <div flex layout="row" class="page-background">
-    <!-- Collapse bar -->
-    <div hide show-gt-sm class="collapse-bar md-icon-button" ng-click="sideBoxCollapsed = !sideBoxCollapsed" layout="row" layout-align="center center">
-      <md-icon ng-hide="sideBoxCollapsed" class="material-icons" aria-label="Collapse Toolbox">
-        chevron_left
-      </md-icon>
-      <md-icon ng-show="sideBoxCollapsed" class="material-icons" aria-label="Expand Toolbox">
-        chevron_right
-      </md-icon>
-    </div>
+    <vandaid-collapse-bar collapsed="false"></vandaid-collapse-bar>
 
     <!--Main Content-->
     <md-content id="content" class="page-container" flex>
@@ -67,9 +59,10 @@
 <script src="/app/app.module.js"></script>
 <script src="/app/core/core.module.js"></script>
 <script src="/app/core/core.palette.js"></script>
+<script src="/app/core/core.iconprovider.js"></script>
 <script src="/app/tools/tools.module.js"></script>
 <script src="/app/tools/tools.service.js"></script>
-<script src="/app/core/core.iconprovider.js"></script>
+<script src="/app/tools/shared.service.js"></script>
 
 <!--Sandbox-->
 <script src="/app/sandbox/sandbox.module.js"></script>
@@ -91,6 +84,7 @@
 <script src="/app/navigation/keyboardshortcut.filter.js"></script>
 <script src="/app/navigation/menubar.directive.js"></script>
 <script src="/app/navigation/sidenav.directive.js"></script>
+<script src="/app/navigation/collapsebar.directive.js"></script>
 
 <!--User-->
 <script src="/app/user/user.module.js"></script>

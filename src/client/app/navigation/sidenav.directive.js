@@ -20,16 +20,18 @@
     return directive;
   }
 
-  SidenavController.$inject = ['$mdSidenav', 'vandaidFieldService'];
+  SidenavController.$inject = ['$mdSidenav', 'vandaidFieldService', '$vaShared', '$scope'];
 
   /* @ngInject */
-  function SidenavController($mdSidenav, vandaidFieldService) {
+  function SidenavController($mdSidenav, vandaidFieldService, $vaShared, $scope) {
     var vm = this;
     vm.fields = [];
 
     vm.fs = vandaidFieldService;
 
     vm.toggleSidenav = toggleSidenav;
+
+    $scope.$vaShared = $vaShared;
 
     activate();
 
