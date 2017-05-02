@@ -93,8 +93,8 @@
      *     }
      *   )
      */
-    function retrieveFieldsFromREDCap() {
-      return retrieveFieldsFromUri('rest/redcap-metadata');
+    function retrieveFieldsFromREDCap(formName) {
+      return retrieveFieldsFromUri('rest/redcap-metadata', formName);
     }
 
     /**
@@ -117,13 +117,26 @@
      *     }
      *   )
      */
-    function retrieveFieldsFromUri(uri) {
+    function retrieveFieldsFromUri(uri, formName) {
       return $q(function (resolve, reject) {
         $http.get(uri)
           .then(
             // On success
             function (response) {
-              resolve(response.data);
+              // ToDo: reject if error retrieving data or not formatted correctly
+
+              // Limit to specific form name
+              if (formName) {
+                var result = [];
+                for (var i = 0; i < response.data.length; i++) {
+                  if (response.data[i].form_name == formName) {
+                    result.push(response.data[i]);
+                  }
+                }
+                resolve(result);
+              } else {
+                resolve(response.data);
+              }
             },
             // On failure
             function (response) {
