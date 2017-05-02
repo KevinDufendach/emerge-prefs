@@ -233,9 +233,13 @@ md-sidenav.md-closed.md-locked-open-add-active {
   background-color: #f1f1f1;
 }
 
-.page-container {
-  background-color: inherit;
+vandaid-canvas {
+  display: block;
+  position: relative;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  background-color: inherit;
   padding: 16px;
   min-height: 100%;
 }

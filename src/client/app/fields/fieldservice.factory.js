@@ -26,7 +26,8 @@
       fields: self.fields,
       isReady: isReady,
       initialize: initialize,
-      getFields: getFields
+      getFields: getFields,
+      getValue: getValue
 
     };
     return service;
@@ -106,6 +107,23 @@
      */
     function isReady() {
       return (self.state === states.READY);
+    }
+
+    function getValue(fieldName, code) {
+      // [yesnotest] = '1' and ([checkbox_example(1)] = '1' or [checkbox_example(2)] = '1')
+
+      var i;
+      for (i = 0; i < self.fields.length; i++) {
+        if (fieldName === self.fields[i].id) {
+          if (angular.isDefined(code) && angular.isDefined(self.fields[i].values[TODO])) {
+
+          }
+
+          return;
+        }
+      }
+
+
     }
 
   }

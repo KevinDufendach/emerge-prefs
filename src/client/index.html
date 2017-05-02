@@ -29,22 +29,9 @@
     <vandaid-collapse-bar collapsed="false"></vandaid-collapse-bar>
 
     <!--Main Content-->
-    <vandaid-canvas>
+    <vandaid-canvas class="page-container" flex layout-fill>
 
     </vandaid-canvas>
-    <md-content id="content" class="page-container" flex>
-      <div class="instructions">
-        <h2>Scenario:</h2>
-        <p>Imagine you are receiving handoff from one of your colleagues to cover a set of patients for the night.
-          Before your handoff, your colleague will hand you a printed patient list.
-          Below are 5 patients that might appear on that list.</p>
-        <p>Your task is to customize this list using the toolbox to your left.
-          When you are finished, use the "Save and Submit" button below to send your preferences to the design team.</p>
-      </div>
-      <vandaid-paper>
-        <vandaid-sandbox></vandaid-sandbox>
-      </vandaid-paper>
-    </md-content>
   </div>
 </div>
 
@@ -95,9 +82,9 @@
 <!--Canvas-->
 <script src="/app/canvas/canvas.module.js"></script>
 <script src="/app/canvas/paper.directive.js"></script>
+<script src="/app/canvas/canvas.directive.js"></script>
 
 <!--<script src="/js/toolbox.js"></script>-->
-
 <!--<script src="/js/app.js"></script>-->
 <!--<script src="/js/canvas.js"></script>-->
 <!--<script src="/js/ptCanvas.js"></script>-->

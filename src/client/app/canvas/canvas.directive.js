@@ -5,23 +5,23 @@
     .module('app.canvas')
     .directive('vandaidCanvas', vandaidCanvas);
 
-  vandaidCanvas.$inject = ['vandaidFieldService'];
+  vandaidCanvas.$inject = [];
 
   /* @ngInject */
-  function vandaidCanvas(vandaidFieldService) {
+  function vandaidCanvas() {
     var directive = {
       bindToController: true,
       controller: CanvasCtrl,
       controllerAs: 'vm',
-      transclude: true,
-      template: '<div ng-transclude></div>',
+      // transclude: true,
+      templateUrl: '/projects/vandaid_test/test.html',
       restrict: 'EA',
       scope: {}
     };
     return directive;
   }
 
-  CanvasCtrl.$inject = ['$scope','vandaidFieldService'];
+  CanvasCtrl.$inject = ['$scope', 'vandaidFieldService'];
 
   /* @ngInject */
   function CanvasCtrl($scope, vandaidFieldService) {
