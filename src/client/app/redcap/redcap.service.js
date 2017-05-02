@@ -14,6 +14,7 @@
 
     var service = {
       fieldConstructor: fieldConstructor,
+      getInitialValue: getInitialValue,
       retrieveFieldsFromREDCap: retrieveFieldsFromREDCap,
       retrieveFieldsFromUri: retrieveFieldsFromUri,
 
@@ -38,39 +39,39 @@
       this.label = metadata.field_label || "";
       this.field_note = metadata.field_note || "";
       this.options = optionsTranslator(this.type, metadata.select_choices_or_calculations);
-      this.values = createValueObject(this)
     }
 
     /**
      * Create a JavaScript-style value object (e.g. yes/no or true/false translated to T/F)
      */
-    function createValueObject(field) {
-      var values = {};
+    function getInitialValue(field) {
+      var value = '';
+
       switch (field.type) {
         case "yesno":
         case "truefalse":
         case "radio":
           if (field.options.length < 1) {
             console.log("field " + field.id + " has no options to display.");
-            values[field.id] = "";
+            value = '';
           } else {
-            values[field.id] = field.options[0].value;
+            value = field.options[0].value;
           }
           break;
-        case "checkbox":
+        case 'checkbox':
           // Create a fieldId___option1, fieldId___2, etc. value for checkboxes
+          value = {};
           for (var j = 0; j < field.options.length; j++) {
-            values[field.id + "___" + field.options[j].value] = false;
+            value[field.options[j].value] = false;
           }
           break;
         case "text":
         case "notes":
-        default:
-          values[field.id] = "";
+          value = '';
           break;
       }
 
-      return values;
+      return value;
     }
 
     /**

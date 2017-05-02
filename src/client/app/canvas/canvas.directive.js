@@ -26,6 +26,9 @@
   /* @ngInject */
   function CanvasCtrl($scope, vandaidFieldService) {
     $scope.fieldService = vandaidFieldService;
+
+    // $scope.va = vandaidFieldService.getValue;
+    $scope.va = vandaidFieldService.values;
   }
 
 })();

@@ -16,19 +16,20 @@
       READY: 2
     };
 
+    var values = {};
+
     self.fields = [];
     self.state = states.UNITIALIZED;
     self.initializeResolveList = [];
     self.initializeRejectList = [];
-    self.myVar = 2.3;
 
     var service = {
       fields: self.fields,
       isReady: isReady,
       initialize: initialize,
       getFields: getFields,
-      getValue: getValue
-
+      getValue: getValue,
+      values: values
     };
     return service;
 
@@ -46,9 +47,13 @@
           .then(
             // On success
             function (data) {
+              var curField;
+
               console.log('FieldService successfully initialized');
               for (var i = 0; i < data.length; i++) {
-                self.fields.push(new redcapService.fieldConstructor(data[i]));
+                curField = new redcapService.fieldConstructor(data[i]);
+                self.fields.push(curField);
+                values[curField.id] = redcapService.getInitialValue(curField);
               }
 
               // self.fields = appTools.arrayConstructor(data, redcapService.fieldConstructor);
@@ -87,12 +92,16 @@
                 for (i = 0; i < self.initializeResolveList.length; i++) {
                   self.initializeResolveList[i](self.fields);
                 }
+                self.initializeResolveList.length = 0;
+                self.initializeRejectList.length = 0;
               },
               function (response) {
                 var i;
                 for (i = 0; i < self.initializeResolveList.length; i++) {
                   self.initializeRejectList[i](response);
                 }
+                self.initializeResolveList.length = 0;
+                self.initializeRejectList.length = 0;
               }
             );
           }
@@ -109,21 +118,21 @@
       return (self.state === states.READY);
     }
 
+    /**
+     * Returns the value of the specified field by name.
+     *
+     * @param fieldName required fieldName (id)
+     * @param code optional code for checkboxes. Ignored for other data types.
+     */
     function getValue(fieldName, code) {
       // [yesnotest] = '1' and ([checkbox_example(1)] = '1' or [checkbox_example(2)] = '1')
+      if (!fieldName || !values[fieldName]) return;
 
-      var i;
-      for (i = 0; i < self.fields.length; i++) {
-        if (fieldName === self.fields[i].id) {
-          if (angular.isDefined(code) && angular.isDefined(self.fields[i].values[TODO])) {
-
-          }
-
-          return;
-        }
+      if (angular.isDefined(values[fieldName][code])) {
+        return values[fieldName][code];
       }
 
-
+      return values[fieldName];
     }
 
   }

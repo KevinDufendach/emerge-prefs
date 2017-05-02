@@ -32,14 +32,15 @@
     }
 
     function getTemplate(type) {
+      // return '<div>Test</div>';
       switch (type) {
         case 'text':
           return '<md-input-container flex>' +
             '<label>Comments</label>' +
-            '<textarea ng-model="vm.field.values[vm.field.id]" md-select-on-focus></textarea>' +
+            '<textarea ng-model="vm.va[vm.field.id]" md-select-on-focus></textarea>' +
             '</md-input-container>';
         case 'radio':
-          return '<md-radio-group ng-model="vm.field.values[vm.field.id]" ng-switch="fieldAlign">' +
+          return '<md-radio-group ng-model="vm.va[vm.field.id]" ng-switch="fieldAlign">' +
             '<div ng-switch-default>' +
             '<md-radio-button ng-repeat="option in vm.field.options"' +
             'ng-value="option.value">{{option.label}}' +
@@ -66,19 +67,19 @@
             '</div>' +
             '</md-radio-group>';
         case 'yesno':
-          return '<md-radio-group ng-model="vm.field.values[vm.field.id]">' +
+          return '<md-radio-group ng-model="vm.va[vm.field.id]">' +
             '<md-radio-button ng-repeat="option in vm.field.options" ng-value="option.value">{{option.label}}' +
             '</md-radio-button>' +
             '</md-radio-group>';
         case 'truefalse':
-          return '<md-radio-group ng-model="vm.field.values[vm.field.id]">' +
+          return '<md-radio-group ng-model="vm.va[vm.field.id]">' +
             '<md-radio-button ng-repeat="option in vm.field.options"' +
             'ng-value="option.value">{{option.label}}' +
             '</md-radio-button>' +
             '</md-radio-group>';
         case 'checkbox':
           return '<div><div ng-repeat="option in vm.field.options" class="checkbox">' +
-            '<md-checkbox ng-model="vm.field.values[vm.field.id + \'___\' + option.value]">{{ option.label }}</md-checkbox>' +
+            '<md-checkbox ng-model="vm.va[vm.field.id][option.value]">{{ option.label }}</md-checkbox>' +
             '</div></div>';
         default:
           return '<div layout="row" layout-sm="column" layout-align="space-around">' +
@@ -92,7 +93,8 @@
 
   /* @ngInject */
   function FieldInputBoxCtrl(vandaidFieldService) {
-
+    // $scope.va = vandaidFieldService.values;
+    this.va = vandaidFieldService.values;
   }
 
 })();
