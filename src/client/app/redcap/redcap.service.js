@@ -50,6 +50,8 @@
       switch (field.type) {
         case "yesno":
         case "truefalse":
+          value = false;
+          break;
         case "radio":
           if (field.options.length < 1) {
             console.log("field " + field.id + " has no options to display.");

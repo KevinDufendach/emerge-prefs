@@ -25,9 +25,12 @@
 
   /* @ngInject */
   function CanvasCtrl($scope, vandaidFieldService) {
-    $scope.fieldService = vandaidFieldService;
+    vandaidFieldService.getFields().then(
+      function (fields) {
+        $scope.fields = fields;
+      }
+    );
 
-    // $scope.va = vandaidFieldService.getValue;
     $scope.va = vandaidFieldService.values;
   }
 
