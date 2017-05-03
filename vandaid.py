@@ -138,15 +138,13 @@ class ValidateUser(RestHandler):
     
     def post(self):
         r = json.loads(self.request.body)
-        
-        logging.debug('============ DEBUG MESSAGE ============')
-        logging.debug(r)
-        logging.debug('============ DEBUG MESSAGE ============')
-        
+                
         if (validate_user.validateUser(r['id'], r['key'])):
-            self.response.out.write('Authorized')
+            self.response.out.write('AUTHORIZED')
         else:
-            self.response.out.write('Unauthorized')
+            self.response.out.write('UNAUTHORIZED')
+                
+        return
         
 
 class InsertHandler(RestHandler):

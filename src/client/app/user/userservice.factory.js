@@ -24,11 +24,12 @@
     var state = states.INITIAL;
     var user = initializeUser();
 
-    verifyUser();
+    verifyUser(user.id, user.key);
 
     var service = {
       isLoggedIn: isLoggedIn,
-      getUser: getUser
+      getUser: getUser,
+      getState: getState
     };
     return service;
 
@@ -64,8 +65,8 @@
 
       return $q(function (resolve, reject) {
         var params = {
-          method: 'post',
-          url: '/rest/validate-user',
+          method: "post",
+          url: "/rest/validate-user",
           data: {
             id: id,
             key: key
@@ -75,10 +76,16 @@
         $http(params).then(
           // on success
           function (returnData) {
-            console.log(returnData);
+            console.log('User ' + returnData.data);
+
+            if (returnData.data === 'AUTHORIZED') {
+              state = states.LOGGED_IN;
+            } else {
+              state = states.LOGGED_OUT;
+            }
           },
           // on failure
-          function(returnData) {
+          function (returnData) {
             console.log('verify request failed: ' + returnData);
           }
         )
@@ -92,6 +99,15 @@
      */
     function getUser() {
       return user;
+    }
+
+    /**
+     * Returns the current state
+     *
+     * @return {number}
+     */
+    function getState() {
+      return state;
     }
 
     /**
