@@ -1,12 +1,4 @@
 <link type="text/css" rel="stylesheet" href="/projects/vandaid_test/test.css"/>
-<!-- Submit button -->
-<div layout-padding layout="row">
-  <span flex></span>
-  <md-button class="md-accent md-raised" aria-label="Save and Submit" ng-click="vm.submit()">
-    Save and Submit
-  </md-button>
-  <span flex></span>
-</div>
 
 <h4>Submit response:</h4>
 <textarea rows="10" cols="60">{{submitReturn | json}}</textarea>
@@ -42,7 +34,6 @@
   <div class="md-warn" ng-hide="va.ready">not ready to send</div>
 
   <h4>Values:</h4>
-  <div>Scoops data type{{va.ice_cream_scoops.constructor}}</div>
   <textarea rows="10" cols="60">{{va | json}}</textarea>
   <h4>Fields:</h4>
   <textarea rows="10" cols="60">{{fields | json}}</textarea>
