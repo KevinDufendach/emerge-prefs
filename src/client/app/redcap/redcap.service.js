@@ -131,7 +131,7 @@
               if (formName) {
                 var result = [];
                 for (var i = 0; i < response.data.length; i++) {
-                  if (response.data[i].form_name == formName) {
+                  if (response.data[i].form_name === formName) {
                     result.push(response.data[i]);
                   }
                 }
@@ -267,7 +267,7 @@
           // looks for items matching the 'fn' pattern
           this.values[fn] = (data[fn] == "1");
         } else {
-          if (this.fields.hasOwnProperty(fn) && (this.fields[fn].type === "yesno" || this.fields[fn].type == "truefalse")) {
+          if (this.fields.hasOwnProperty(fn) && (this.fields[fn].type === "yesno" || this.fields[fn].type === "truefalse")) {
             this.values[fn] = (data[fn] == "1");
           } else {
             this.values[fn] = data[fn];
@@ -276,29 +276,65 @@
       }
     }
 
+    function translateToREDCapStyleFields(values) {
+      var data = {};
+      var valString;
+      var i;
+      var value;
+
+      Object.keys(values).forEach(function(fieldName,index) {
+        // key: the name of the object key
+        // index: the ordinal position of the key within the object
+        value = values[fieldName];
+
+        if (value.constructor === Object) {
+          Object.keys(value).forEach(function(key) {
+            data[fieldName + '___' + key] = formatValue( value[key] );
+          });
+        } else {
+          data[fieldName] = formatValue( value );
+        }
+      });
+
+      function formatValue( input ) {
+        if (typeof(input) !== 'boolean') return input;
+
+        if (input) {
+          return '1';
+        } else {
+          return '0';
+        }
+      }
+
+      if (!values) data = {
+        "record_id": "12",
+        "recipient_name": "Sir or Madam",
+        "source": "oh",
+        "ice_cream": "1",
+        "ice_cream_scoops___1": "1",
+        "ice_cream_scoops___2": "0",
+        "ice_cream_scoops___3": "1",
+        "ice_cream_scoops___4": "0",
+        "ready": "1"
+      };
+
+      return data;
+
+    }
+
     /**
      * Submit data to a REDCap database
      *
      * @param user
      */
-    function submitData(data, user) {
+    function submitData(values, user) {
       return $q(function (resolve, reject) {
         var user = {
           id: 'test',
           key: 'ASDFGHJKL'
         };
 
-        var data = {
-          "record_id": "12",
-          "recipient_name": "Sir or Madam",
-          "source": "oh",
-          "ice_cream": "1",
-          "ice_cream_scoops___1": "1",
-          "ice_cream_scoops___2": "0",
-          "ice_cream_scoops___3": "1",
-          "ice_cream_scoops___4": "0",
-          "ready": "1"
-        };
+        var data = translateToREDCapStyleFields(values);
 
         var params = {
           method: "post",

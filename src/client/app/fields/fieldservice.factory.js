@@ -138,7 +138,7 @@
 
 
     function submitFields() {
-      return redcapService.submitData()
+      return redcapService.submitData(values)
     }
   }
 
