@@ -278,8 +278,6 @@
 
     function translateToREDCapStyleFields(values) {
       var data = {};
-      var valString;
-      var i;
       var value;
 
       Object.keys(values).forEach(function(fieldName,index) {
@@ -319,7 +317,6 @@
       };
 
       return data;
-
     }
 
     /**
@@ -330,8 +327,8 @@
     function submitData(values, user) {
       return $q(function (resolve, reject) {
         var user = {
-          id: 'test',
-          key: 'ASDFGHJKL'
+          id: 'TEST_USER',
+          key: 'TEST_KEY'
         };
 
         var data = translateToREDCapStyleFields(values);
@@ -352,13 +349,13 @@
             if (returnData.data.count === 1) {
               resolve(returnData);
             } else {
-              reject("Unable to submit to REDCap: " + returnData);
+              reject("Unable to submit to REDCap: " + returnData.data);
             }
           },
           function (returnData) {
-            console.log("Unable to submit to REDCap: " + returnData);
+            console.log("Unable to reach REDCap: " + returnData.statusText);
 
-            reject(returnData);
+            reject("Unable to reach REDCap: " + returnData.statusText);
           }
         );
 

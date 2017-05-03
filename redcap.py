@@ -13,10 +13,11 @@
 # limitations under the License.
 
 import json
-
 import webapp2
 
 import model2
+
+import validate_user
 
 # [START urllib-imports]
 import urllib
@@ -74,7 +75,8 @@ class RedcapPostHandler(RestHandler):
                 headers=headers)
             self.response.write(result.content)
         except urlfetch.Error:
-            logging.exception('Caught exception fetching url')
+            self.response.out.write('Caught exception fecthing url')
+#             logging.exception('Caught exception fetching url')
 
 class QueryHandler(RestHandler):
 
@@ -97,16 +99,16 @@ class RedcapImportRecordsHandler(RestHandler):
 
     def post(self):
         url = config['api_url']
-#                 r = json.loads(self.request.body)
+
         r = json.loads(self.request.body)
         
-#         r = {
-#             'r_data': {
-#                     'user': 'Me',
-#                     'fields': 'myFields',
-#                 }
-#             }
+        myUser = r['user']
         
+        if not(validate_user.validateUser(myUser['id'], myUser['key'])):
+#             logging.exception('Unauthorized user')
+            self.response.out.write('Unauthorized user')
+            return
+                
         myFields = r['fields']
         
         submitFields = {

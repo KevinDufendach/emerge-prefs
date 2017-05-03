@@ -57,7 +57,7 @@
         },
         // on reject
         function (data) {
-          $scope.submitReturn = 'There was an error:\n' + data;
+          $scope.submitReturn = 'There was an error: ' + data;
         }
       )
     }

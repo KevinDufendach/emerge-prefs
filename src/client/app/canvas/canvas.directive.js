@@ -13,7 +13,6 @@
       bindToController: true,
       controller: CanvasCtrl,
       controllerAs: 'vm',
-      // transclude: true,
       templateUrl: __env.canvasUri,
       restrict: 'EA',
       scope: {}
@@ -43,7 +42,7 @@
         },
         // on reject
         function (data) {
-          $scope.submitReturn = 'There was an error:\n' + data;
+          $scope.submitReturn = 'Error: ' + data;
         }
       )
     }

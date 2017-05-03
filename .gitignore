@@ -129,3 +129,6 @@ config.json
 # Python
 #########################
 *.pyc
+/users.py
+/config.py
+/project_users.py
