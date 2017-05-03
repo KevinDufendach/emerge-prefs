@@ -5,16 +5,15 @@
     .module('app.fields')
     .directive('vaSubmitButton', vaSubmitButton);
 
-  vaSubmitButton.$inject = ['vandaidFieldService'];
-
   /* @ngInject */
-  function vaSubmitButton(vandaidFieldService) {
+  function vaSubmitButton() {
     var directive = {
       bindToController: true,
-      restrict: 'EA',
-      templateUrl: '/app/fields/submitButton.directive.html',
       controller: submitButtonCtrl,
-      controllerAs: 'vm'
+      controllerAs: 'vm',
+      templateUrl: '/app/fields/submitButton.directive.html',
+      restrict: 'EA',
+      scope: {}
     };
     return directive;
 
@@ -28,4 +27,3 @@
   }
 
 })();
-

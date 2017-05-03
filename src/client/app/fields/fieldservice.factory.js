@@ -23,6 +23,8 @@
     self.initializeResolveList = [];
     self.initializeRejectList = [];
 
+    initialize();
+
     var service = {
       fields: self.fields,
       isReady: isReady,
@@ -43,6 +45,7 @@
      */
     function initialize() {
       self.state = states.INITIALIZING;
+
       return $q(function (resolve, reject) {
         redcapService.retrieveFieldsFromREDCap(__env.formName)
           .then(
@@ -98,7 +101,7 @@
               },
               function (response) {
                 var i;
-                for (i = 0; i < self.initializeResolveList.length; i++) {
+                for (i = 0; i < self.initializeRejectList.length; i++) {
                   self.initializeRejectList[i](response);
                 }
                 self.initializeResolveList.length = 0;

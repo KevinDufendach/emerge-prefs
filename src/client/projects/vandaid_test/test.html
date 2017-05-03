@@ -1,8 +1,5 @@
 <link type="text/css" rel="stylesheet" href="/projects/vandaid_test/test.css"/>
 
-<h4>Submit response:</h4>
-<textarea rows="10" cols="60">{{submitReturn | json}}</textarea>
-
 <vandaid-paper>
   <h1>Dear {{va.recipient_name}},</h1>
 
@@ -38,26 +35,3 @@
   <h4>Fields:</h4>
   <textarea rows="10" cols="60">{{fields | json}}</textarea>
 </vandaid-paper>
-
-<!--<div>{{fieldService.isReady()}}</div>-->
-
-<!--<p>Field service state: {{fieldService.isReady()}}</p>-->
-<!--<p>Next check: {{vm.checkIsReady()}} | {{vm.myVar}}</p>-->
-
-<!--&lt;!&ndash;<md-content flex>&ndash;&gt;-->
-<!--<div class="instructions">-->
-
-  <!--<h3 ng-show="va.yesnotest">I REALLY like Ice Cream!</h3>-->
-
-
-  <!--<h2>Scenario:</h2>-->
-  <!--<p>Imagine you are receiving handoff from one of your colleagues to cover a set of patients for the night.-->
-    <!--Before your handoff, your colleague will hand you a printed patient list.-->
-    <!--Below are 5 patients that might appear on that list.</p>-->
-  <!--<p>Your task is to customize this list using the toolbox to your left.-->
-    <!--When you are finished, use the "Save and Submit" button below to send your preferences to the design team.</p>-->
-<!--</div>-->
-<!--<vandaid-paper>-->
-  <!--<vandaid-sandbox></vandaid-sandbox>-->
-<!--</vandaid-paper>-->
-<!--&lt;!&ndash;</md-content>&ndash;&gt;-->
