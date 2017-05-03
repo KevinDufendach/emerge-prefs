@@ -29,6 +29,7 @@
       initialize: initialize,
       getFields: getFields,
       getValue: getValue,
+      submit: submitFields,
       values: values
     };
     return service;
@@ -135,6 +136,10 @@
       return values[fieldName];
     }
 
+
+    function submitFields() {
+      return redcapService.submitData()
+    }
   }
 
 })();

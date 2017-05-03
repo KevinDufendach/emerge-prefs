@@ -34,6 +34,10 @@ def AsDict(guest):
 def AsDict(testfield):
     return {'id': testfield.key.id(), 'field_name': testfield.first, 'last': testfield.last}
 
+# def AsDict(req):
+#     return {'r_data': req.r_data}
+
+
 # def AsDict(asdfjkl):
 #     return {'id': asdfjkl.key.id(), 'field_name': asdfjkl.name, 'field_type': asdfjkl.type}
 
@@ -89,6 +93,43 @@ class UpdateHandler(RestHandler):
         self.SendJson(r)
 
 
+class RedcapImportRecordsHandler(RestHandler):
+
+    def post(self):
+        url = config['api_url']
+#                 r = json.loads(self.request.body)
+        r = json.loads(self.request.body)
+        
+#         r = {
+#             'r_data': {
+#                     'user': 'Me',
+#                     'fields': 'myFields',
+#                 }
+#             }
+        
+        myFields = r['fields']
+        
+        submitFields = {
+            'token': config['api_token'],
+            'content': 'record',
+            'format': 'json',
+            'type': 'flat',
+            'data': json.dumps([myFields]),
+        }
+        
+        try:
+            form_data = urllib.urlencode(submitFields)
+            headers = {'Content-Type': 'application/x-www-form-urlencoded',
+                       'Accept' : 'application/json'}
+            result = urlfetch.fetch(
+                url=url,
+                payload=form_data,
+                method=urlfetch.POST,
+                headers=headers)
+            self.response.write(result.content)
+        except urlfetch.Error:
+            logging.exception('Caught exception fetching url')
+
 class InsertHandler(RestHandler):
 
     def post(self):
@@ -111,4 +152,5 @@ APP = webapp2.WSGIApplication([
     ('/rest/delete', DeleteHandler),
     ('/rest/update', UpdateHandler),
     ('/rest/redcap-metadata', RedcapPostHandler),
+    ('/rest/redcap-import-records', RedcapImportRecordsHandler)
 ], debug=True)

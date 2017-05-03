@@ -283,9 +283,26 @@
      */
     function submitData(data, user) {
       return $q(function (resolve, reject) {
+        var user = {
+          id: 'test',
+          key: 'ASDFGHJKL'
+        };
+
+        var data = {
+          "record_id": "12",
+          "recipient_name": "Sir or Madam",
+          "source": "oh",
+          "ice_cream": "1",
+          "ice_cream_scoops___1": "1",
+          "ice_cream_scoops___2": "0",
+          "ice_cream_scoops___3": "1",
+          "ice_cream_scoops___4": "0",
+          "ready": "1"
+        };
+
         var params = {
           method: "post",
-          url: "/php/saveToREDCap.php",
+          url: "/rest/redcap-import-records",
           data: {
             user: user,
             fields: data
@@ -294,17 +311,18 @@
 
         $http(params).then(
           function (returnData) {
-            console.log("Submitted to REDCap: " + returnData);
+            console.log("Submitted to REDCap: " + returnData.data.count);
 
-            $scope.test_data = returnData;
-            $scope.dataSubmitted = true;
-
-            resolve();
+            if (returnData.data.count === 1) {
+              resolve(returnData);
+            } else {
+              reject("Unable to submit to REDCap: " + returnData);
+            }
           },
           function (returnData) {
             console.log("Unable to submit to REDCap: " + returnData);
 
-            reject();
+            reject(returnData);
           }
         );
 

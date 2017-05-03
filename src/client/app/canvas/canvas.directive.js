@@ -25,13 +25,28 @@
 
   /* @ngInject */
   function CanvasCtrl($scope, vandaidFieldService) {
+    var vm = this;
+    vm.submit = submit;
+
     vandaidFieldService.getFields().then(
       function (fields) {
         $scope.fields = fields;
+        $scope.va = vandaidFieldService.values;
       }
     );
 
-    $scope.va = vandaidFieldService.values;
+    function submit() {
+      vandaidFieldService.submit().then(
+        // on resolve
+        function (data) {
+          $scope.submitReturn = data;
+        },
+        // on reject
+        function (data) {
+          $scope.submitReturn = 'There was an error:\n' + data;
+        }
+      )
+    }
   }
 
 })();

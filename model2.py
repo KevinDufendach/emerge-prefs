@@ -14,6 +14,10 @@
 
 from google.appengine.ext import ndb
 
+class ImportRequest(ndb.Model):
+    data = ndb.StringProperty()
+    user = ndb.StringProperty()
+    
 
 class Guest(ndb.Model):
     first = ndb.StringProperty()
