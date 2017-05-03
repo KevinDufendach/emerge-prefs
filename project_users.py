@@ -1,3 +1,3 @@
 users = dict(
-    TEST_USER = 'TEST_KEYED',
+    TEST_USER = 'TEST_KEY',
 )

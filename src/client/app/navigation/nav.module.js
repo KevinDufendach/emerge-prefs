@@ -3,7 +3,6 @@
 
   angular
     .module('app.nav', [
-      'app.user',
       'ngMaterial'
     ]);
 

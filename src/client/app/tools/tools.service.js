@@ -7,7 +7,8 @@
 
   function appTools() {
     var service = {
-      arrayConstructor: arrayConstructor
+      arrayConstructor: arrayConstructor,
+      get: get
     };
     return service;
 
@@ -27,6 +28,18 @@
         result.push(new constructorFn(prototypes[i]));
       }
       return result;
+    }
+
+    /**
+     * Gets a specified url-encoded parameter
+     *
+     * @param param {string} the url-encoded parameter desired
+     * @returns {string} the value of the parameter. Returns undefined if not found.
+     */
+    function get(param){
+      var result;
+      if(result=(new RegExp('[?&]'+encodeURIComponent(param)+'=([^&]*)')).exec(location.search))
+        return decodeURIComponent(result[1]);
     }
   }
 })();

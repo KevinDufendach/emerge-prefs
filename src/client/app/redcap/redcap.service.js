@@ -135,8 +135,12 @@
                     result.push(response.data[i]);
                   }
                 }
+
+                removeRecordID(result);
+
                 resolve(result);
               } else {
+                removeRecordID(response.data);
                 resolve(response.data);
               }
             },
@@ -145,7 +149,15 @@
               reject(response);
             }
           );
-      })
+      });
+
+      function removeRecordID(data) {
+        for (var i = 0; i < data.length; i++) {
+          if (data[i].field_name === 'record_id') {
+            return data.splice(i, 1);
+          }
+        }
+      }
     }
 
     /**
@@ -280,21 +292,21 @@
       var data = {};
       var value;
 
-      Object.keys(values).forEach(function(fieldName,index) {
+      Object.keys(values).forEach(function (fieldName, index) {
         // key: the name of the object key
         // index: the ordinal position of the key within the object
         value = values[fieldName];
 
         if (value.constructor === Object) {
-          Object.keys(value).forEach(function(key) {
-            data[fieldName + '___' + key] = formatValue( value[key] );
+          Object.keys(value).forEach(function (key) {
+            data[fieldName + '___' + key] = formatValue(value[key]);
           });
         } else {
-          data[fieldName] = formatValue( value );
+          data[fieldName] = formatValue(value);
         }
       });
 
-      function formatValue( input ) {
+      function formatValue(input) {
         if (typeof(input) !== 'boolean') return input;
 
         if (input) {
@@ -303,18 +315,6 @@
           return '0';
         }
       }
-
-      if (!values) data = {
-        "record_id": "12",
-        "recipient_name": "Sir or Madam",
-        "source": "oh",
-        "ice_cream": "1",
-        "ice_cream_scoops___1": "1",
-        "ice_cream_scoops___2": "0",
-        "ice_cream_scoops___3": "1",
-        "ice_cream_scoops___4": "0",
-        "ready": "1"
-      };
 
       return data;
     }
@@ -326,12 +326,16 @@
      */
     function submitData(values, user) {
       return $q(function (resolve, reject) {
-        var user = {
-          id: 'TEST_USER',
-          key: 'TEST_KEY'
-        };
+        if (!values) {
+          reject('No data given');
+        }
+
+        if (!user) {
+          reject('No user specified');
+        }
 
         var data = translateToREDCapStyleFields(values);
+        data['record_id'] = user.id;
 
         var params = {
           method: "post",

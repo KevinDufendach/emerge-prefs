@@ -1,23 +1,117 @@
 /**
  * Created by REIR8P on 4/27/2017.
  */
-(function() {
+(function () {
   'use strict';
 
   angular
     .module('app.user')
-    .factory('userService', UserService);
+    .factory('vandaidUserService', UserService);
 
-  function UserService() {
+  UserService.$inject = ['appTools', '$q', '$http'];
+
+  function UserService(appTools, $q, $http) {
+    var self = this;
+
+    var states = {
+      INITIAL: 0,
+      VERIFYING: 1,
+      LOGGED_OUT: 2,
+      SET: 3,
+      LOGGED_IN: 4
+    };
+
+    var state = states.INITIAL;
+    var user = initializeUser();
+
+    verifyUser();
+
     var service = {
-      isLoggedIn: isLoggedIn
+      isLoggedIn: isLoggedIn,
+      getUser: getUser
     };
     return service;
 
     //////////
 
+    /**
+     * Constructor for a User object that will obtain "id" and "key" from a GET request
+     *
+     * @constructor
+     */
+    function User(template) {
+      this.id = template.id || "undefined";
+      this.key = template.key || "unspecified";
+      this.name = template.name || this.id;
+    }
+
+    /**
+     * Returns true for state of SET or better
+     *
+     * @return {boolean}
+     */
     function isLoggedIn() {
-      return false;
+      return state >= states.SET;
+    }
+
+    /**
+     * Verifies a user id and key
+     *
+     * @return {*}
+     */
+    function verifyUser(id, key) {
+      self.state = states.VERIFYING;
+
+      return $q(function (resolve, reject) {
+        var params = {
+          method: 'post',
+          url: '/rest/validate-user',
+          data: {
+            id: id,
+            key: key
+          }
+        };
+
+        $http(params).then(
+          // on success
+          function (returnData) {
+            console.log(returnData);
+          },
+          // on failure
+          function(returnData) {
+            console.log('verify request failed: ' + returnData);
+          }
+        )
+      });
+    }
+
+    /**
+     * Returns the current user
+     *
+     * @return {*}
+     */
+    function getUser() {
+      return user;
+    }
+
+    /**
+     * Checks for a GET request and loads the embedded username and key.
+     * If not found, creates a "default" user
+     *
+     * @return
+     */
+    function initializeUser() {
+      var user = new User({
+          id: appTools.get('id'),
+          key: appTools.get('key')
+        }
+      );
+
+      if (user.id !== 'undefined' && user.key !== 'unspecified') {
+        state = states.SET;
+      }
+
+      return user;
     }
 
   }

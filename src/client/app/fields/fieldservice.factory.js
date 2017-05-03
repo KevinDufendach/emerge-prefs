@@ -5,9 +5,9 @@
     .module('app.fields')
     .factory('vandaidFieldService', fieldService);
 
-  fieldService.$inject = ['$q', 'redcapService', '__env'];
+  fieldService.$inject = ['$q', 'redcapService', 'vandaidUserService', '__env'];
 
-  function fieldService($q, redcapService, __env) {
+  function fieldService($q, redcapService, vandaidUserService, __env) {
     var self = this;
 
     var states = {
@@ -126,7 +126,6 @@
      * @param code optional code for checkboxes. Ignored for other data types.
      */
     function getValue(fieldName, code) {
-      // [yesnotest] = '1' and ([checkbox_example(1)] = '1' or [checkbox_example(2)] = '1')
       if (!fieldName || !values[fieldName]) return;
 
       if (angular.isDefined(values[fieldName][code])) {
@@ -138,7 +137,7 @@
 
 
     function submitFields() {
-      return redcapService.submitData(values)
+      return redcapService.submitData(values, vandaidUserService.getUser());
     }
   }
 

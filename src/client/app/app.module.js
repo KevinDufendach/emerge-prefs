@@ -11,7 +11,8 @@
     'app.tools',
     'app.fields',
     'app.nav',
-    'app.canvas'
+    'app.canvas',
+    'app.user'
     // 'app.api'
 
   ])

@@ -14,6 +14,8 @@
 
 import json
 import webapp2
+import logging
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 import model2
 
@@ -131,6 +133,21 @@ class RedcapImportRecordsHandler(RestHandler):
             self.response.write(result.content)
         except urlfetch.Error:
             logging.exception('Caught exception fetching url')
+            
+class ValidateUser(RestHandler):
+    
+    def post(self):
+        r = json.loads(self.request.body)
+        
+        logging.debug('============ DEBUG MESSAGE ============')
+        logging.debug(r)
+        logging.debug('============ DEBUG MESSAGE ============')
+        
+        if (validate_user.validateUser(r['id'], r['key'])):
+            self.response.out.write('Authorized')
+        else:
+            self.response.out.write('Unauthorized')
+        
 
 class InsertHandler(RestHandler):
 
@@ -154,5 +171,6 @@ APP = webapp2.WSGIApplication([
     ('/rest/delete', DeleteHandler),
     ('/rest/update', UpdateHandler),
     ('/rest/redcap-metadata', RedcapPostHandler),
-    ('/rest/redcap-import-records', RedcapImportRecordsHandler)
+    ('/rest/redcap-import-records', RedcapImportRecordsHandler),
+    ('/rest/validate-user', ValidateUser)
 ], debug=True)

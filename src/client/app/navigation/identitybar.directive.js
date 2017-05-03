@@ -5,9 +5,9 @@
     .module('app.nav')
     .directive('vandaidIdentityBar', IdentityBar);
 
-  IdentityBar.$inject = ['userService', '$mdSidenav'];
+  IdentityBar.$inject = ['vandaidUserService', '$mdSidenav'];
 
-  function IdentityBar(userService, $mdSidenav) {
+  function IdentityBar(vandaidUserService, $mdSidenav) {
     var directive = {
       restrict: 'E',
       templateUrl: '/app/navigation/identitybar.directive.html',
@@ -23,7 +23,7 @@
       var vm = this;
 
       vm.toggleSidenav = toggleSidenav;
-      vm.isLoggedIn = userService.isLoggedIn();
+      vm.isLoggedIn = vandaidUserService.isLoggedIn();
 
       //////////////
 
