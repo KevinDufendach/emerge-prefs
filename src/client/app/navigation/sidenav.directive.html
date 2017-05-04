@@ -1,0 +1,36 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-z1" flex
+            ng-class="{'collapsed' : $vaShared.sideBoxCollapsed, 'clickable' : $vaShared.sideBoxCollapsed}"
+            md-is-locked-open="$mdMedia('gt-md')"
+            md-component-id="left-sidenav">
+  <md-content layout-fill>
+    <md-toolbar class="md-hue-2 md-toolbar-tools">
+      <md-icon class="material-icons">build</md-icon>
+      <h2>Toolbox</h2>
+      <span flex></span>
+      <md-button hide-gt-sm class="md-icon-button" ng-click="vm.toggleSidenav('left-sidenav')">
+        <md-icon>menu</md-icon>
+      </md-button>
+    </md-toolbar>
+
+    <!-- Fields -->
+    <md-list>
+      <div ng-repeat="field in vm.fs.fields">
+        <vandaid-field-pane field="field" type="{{field.type}}"></vandaid-field-pane>
+      </div>
+    </md-list>
+
+    <!-- Submit button -->
+    <div layout-padding layout="row">
+      <span flex></span>
+      <va-submit-button></va-submit-button>
+      <span flex></span>
+    </div>
+
+    <div class="footer" layout="column" layout-align="center center">
+      <img src="/content/img/Vanderbilt-Logo-white500x500.png">
+      <div>Powered by Vanderbilt</div>
+      <div>Licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">the Apache License, Version 2.0.</a></div>
+    </div>
+
+  </md-content>
+</md-sidenav>

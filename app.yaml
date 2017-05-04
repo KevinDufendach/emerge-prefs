@@ -1,0 +1,15 @@
+runtime: python27
+threadsafe: true
+api_version: 1
+
+handlers:
+- url: /rest/.*
+  script: vandaid.APP
+
+- url: /(.+)
+  static_files: src/client/\1
+  upload: src/client/.*
+
+- url: /
+  static_files: src/client/index.html
+  upload: src/client/index.html

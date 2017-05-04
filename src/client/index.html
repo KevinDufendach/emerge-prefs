@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="app">
+
+<head>
+  <link href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,400italic,700' rel='stylesheet'
+        type='text/css'>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <!-- Material design icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/content/css/style.css">
+
+  <title>VandAID - Active Interface Design by Vanderbilt</title>
+</head>
+
+<body layout="column">
+
+<!--Header-->
+<vandaid-identity-bar></vandaid-identity-bar>
+
+<!--Main Space-->
+<div layout="row" flex ng-cloak>
+  <!--Side Navigation-->
+  <vandaid-sidenav></vandaid-sidenav>
+
+  <div flex layout="row" class="page-background">
+    <vandaid-collapse-bar collapsed="false"></vandaid-collapse-bar>
+
+    <!--Main Content-->
+    <vandaid-canvas class="page-container" flex layout-fill></vandaid-canvas>
+    <va-submit-button class="submit-fab"></va-submit-button>
+    <!--<div>Here's some text</div>-->
+
+  </div>
+</div>
+
+<!-- Angular Material Dependencies -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-resource.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.js"></script>
+
+<!-- Load environment variables -->
+<script src="env.js"></script>
+
+<!-- My Custom Dependencies -->
+
+<!--Core-->
+<script src="/app/app.module.js"></script>
+<script src="/app/constants.module.js"></script>
+<script src="/app/env.constant.js"></script>
+
+<script src="/app/core/core.module.js"></script>
+<script src="/app/core/core.iconprovider.js"></script>
+<script src="/app/tools/tools.module.js"></script>
+<script src="/app/tools/tools.service.js"></script>
+<script src="/app/tools/shared.service.js"></script>
+
+<!--Theming-->
+<script src="/app/theming/theming.module.js"></script>
+<script src="/app/theming/vanderbilt.palette.js"></script>
+<script src="/app/theming/theming.config.js"></script>
+
+<!--Sandbox-->
+<script src="/app/sandbox/sandbox.module.js"></script>
+<script src="/app/sandbox/sandbox.directive.js"></script>
+
+<!--REDCap-->
+<script src="/app/redcap/redcap.module.js"></script>
+<script src="/app/redcap/redcap.service.js"></script>
+
+<!--Fields-->
+<script src="/app/fields/fields.module.js"></script>
+<script src="/app/fields/fieldservice.factory.js"></script>
+<script src="/app/fields/fieldpane.directive.js"></script>
+<script src="/app/fields/fieldInputBox.directive.js"></script>
+<script src="/app/fields/submitButton.directive.js"></script>
+
+<!--Navigation-->
+<script src="/app/navigation/nav.module.js"></script>
+<script src="/app/navigation/identitybar.directive.js"></script>
+<script src="/app/navigation/keyboardshortcut.filter.js"></script>
+<script src="/app/navigation/menubar.directive.js"></script>
+<script src="/app/navigation/sidenav.directive.js"></script>
+<script src="/app/navigation/collapsebar.directive.js"></script>
+
+<!--User-->
+<script src="/app/user/user.module.js"></script>
+<script src="/app/user/userservice.factory.js"></script>
+
+<!--Canvas-->
+<script src="/app/canvas/canvas.module.js"></script>
+<script src="/app/canvas/paper.directive.js"></script>
+<script src="/app/canvas/canvas.directive.js"></script>
+
+<!-- Environment -->
+<!--<script src="/projects/vandaid_test/cchmc.palette.js"></script>-->
+
+<!--&lt;!&ndash;API&ndash;&gt;-->
+<!--<script src="/app/api/api.module.js"></script>-->
+<!--<script src="/app/api/vaShowHide.directive.js"></script>-->
+
+<!--<script src="/js/toolbox.js"></script>-->
+<!--<script src="/js/app.js"></script>-->
+<!--<script src="/js/canvas.js"></script>-->
+<!--<script src="/js/ptCanvas.js"></script>-->
+<!--<script src="/js/labManager.js"></script>-->
+<!--<script src="/js/itemManager.js"></script>-->
+<!--<script src="/js/fieldManager.js"></script>-->
+<!--<script src="/js/sidebox.js"></script>-->
+<!--<script src="/js/expandable.js"></script>-->
+<!--<script src="/js/menuBar.js"></script>-->
+<!--<script src="/resources/selectionModel.js"></script>-->
+<!--<script src="/resources/observer.js"></script>-->
+<!--<script src="/js/top_bar.js"></script>-->
+
+</body>
+</html>
