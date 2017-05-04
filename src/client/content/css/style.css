@@ -275,3 +275,13 @@ menu-content {
   height: 50px;
   width: auto;
 }
+
+.identity-bar-logo {
+  padding: 7px;
+}
+
+.identity-bar-logo img {
+  padding: 0;
+  height: 90px;
+  width: auto;
+}

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.core')
+        .module('va.theming')
         .config(mainThemeProvider);
 
     mainThemeProvider.$inject = ['$mdThemingProvider'];
@@ -47,14 +47,8 @@
             "A200": "#87bfcf",
             "A400": "#357283",
             "A700": "#1a3941",
-            'contrastDefaultColor': 'light',
+            'contrastDefaultColor': 'light'
         });
-
-        $mdThemingProvider.theme('default')
-            .accentPalette('vanderbiltBlueAccent');
-
-        $mdThemingProvider.theme('default')
-            .primaryPalette('vanderbiltPrimary');
     }
 
 })();

@@ -5,6 +5,7 @@
     /**
      * Angular modules
      */
+    'va.constants',
     'app.core',
     'app.sandbox',
     'krd-redcap',
@@ -12,8 +13,7 @@
     'app.fields',
     'app.nav',
     'app.canvas',
-    'app.user'
-    // 'app.api'
-
+    'app.user',
+    'va.theming'
   ])
 })();

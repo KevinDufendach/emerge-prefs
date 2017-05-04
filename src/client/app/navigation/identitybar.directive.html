@@ -1,9 +1,9 @@
 <md-toolbar layout="row" class="md-menu-toolbar md-whiteframe-z2">
-  <div layout="row">
-    <md-toolbar-filler layout layout-align="center center">
-      <img src="content/img/Vanderbilt-Logo-white500x500.png" width="50" height="50"/>
-    </md-toolbar-filler>
-  </div>
+  <!--<div layout="row">-->
+    <div class="identity-bar-logo" layout-align="center center" ng-style="{'background-color': vm.getBackground()}">
+      <img src="{{vm.getLogo()}}"/>
+    </div>
+  <!--</div>-->
   <div flex>
     <md-toolbar class="md-hue-2">
       <div class="md-toolbar-tools">

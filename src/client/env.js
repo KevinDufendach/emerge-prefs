@@ -12,6 +12,14 @@
   // Base url
   window.__va.baseUrl = '/';
 
+  // Palette
+  window.__va.primaryPalette = 'cyan';
+  window.__va.accentPalette = 'pink';
+
+  // Logo
+  window.__va.logo = '/projects/vandaid_test/img/CCHMC_CBI_TAG_TM_RGB_400px_lores.jpg';
+  window.__va.logoBackground = '#F0F0F0';
+
   // Canvas uri
   window.__va.canvasUri = '/projects/vandaid_test/test.html';
 
