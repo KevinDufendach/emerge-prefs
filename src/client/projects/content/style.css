@@ -1,0 +1,34 @@
+.condition-table {
+    border-collapse: collapse;
+    border: 3px solid gray;
+    background-color: white;
+}
+
+.condition-table td, .condition-table th {
+    border: 1px solid gray;
+}
+
+.condition-table th {
+    background-color: lightblue;
+}
+
+.not-shown {
+    background-color: lightgray;
+    color: rgba(100,100,100,0.5);
+    /*text-decoration: line-through;*/
+}
+
+.td-center {
+    text-align:center;
+    vertical-align:middle;
+}
+
+.organ-img {
+    margin: 5px;
+    height: 30px;
+    width: auto;
+}
+
+.not-shown img {
+    opacity: 0.5;
+}

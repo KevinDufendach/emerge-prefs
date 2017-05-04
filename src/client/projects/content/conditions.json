@@ -1,0 +1,37 @@
+[
+  {
+    "condition": "congenital adrenal hyperplasia",
+    "organs": [
+      "ADRENAL"
+    ],
+    "description": "Adrenal glands can't make enough chemical (cortisol) needed to protect body during stress",
+    "adult_onset": false,
+    "preventable": false,
+    "treatable": true,
+    "carrier": true
+  },
+  {
+    "condition": "connective tissue conditions with serious bleeding risk",
+    "organs": [
+      "VESSEL",
+      "JOINT"
+    ],
+    "description": "Many different types of conditions (but not all) that include possibility of weak blood vessel walls and life threatening vessel rupture and bleeding",
+    "adult_onset": false,
+    "preventable": false,
+    "treatable": true,
+    "carrier": false
+  },
+  {
+    "condition": "cancers that might start during adulthood",
+    "organs": [
+      "CANCER"
+    ],
+    "description": "Breast, ovaries, prostate, some colon cancers",
+    "adult_onset": true,
+    "preventable": true,
+    "treatable": true,
+    "carrier": false
+  }
+
+]

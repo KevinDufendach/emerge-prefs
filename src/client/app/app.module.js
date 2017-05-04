@@ -14,6 +14,7 @@
     'app.nav',
     'app.canvas',
     'app.user',
-    'va.theming'
+    'va.theming',
+    'va.project'
   ])
 })();
