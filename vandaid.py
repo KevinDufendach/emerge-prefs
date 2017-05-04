@@ -17,8 +17,6 @@ import webapp2
 import logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
-import model2
-
 import validate_user
 
 # [START urllib-imports]
@@ -31,19 +29,6 @@ from google.appengine.api import urlfetch
 
 from config import config
 
-def AsDict(guest):
-    return {'id': guest.key.id(), 'first': guest.first, 'last': guest.last}
-
-def AsDict(testfield):
-    return {'id': testfield.key.id(), 'field_name': testfield.first, 'last': testfield.last}
-
-# def AsDict(req):
-#     return {'r_data': req.r_data}
-
-
-# def AsDict(asdfjkl):
-#     return {'id': asdfjkl.key.id(), 'field_name': asdfjkl.name, 'field_type': asdfjkl.type}
-
 class RestHandler(webapp2.RequestHandler):
 
     def dispatch(self):
@@ -54,7 +39,7 @@ class RestHandler(webapp2.RequestHandler):
         self.response.headers['content-type'] = 'text/plain'
         self.response.write(json.dumps(r))
 
-class RedcapPostHandler(RestHandler):
+class RedcapGetFieldMetadataHandler(RestHandler):
     
     def get(self):
         url = config['api_url']
@@ -79,22 +64,6 @@ class RedcapPostHandler(RestHandler):
         except urlfetch.Error:
             self.response.out.write('Caught exception fecthing url')
 #             logging.exception('Caught exception fetching url')
-
-class QueryHandler(RestHandler):
-
-    def get(self):
-        guests = model2.AllGuests()
-        r = [AsDict(guest) for guest in guests]
-        self.SendJson(r)
-
-
-class UpdateHandler(RestHandler):
-
-    def post(self):
-        r = json.loads(self.request.body)
-        guest = model2.UpdateGuest(r['id'], r['first'], r['last'])
-        r = AsDict(guest)
-        self.SendJson(r)
 
 
 class RedcapImportRecordsHandler(RestHandler):
@@ -145,30 +114,10 @@ class ValidateUser(RestHandler):
             self.response.out.write('UNAUTHORIZED')
                 
         return
-        
-
-class InsertHandler(RestHandler):
-
-    def post(self):
-        r = json.loads(self.request.body)
-        guest = model2.InsertGuest(r['first'], r['last'])
-        r = AsDict(guest)
-        self.SendJson(r)
-
-
-class DeleteHandler(RestHandler):
-
-    def post(self):
-        r = json.loads(self.request.body)
-        model.DeleteGuest(r['id'])
 
 
 APP = webapp2.WSGIApplication([
-    ('/rest/query', QueryHandler),
-    ('/rest/insert', InsertHandler),
-    ('/rest/delete', DeleteHandler),
-    ('/rest/update', UpdateHandler),
-    ('/rest/redcap-metadata', RedcapPostHandler),
+    ('/rest/redcap-metadata', RedcapGetFieldMetadataHandler),
     ('/rest/redcap-import-records', RedcapImportRecordsHandler),
     ('/rest/validate-user', ValidateUser)
 ], debug=True)
