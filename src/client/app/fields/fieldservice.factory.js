@@ -51,10 +51,9 @@
           .then(
             // On success
             function (data) {
-              var curField;
+              var curField, i;
 
-              console.log('FieldService successfully initialized');
-              for (var i = 0; i < data.length; i++) {
+              for (i = 0; i < data.length; i++) {
                 curField = new redcapService.fieldConstructor(data[i]);
                 self.fields.push(curField);
                 values[curField.id] = redcapService.getInitialValue(curField);
@@ -62,11 +61,24 @@
 
               // self.fields = appTools.arrayConstructor(data, redcapService.fieldConstructor);
               self.state = states.READY;
-              resolve();
+
+              for (i = 0; i < self.initializeResolveList.length; i++) {
+                self.initializeResolveList[i](self.fields);
+              }
+              self.initializeResolveList.length = 0;
+              self.initializeRejectList.length = 0;
+
+              resolve(self.fields);
             },
             // On failure
             function (response) {
-              console.log(response);
+              var i;
+              for (i = 0; i < self.initializeRejectList.length; i++) {
+                self.initializeRejectList[i](response);
+              }
+              self.initializeResolveList.length = 0;
+              self.initializeRejectList.length = 0;
+
               reject(response);
             }
           );
@@ -89,25 +101,7 @@
           self.initializeRejectList.push(reject);
 
           if (self.state === states.UNITIALIZED) {
-
-            initialize().then(
-              function () {
-                var i;
-                for (i = 0; i < self.initializeResolveList.length; i++) {
-                  self.initializeResolveList[i](self.fields);
-                }
-                self.initializeResolveList.length = 0;
-                self.initializeRejectList.length = 0;
-              },
-              function (response) {
-                var i;
-                for (i = 0; i < self.initializeRejectList.length; i++) {
-                  self.initializeRejectList[i](response);
-                }
-                self.initializeResolveList.length = 0;
-                self.initializeRejectList.length = 0;
-              }
-            );
+            initialize();
           }
         }
       )
