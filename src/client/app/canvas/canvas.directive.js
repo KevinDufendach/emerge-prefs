@@ -5,15 +5,15 @@
     .module('app.canvas')
     .directive('vandaidCanvas', vandaidCanvas);
 
-  vandaidCanvas.$inject = ['__env'];
+  vandaidCanvas.$inject = ['__va'];
 
   /* @ngInject */
-  function vandaidCanvas(__env) {
+  function vandaidCanvas(__va) {
     var directive = {
       bindToController: true,
       controller: CanvasCtrl,
       controllerAs: 'vm',
-      templateUrl: __env.canvasUri,
+      templateUrl: __va.canvasUri,
       restrict: 'EA',
       scope: {}
     };

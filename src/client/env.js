@@ -4,21 +4,21 @@
 // Based on https://www.jvandemo.com/how-to-configure-your-angularjs-application-using-environment-variables/
 
 (function (window) {
-  window.__env = window.__env || {};
+  window.__va = window.__va || {};
 
   // API url
-  window.__env.apiUrl = 'https://vandaid-165711.appspot.com/';
+  window.__va.apiUrl = 'https://vandaid-165711.appspot.com/';
 
   // Base url
-  window.__env.baseUrl = '/';
+  window.__va.baseUrl = '/';
 
   // Canvas uri
-  window.__env.canvasUri = '/projects/vandaid_test/test.html';
+  window.__va.canvasUri = '/projects/vandaid_test/test.html';
 
   // Form name
-  window.__env.formName = 'my_first_instrument';
+  window.__va.formName = 'my_first_instrument';
 
   // Whether or not to enable debug mode
   // Setting this to false will disable console output
-  window.__env.enableDebug = true;
+  window.__va.enableDebug = true;
 }(this));

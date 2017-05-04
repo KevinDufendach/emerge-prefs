@@ -5,9 +5,9 @@
     .module('app.fields')
     .factory('vandaidFieldService', fieldService);
 
-  fieldService.$inject = ['$q', 'redcapService', 'vandaidUserService', '__env'];
+  fieldService.$inject = ['$q', 'redcapService', 'vandaidUserService', '__va'];
 
-  function fieldService($q, redcapService, vandaidUserService, __env) {
+  function fieldService($q, redcapService, vandaidUserService, __va) {
     var self = this;
 
     var states = {
@@ -47,7 +47,7 @@
       self.state = states.INITIALIZING;
 
       return $q(function (resolve, reject) {
-        redcapService.retrieveFieldsFromREDCap(__env.formName)
+        redcapService.retrieveFieldsFromREDCap(__va.formName)
           .then(
             // On success
             function (data) {
