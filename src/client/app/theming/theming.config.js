@@ -18,7 +18,7 @@
       $mdThemingProvider
         .theme('default')
         .primaryPalette('vanderbiltPrimary')
-        .accentPalette('vanderbiltBlueAccent');
+        .accentPalette('blue-grey');
     }
 
   }
