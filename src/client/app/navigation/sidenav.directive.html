@@ -1,13 +1,13 @@
 <md-sidenav class="md-sidenav-left md-whiteframe-z1" flex
-            ng-class="{'collapsed' : $vaShared.sideBoxCollapsed, 'clickable' : $vaShared.sideBoxCollapsed}"
+            ng-class="{'collapsed' : $vaShared.sideBoxCollapsed && vm.$mdMedia('gt-md'), 'clickable' : $vaShared.sideBoxCollapsed}"
             md-is-locked-open="$mdMedia('gt-md')"
             md-component-id="left-sidenav">
-  <md-content layout-fill>
+  <div layout-fill>
     <md-toolbar class="md-hue-2 md-toolbar-tools">
       <md-icon class="material-icons">build</md-icon>
       <h2>Toolbox</h2>
       <span flex></span>
-      <md-button hide-gt-sm class="md-icon-button" ng-click="vm.toggleSidenav('left-sidenav')">
+      <md-button hide-gt-md class="md-icon-button" ng-click="vm.toggleSidenav('left-sidenav')">
         <md-icon>menu</md-icon>
       </md-button>
     </md-toolbar>
@@ -32,5 +32,5 @@
       <div>Licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">the Apache License, Version 2.0.</a></div>
     </div>
 
-  </md-content>
+  </div>
 </md-sidenav>

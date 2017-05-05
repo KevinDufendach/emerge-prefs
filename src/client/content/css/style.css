@@ -27,7 +27,7 @@ a:hover {
     cursor: pointer;
     outline: none;
     position: relative;
-    z-index: 1;
+    z-index: 10;
 }
 
 .collapse-bar:hover {
@@ -39,18 +39,6 @@ a:hover {
     bottom: 20px;
     right: 20px;
     z-index: 1;
-}
-
-md-sidenav,
-md-sidenav.md-locked-open,
-md-sidenav.md-closed.md-locked-open-add-active {
-    min-width: 300px !important;
-    width: 350px !important;
-    max-width: 400px !important;
-}
-
-#side-nav {
-    overflow-y: scroll;
 }
 
 .page-background {
@@ -208,10 +196,25 @@ div[contentEditable]:active {
     color: #eeeeee;
 }
 
+md-sidenav,
+md-sidenav.md-locked-open,
+md-sidenav.md-closed.md-locked-open-add-active {
+    min-width: 300px !important;
+    width: 350px !important;
+    max-width: 400px !important;
+}
+
+md-sidenav {
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    /*overflow-y: scroll;*/
+}
+
 md-sidenav.collapsed {
     min-width: 0 !important;
     /*width: 72px !important;*/
     max-width: 0 !important;
+    overflow: hidden;
 
     /*transform: rotate(90deg);*/
     /*float: left;*/
@@ -220,10 +223,6 @@ md-sidenav.collapsed {
     transition: all 0.5s;
 }
 
-md-sidenav {
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
-}
 
 menu-content {
     display: block;
@@ -285,6 +284,6 @@ vandaid-identity-bar {
 
 .identity-bar-logo img {
     padding: 0;
-    height: 90px;
+    height: 50px;
     width: auto;
 }
