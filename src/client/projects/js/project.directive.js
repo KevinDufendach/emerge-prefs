@@ -104,8 +104,7 @@
           (!condition.preventable && vm.va.adol_preventable[2])) &&
         ((condition.treatable && vm.va.adol_treatable[1]) ||
           (!condition.treatable && vm.va.adol_treatable[2])) &&
-        (!condition.adult_onset || vm.va.adol_adult_onset == "1") &&
-        (!condition.carrier || vm.va.adol_carrier == "1")
+        (!condition.adult_onset || vm.va.adol_adult_onset == "1")
       )
     }
 

@@ -20,7 +20,7 @@
     <td class="td-center"><md-icon ng-show="condition.preventable" aria-label="check">check</md-icon></td>
     <td class="td-center"><md-icon ng-show="condition.treatable" aria-label="check">check</md-icon></td>
     <td class="td-center"><md-icon ng-show="condition.adult_onset" aria-label="check">check</md-icon></td>
-    <td class="td-center"><md-icon ng-show="condition.carrier" aria-label="check">check</md-icon></td>
+    <td class="td-center" ng-class="{'not-shown': condition.carrier && (va.adol_carrier != '1')}"><md-icon ng-show="condition.carrier" aria-label="check">check</md-icon></td>
   </tr>
   </tbody>
 </table>
