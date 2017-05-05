@@ -3,50 +3,22 @@
 
   angular
     .module('va.canvas')
-    .directive('vandaidCanvas', vandaidCanvas);
+    .directive('vaCanvas', vandaidCanvas);
 
-  vandaidCanvas.$inject = ['__va'];
+  vandaidCanvas.$inject = [];
 
   /* @ngInject */
-  function vandaidCanvas(__va) {
+  function vandaidCanvas() {
     var directive = {
-      bindToController: true,
-      controller: CanvasCtrl,
       controllerAs: 'vm',
-      templateUrl: __va.canvasUri,
-      restrict: 'EA',
-      scope: {}
+      template: '<ng-transclude></ng-transclude>',
+      transclude: true,
+      restrict: 'EA'
     };
     return directive;
   }
 
-  CanvasCtrl.$inject = ['$scope', 'vandaidFieldService'];
-
-  /* @ngInject */
-  function CanvasCtrl($scope, vandaidFieldService) {
-    var vm = this;
-    vm.submit = submit;
-
-    vandaidFieldService.getFields().then(
-      function (fields) {
-        $scope.fields = fields;
-        $scope.va = vandaidFieldService.values;
-      }
-    );
-
-    function submit() {
-      vandaidFieldService.submit().then(
-        // on resolve
-        function (data) {
-          $scope.submitReturn = data;
-        },
-        // on reject
-        function (data) {
-          $scope.submitReturn = 'Error: ' + data;
-        }
-      )
-    }
-  }
+  // Could consider adding the VandaidFieldService to the scope of the immediate child of the Canvas
 
 })();
 

@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link rel="stylesheet" href="/vandaid/content/css/style.css">
-  <link rel="shortcut icon" href="/projects/content/img/favicon.ico">
+  <link rel="shortcut icon" href="/content/img/favicon.ico">
 
   <title>VandAID - Active Interface Design by Vanderbilt</title>
 </head>
@@ -64,18 +64,20 @@
 <!-- BROWSE HAPPY ENDS HERE -->
 
 <!--Header-->
-<vandaid-identity-bar><h3>Loading...</h3></vandaid-identity-bar>
+<va-identity-bar><h3>Loading...</h3></va-identity-bar>
 
 <!--Main Space-->
 <div layout="row" flex ng-cloak>
   <!--Side Navigation-->
-  <vandaid-sidenav></vandaid-sidenav>
+  <va-sidenav></va-sidenav>
 
   <div flex layout="row" class="page-background">
-    <vandaid-collapse-bar hide show-gt-md collapsed="false"></vandaid-collapse-bar>
+    <va-collapse-bar hide show-gt-md collapsed="false"></va-collapse-bar>
 
     <!--Main Content-->
-    <vandaid-canvas class="page-container" flex layout-fill></vandaid-canvas>
+    <va-canvas class="page-container" flex layout-fill>
+      <vandaid-test></vandaid-test>
+    </va-canvas>
     <va-submit-button class="submit-fab"></va-submit-button>
 
   </div>
@@ -90,13 +92,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.js"></script>
 
 <!-- Load environment variables -->
-<script src="env.js"></script>
+<script src="app/env.js"></script>
 
 <!-- My Custom Dependencies -->
 <!-- Project files -->
 <script src="/app/app.module.js"></script>
 <script src="/app/constants.module.js"></script>
 <script src="/app/env.constant.js"></script>
+<script src="/app/vandaidTest.directive.js"></script>
 
 <!--Core-->
 <script src="/vandaid/va.module.js"></script>
@@ -143,9 +146,6 @@
 <script src="/vandaid/canvas/canvas.module.js"></script>
 <script src="/vandaid/canvas/paper.directive.js"></script>
 <script src="/vandaid/canvas/canvas.directive.js"></script>
-
-<!--Project-->
-
 
 </body>
 </html>

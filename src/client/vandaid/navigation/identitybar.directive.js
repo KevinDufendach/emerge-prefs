@@ -3,7 +3,7 @@
 
   angular
     .module('va.nav')
-    .directive('vandaidIdentityBar', IdentityBar);
+    .directive('vaIdentityBar', IdentityBar);
 
   function IdentityBar() {
     var directive = {
