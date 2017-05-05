@@ -2,6 +2,7 @@
   'use strict';
 
   angular
-    .module('va.constants', []);
-
+    .module('app', [
+      'va'
+    ])
 })();

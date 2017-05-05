@@ -11,7 +11,7 @@
 
 // Register environment in AngularJS as constant
   angular
-    .module('va.constants')
+    .module('app.constants')
     .constant('__va', va);
 
 })();
