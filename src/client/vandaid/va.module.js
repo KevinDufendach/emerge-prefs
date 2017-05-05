@@ -5,7 +5,6 @@
     /**
      * Angular modules
      */
-    'va.constants',
     'va.core',
     'va.sandbox',
     'krd-redcap',

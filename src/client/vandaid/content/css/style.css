@@ -72,7 +72,7 @@ vandaid-canvas {
 
 .page {
     margin: 16px auto;
-    background: url("/content/img/north-America-3-ring-side_96ppi.png") repeat-y;
+    background: url("/vandaid/content/img/north-America-3-ring-side_96ppi.png") repeat-y;
     background-size: 81px 1056px;
     padding: 0 0 0 78px;
     min-width: 816px;

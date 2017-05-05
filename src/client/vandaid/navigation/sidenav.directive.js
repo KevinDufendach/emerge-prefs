@@ -3,7 +3,7 @@
 
   angular
     .module('va.nav')
-    .directive('vandaidSidenav', vandaidSidenav);
+    .directive('vaSidenav', vandaidSidenav);
 
   vandaidSidenav.$inject = [];
 

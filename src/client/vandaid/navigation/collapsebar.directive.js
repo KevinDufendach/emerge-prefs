@@ -45,7 +45,7 @@
 
   angular
     .module('va.nav')
-    .directive('vandaidCollapseBar', vandaidCollapseBar);
+    .directive('vaCollapseBar', vandaidCollapseBar);
 
   vandaidCollapseBar.$inject = ['$vaShared'];
 

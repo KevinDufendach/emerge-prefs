@@ -3,7 +3,7 @@
 
   angular
     .module('va.nav')
-    .directive('vandaidIdentityBar', IdentityBar);
+    .directive('vaIdentityBar', IdentityBar);
 
   function IdentityBar() {
     var directive = {
@@ -33,7 +33,7 @@
     }
 
     function getLogo() {
-      return __va.logo || 'content/img/Vanderbilt-Logo-white500x500.png';
+      return __va.logo || '/vandaid/content/img/Vanderbilt-Logo-white500x500.png';
     }
 
     function getBackground() {

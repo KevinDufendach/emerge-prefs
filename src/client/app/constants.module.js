@@ -2,5 +2,6 @@
   'use strict';
 
   angular
-    .module('va.theming', ['app.constants']);
+    .module('app.constants', []);
+
 })();
