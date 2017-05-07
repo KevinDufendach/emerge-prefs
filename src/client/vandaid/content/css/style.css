@@ -45,7 +45,7 @@ a:hover {
     background-color: #f1f1f1;
 }
 
-vandaid-canvas {
+va-canvas {
     display: block;
     position: relative;
     overflow: auto;
@@ -274,7 +274,7 @@ menu-content {
     width: auto;
 }
 
-vandaid-identity-bar {
+va-identity-bar {
     z-index: 30;
 }
 
