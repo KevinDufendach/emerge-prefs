@@ -14,7 +14,7 @@
       bindToController: true,
       controller: SidenavController,
       controllerAs: 'vm',
-      templateUrl: '/vandaid/navigation/sidenav.directive.html',
+      templateUrl: '/src/client/vandaid/navigation/sidenav.directive.html',
       restrict: 'E'
     };
     return directive;

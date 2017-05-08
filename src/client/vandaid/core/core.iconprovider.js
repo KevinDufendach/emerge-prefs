@@ -5,6 +5,6 @@
     .module('va')
     .config(function($mdIconProvider) {
       $mdIconProvider
-        .defaultIconSet('/content/icons/sets/core-icons.svg', 24);
+        .defaultIconSet('/src/client/content/icons/sets/core-icons.svg', 24);
     })
 })();

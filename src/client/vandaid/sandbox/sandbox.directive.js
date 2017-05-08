@@ -15,7 +15,7 @@
       controllerAs: 'vm',
       restrict: 'E',
       scope: {},
-      templateUrl: '/vandaid/sandbox/sandbox.directive.html'
+      templateUrl: '/src/client/vandaid/sandbox/sandbox.directive.html'
     };
     return directive;
   }

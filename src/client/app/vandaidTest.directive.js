@@ -13,7 +13,7 @@
       bindToController: true,
       controller: VandaidTestCtrl,
       controllerAs: 'vm',
-      templateUrl: '/app/vandaidTest.directive.html',
+      templateUrl: '/src/client/app/vandaidTest.directive.html',
       restrict: 'AE',
       scope: {}
     };

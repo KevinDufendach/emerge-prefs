@@ -16,7 +16,7 @@
         field: '=',
         type: '@'
       },
-      templateUrl: '/vandaid/fields/fieldpane.directive.html'
+      templateUrl: '/src/client/vandaid/fields/fieldpane.directive.html'
     };
     return directive;
   }

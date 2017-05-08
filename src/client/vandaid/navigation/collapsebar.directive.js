@@ -58,7 +58,7 @@
       bindToController: true,
       controller: collapseBarController,
       controllerAs: 'vm',
-      templateUrl: '/vandaid/navigation/collapsebar.directive.html',
+      templateUrl: '/src/client/vandaid/navigation/collapsebar.directive.html',
       restrict: 'E',
       scope: {collapsed: '='}
     };

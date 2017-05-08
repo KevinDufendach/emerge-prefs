@@ -46,7 +46,7 @@ if (typeof Object.assign !== 'function') {
   // window.__va.logoBackground = '#F0F0F0';
 
   // Canvas uri
-  window.__va.canvasUri = '/projects/vandaid_test/test.html';
+  window.__va.canvasUri = '/src/client/projects/vandaid_test/test.html';
 
   // Form name
   window.__va.formName = 'my_first_instrument';

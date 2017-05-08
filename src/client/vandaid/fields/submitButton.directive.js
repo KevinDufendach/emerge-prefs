@@ -11,7 +11,7 @@
       bindToController: true,
       controller: submitButtonCtrl,
       controllerAs: 'vm',
-      templateUrl: '/vandaid/fields/submitButton.directive.html',
+      templateUrl: '/src/client/vandaid/fields/submitButton.directive.html',
       restrict: 'EA',
       scope: {}
     };
