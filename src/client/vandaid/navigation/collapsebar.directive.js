@@ -47,22 +47,33 @@
     .module('va.nav')
     .directive('vaCollapseBar', vandaidCollapseBar);
 
-  vandaidCollapseBar.$inject = ['$vaShared'];
-
   /* @ngInject */
-  function vandaidCollapseBar($vaShared) {
+  function vandaidCollapseBar() {
     var directive = {
-      replace: true,
+      // replace: true,
       // require: 'ngModel',
       // link: linkFn,
       bindToController: true,
+      // compile: compileFn,
       controller: collapseBarController,
       controllerAs: 'vm',
-      templateUrl: '/vandaid/navigation/collapsebar.directive.html',
-      restrict: 'E',
-      scope: {collapsed: '='}
+      templateUrl: '/src/client/vandaid/navigation/collapsebar.directive.html',
+      restrict: 'EA',
+      scope: {
+        collapsed: '=',
+        collapseDirection: '@'
+      }
     };
     return directive;
+
+    function compileFn(elem, attrs) {
+      if (!attrs.collapseDirection) {
+        attrs.collapseDirection = 'left';
+      }
+      if (!attrs.collapsed) {
+        attrs.collapsed = false;
+      }
+    }
 
     //   function linkFn(scope, element, attrs, ngModel) {
     //     if (!ngModel) return;
@@ -77,20 +88,37 @@
     //   }
   }
 
-  collapseBarController.$inject = ['$scope', '$vaShared'];
+  collapseBarController.$inject = ['$vaShared'];
 
   /* @ngInject */
-  function collapseBarController($scope, $vaShared) {
+  function collapseBarController($vaShared) {
     var vm = this;
+    var leftDirection = true;
+    vm.$onInit = onInit;
+    vm.toggle = toggle;
+    vm.shouldRotate180 = shouldRotate180;
 
-    $scope.$vaShared = $vaShared;
+    //////////
 
-    if (!angular.isDefined($vaShared.sideBoxCollapsed)) {
-      $vaShared.sideBoxCollapsed = vm.collapsed;
+    function onInit() {
+      if (vm.collapseDirection === 'right') {
+        leftDirection = false;
+      }
+
+      // if (!angular.isDefined($vaShared.sideBoxCollapsed)) {
+      //   $vaShared.sideBoxCollapsed = vm.collapsed;
+      // }
     }
 
-    vm.toggle = function () {
-      $vaShared.sideBoxCollapsed = !$vaShared.sideBoxCollapsed;
+    function toggle() {
+      vm.collapsed = !vm.collapsed;
+
+      // $vaShared.sideBoxCollapsed = !$vaShared.sideBoxCollapsed;
+      // vm.collapsed = $vaShared.sideBoxCollapsed;
+    }
+
+    function shouldRotate180() {
+      return (leftDirection && vm.collapsed) || (!leftDirection && !vm.collapsed);
     }
   }
 

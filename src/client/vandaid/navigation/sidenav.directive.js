@@ -14,8 +14,11 @@
       bindToController: true,
       controller: SidenavController,
       controllerAs: 'vm',
-      templateUrl: '/vandaid/navigation/sidenav.directive.html',
-      restrict: 'E'
+      templateUrl: '/src/client/vandaid/navigation/sidenav.directive.html',
+      scope: {
+        collapsed: '='
+      },
+      restrict: 'EA'
     };
     return directive;
   }
@@ -32,8 +35,7 @@
 
     $scope.$vaShared = $vaShared;
     vm.$mdMedia = $mdMedia;
-
-    activate();
+    vm.$onInit = activate;
 
     //////////
 

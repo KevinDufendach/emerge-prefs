@@ -1,8 +1,5 @@
 <div class="collapse-bar md-icon-button" ng-click="vm.toggle()" layout="row" layout-align="center center">
-  <md-icon ng-hide="$vaShared.sideBoxCollapsed" class="material-icons" aria-label="Collapse Toolbox">
-    chevron_left
-  </md-icon>
-  <md-icon ng-show="$vaShared.sideBoxCollapsed" class="material-icons" aria-label="Expand Toolbox">
-    chevron_right
-  </md-icon>
+  <md-icon class="material-icons rotate"
+           ng-class="{rotate180: vm.shouldRotate180()}"
+           aria-label="Collapse Toolbox">chevron_left</md-icon>
 </div>

@@ -1,5 +1,7 @@
+<div layout="row" >
+
 <md-sidenav class="md-sidenav-left md-whiteframe-z1" flex
-            ng-class="{'collapsed' : $vaShared.sideBoxCollapsed && vm.$mdMedia('gt-md'), 'clickable' : $vaShared.sideBoxCollapsed}"
+            ng-class="{'collapsed' : vm.collapsed && vm.$mdMedia('gt-md'), 'clickable' : vm.collapsed}"
             md-is-locked-open="$mdMedia('gt-md')"
             md-component-id="left-sidenav">
   <div layout-fill>
@@ -12,7 +14,7 @@
       </md-button>
     </md-toolbar>
 
-    <!-- Fields -->
+    <!-- Field List -->
     <md-list>
       <div ng-repeat="field in vm.fs.fields">
         <vandaid-field-pane field="field" type="{{field.type}}"></vandaid-field-pane>
@@ -27,10 +29,11 @@
     </div>
 
     <div class="footer" layout="column" layout-align="center center">
-      <img src="/vandaid/content/img/Vanderbilt-Logo-white500x500.png">
+      <img src="/src/client/vandaid/content/img/Vanderbilt-Logo-white500x500.png">
       <div>Powered by Vanderbilt</div>
-      <div>Licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">the Apache License, Version 2.0.</a></div>
+      <div>Licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">the Apache License, Version 2.0.</a>
+      </div>
     </div>
-
   </div>
 </md-sidenav>
+</div>

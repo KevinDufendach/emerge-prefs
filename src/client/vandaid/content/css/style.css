@@ -72,7 +72,7 @@ va-canvas {
 
 .page {
     margin: 16px auto;
-    background: url("/vandaid/content/img/north-America-3-ring-side_96ppi.png") repeat-y;
+    background: url("/src/client/vandaid/content/img/north-America-3-ring-side_96ppi.png") repeat-y;
     background-size: 81px 1056px;
     padding: 0 0 0 78px;
     min-width: 816px;
@@ -180,22 +180,6 @@ div[contentEditable]:active {
     cursor: pointer;
 }
 
-.sidemenu-subheader {
-    cursor: pointer;
-    background-color: #FFFFFF;
-
-}
-
-.sidemenu-subheader.active {
-    background-color: #CCCCCC;
-    color: #000000;
-}
-
-.sidemenu-subheader:hover {
-    background-color: #9E9E9E;
-    color: #eeeeee;
-}
-
 md-sidenav,
 md-sidenav.md-locked-open,
 md-sidenav.md-closed.md-locked-open-add-active {
@@ -207,17 +191,12 @@ md-sidenav.md-closed.md-locked-open-add-active {
 md-sidenav {
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
-    /*overflow-y: scroll;*/
 }
 
 md-sidenav.collapsed {
     min-width: 0 !important;
-    /*width: 72px !important;*/
     max-width: 0 !important;
     overflow: hidden;
-
-    /*transform: rotate(90deg);*/
-    /*float: left;*/
 
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
@@ -231,16 +210,19 @@ menu-content {
     max-height: 0;
 }
 
-.rotate0 {
+.rotate {
     transform: rotate(0deg);
     -webkit-transition: transform 0.5s;
     transition: transform 0.5s;
 }
 
 .rotate180 {
-    transform: rotate(180deg);
     -webkit-transition: transform 0.5s;
     transition: transform 0.5s;
+
+    -ms-transform: rotate(180deg); /* IE 9 */
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
 }
 
 .vertical {
@@ -274,7 +256,7 @@ menu-content {
     width: auto;
 }
 
-vandaid-identity-bar {
+va-identity-bar {
     z-index: 30;
 }
 

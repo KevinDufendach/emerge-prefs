@@ -6,7 +6,11 @@ handlers:
 - url: /rest/.*
   script: vandaid.APP
 
-- url: /(.+)
+- url: /bower_components/(.+)
+  static_files: bower_components/\1
+  upload: bower_components/.*
+
+- url: /src/client/(.+)
   static_files: src/client/\1
   upload: src/client/.*
 
