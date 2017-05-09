@@ -70,6 +70,9 @@
       if (!attrs.collapseDirection) {
         attrs.collapseDirection = 'left';
       }
+      if (!attrs.collapsed) {
+        attrs.collapsed = false;
+      }
     }
 
     //   function linkFn(scope, element, attrs, ngModel) {
@@ -102,18 +105,20 @@
         leftDirection = false;
       }
 
-      if (!angular.isDefined($vaShared.sideBoxCollapsed)) {
-        $vaShared.sideBoxCollapsed = vm.collapsed;
-      }
+      // if (!angular.isDefined($vaShared.sideBoxCollapsed)) {
+      //   $vaShared.sideBoxCollapsed = vm.collapsed;
+      // }
     }
 
     function toggle() {
-      $vaShared.sideBoxCollapsed = !$vaShared.sideBoxCollapsed;
-      vm.collapsed = $vaShared.sideBoxCollapsed;
+      vm.collapsed = !vm.collapsed;
+
+      // $vaShared.sideBoxCollapsed = !$vaShared.sideBoxCollapsed;
+      // vm.collapsed = $vaShared.sideBoxCollapsed;
     }
 
     function shouldRotate180() {
-      return (leftDirection && $vaShared.sideBoxCollapsed) || (!leftDirection && !$vaShared.sideBoxCollapsed);
+      return (leftDirection && vm.collapsed) || (!leftDirection && !vm.collapsed);
     }
   }
 

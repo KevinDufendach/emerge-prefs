@@ -69,14 +69,17 @@
 <!--Main Space-->
 <div layout="row" flex ng-cloak>
   <!--Side Navigation-->
-  <va-sidenav></va-sidenav>
+  <!--<va-sidenav ></va-sidenav>-->
+
+  <va-sidenav collapsed="sidebarCollapsed"></va-sidenav>
 
   <div flex layout="row" class="page-background">
-    <va-collapse-bar hide show-gt-md collapsed="false" collapse-direction="right"></va-collapse-bar>
+    <va-collapse-bar hide show-gt-md collapsed="sidebarCollapsed"></va-collapse-bar>
 
     <!--Main Content-->
     <div style="position: relative" flex>
       <va-canvas class="page-container" flex layout-fill>
+        <p>Collapsed: {{sidebarCollapsed}}</p>
         <vandaid-test></vandaid-test>
       </va-canvas>
       <va-submit-button class="submit-fab"></va-submit-button>
