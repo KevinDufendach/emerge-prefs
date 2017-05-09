@@ -72,14 +72,15 @@
   <va-sidenav></va-sidenav>
 
   <div flex layout="row" class="page-background">
-    <va-collapse-bar hide show-gt-md collapsed="false"></va-collapse-bar>
+    <va-collapse-bar hide show-gt-md collapsed="false" collapse-direction="right"></va-collapse-bar>
 
     <!--Main Content-->
-    <va-canvas class="page-container" flex layout-fill>
-      <vandaid-test></vandaid-test>
-    </va-canvas>
-    <va-submit-button class="submit-fab"></va-submit-button>
-
+    <div style="position: relative" flex>
+      <va-canvas class="page-container" flex layout-fill>
+        <vandaid-test></vandaid-test>
+      </va-canvas>
+      <va-submit-button class="submit-fab"></va-submit-button>
+    </div>
   </div>
 </div>
 
@@ -118,6 +119,7 @@
 <!--Sandbox-->
 <script src="/src/client/vandaid/sandbox/sandbox.module.js"></script>
 <script src="/src/client/vandaid/sandbox/sandbox.directive.js"></script>
+<script src="/src/client/vandaid/sandbox/scopeTest.directive.js"></script>
 
 <!--REDCap-->
 <script src="/src/client/vandaid/redcap/redcap.module.js"></script>
