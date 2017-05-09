@@ -73,10 +73,8 @@
     }
   }
 
-  collapseBarController.$inject = ['$vaShared'];
-
   /* @ngInject */
-  function collapseBarController($vaShared) {
+  function collapseBarController() {
     var vm = this;
     var leftDirection = true;
     vm.$onInit = onInit;
@@ -89,17 +87,10 @@
       if (vm.collapseDirection === 'right') {
         leftDirection = false;
       }
-
-      // if (!angular.isDefined($vaShared.sideBoxCollapsed)) {
-      //   $vaShared.sideBoxCollapsed = vm.collapsed;
-      // }
     }
 
     function toggle() {
       vm.collapsed = !vm.collapsed;
-
-      // $vaShared.sideBoxCollapsed = !$vaShared.sideBoxCollapsed;
-      // vm.collapsed = $vaShared.sideBoxCollapsed;
     }
 
     function shouldRotate180() {
