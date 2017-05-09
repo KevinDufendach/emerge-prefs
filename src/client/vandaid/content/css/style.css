@@ -264,8 +264,20 @@ va-identity-bar {
     padding: 7px;
 }
 
+.side-nav-logo {
+    max-height: 200px;
+    width: auto;
+}
+
 .identity-bar-logo img {
     padding: 0;
     height: 50px;
     width: auto;
 }
+
+.va-sidebar-toolbar {
+    background: inherit !important;
+    color: inherit !important;
+    z-index: 3;
+}
+

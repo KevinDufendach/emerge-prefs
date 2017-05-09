@@ -3,7 +3,7 @@
 
   /* @ngInject */
   angular
-    .module('va.theming')
+    .module('app.theming')
     .config(cchmcThemeProvider);
 
   cchmcThemeProvider.$inject = ['$mdThemingProvider'];
@@ -142,18 +142,6 @@
       'contrastDefaultColor': 'light',
       'contrastDarkColors': '50 100 200 300 400 500 600 700 A100 A200 A400 A700'
     });
-
-    $mdThemingProvider.theme('default')
-      .primaryPalette('ccpink')
-      .accentPalette('ccgreen');
-
-    $mdThemingProvider.theme('ccteal')
-      .primaryPalette('ccteal')
-      .accentPalette('ccgreen');
-
-    $mdThemingProvider.theme('ccpurple')
-      .primaryPalette('ccpurple')
-      .accentPalette('ccgreen');
   }
 
 })();

@@ -1,19 +1,25 @@
-<div layout="row" >
-
 <md-sidenav class="md-sidenav-left md-whiteframe-z1" flex
-            ng-class="{'collapsed' : vm.collapsed && vm.$mdMedia('gt-md'), 'clickable' : vm.collapsed}"
-            md-is-locked-open="$mdMedia('gt-md')"
+            md-is-locked-open="$mdMedia('gt-sm')"
             md-component-id="left-sidenav">
-  <div layout-fill>
-    <md-toolbar class="md-hue-2 md-toolbar-tools">
-      <md-icon class="material-icons">build</md-icon>
-      <h2>Toolbox</h2>
-      <span flex></span>
-      <md-button hide-gt-md class="md-icon-button" ng-click="vm.toggleSidenav('left-sidenav')">
-        <md-icon>menu</md-icon>
-      </md-button>
-    </md-toolbar>
 
+  <md-toolbar class="md-toolbar-tools va-sidebar-toolbar" layout="row" hide-gt-sm>
+    <md-button hide-gt-md class="md-icon-button" ng-click="vm.toggleSidenav('left-sidenav')">
+      <md-icon>close</md-icon>
+    </md-button>
+    <div layout="row" flex class="identity-bar-logo" layout-align="center center" layout-padding
+         ng-style="{'background-color': vm.getBackground()}">
+      <img ng-src="{{vm.logo}}">
+    </div>
+  </md-toolbar>
+  <div hide show-gt-sm layout-align="center center" layout-padding layout="row" flex="none"
+       class="md-whiteframe-3dp"
+       ng-style="{'background-color': vm.getBackground()}">
+    <div>
+    <img class="side-nav-logo" ng-src="{{vm.logo}}">
+    </div>
+  </div>
+
+  <md-content>
     <!-- Field List -->
     <md-list>
       <div ng-repeat="field in vm.fs.fields">
@@ -34,6 +40,7 @@
       <div>Licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">the Apache License, Version 2.0.</a>
       </div>
     </div>
+
+  </md-content>
   </div>
 </md-sidenav>
-</div>
