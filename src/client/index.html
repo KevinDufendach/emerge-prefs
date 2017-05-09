@@ -83,7 +83,7 @@
             ng-class="{'collapsed' : sidebarCollapsed && $mdMedia('md')}"
             md-is-locked-open="$mdMedia('gt-sm')"
             md-component-id="left-sidenav">
-  <va-sidenav></va-sidenav>
+  <va-sidenav flex></va-sidenav>
 </md-sidenav>
 <div layout="row" flex style="position: relative">
 
@@ -93,7 +93,7 @@
   <!--Main Space-->
   <div layout="column" flex ng-cloak>
     <!--Header-->
-    <va-top-bar><h3>Loading...</h3></va-top-bar>
+    <va-top-bar collapsed="sidebarCollapsed"><h3>Loading...</h3></va-top-bar>
 
     <!--Main Content-->
     <va-canvas class="page-container" flex layout-fill>

@@ -186,8 +186,8 @@ div[contentEditable]:active {
 md-sidenav,
 md-sidenav.md-locked-open,
 md-sidenav.md-closed.md-locked-open-add-active {
-    min-width: 300px !important;
-    width: 350px !important;
+    min-width: 400px !important;
+    /*width: 350px !important;*/
     max-width: 400px !important;
 }
 
@@ -205,12 +205,11 @@ md-sidenav.collapsed {
     transition: all 0.5s;
 }
 
-
-menu-content {
-    display: block;
-    position: relative;
-    overflow: hidden;
-    max-height: 0;
+va-sidenav {
+    min-width: 383px !important;
+    /*width: 350px !important;*/
+    max-width: 400px !important;
+    height: 100%;
 }
 
 .rotate {

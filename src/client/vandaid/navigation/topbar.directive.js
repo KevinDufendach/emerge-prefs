@@ -14,7 +14,9 @@
       controller: topBarController,
       controllerAs: 'vm',
       restrict: 'AE',
-      scope: {}
+      scope: {
+        collapsed: '='
+      }
     };
     return directive;
   }
