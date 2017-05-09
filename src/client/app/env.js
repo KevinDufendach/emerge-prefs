@@ -13,18 +13,15 @@
   window.__va.baseUrl = '/';
 
   // Palette
-  window.__va.primaryPalette = 'cyan';
-  window.__va.accentPalette = 'pink';
+  // window.__va.primaryPalette = 'cyan';
+  // window.__va.accentPalette = 'pink';
 
   // Logo
-  window.__va.logo = '/src/client/content/img/CCHMC_CBI_TAG_TM_RGB_400px_lores.jpg';
+  // window.__va.logo = '/src/client/content/img/CCHMC_CBI_TAG_TM_RGB_400px_lores.jpg';
   // window.__va.logoBackground = '#F0F0F0';
 
   // Title
-  window.__va.title = 'Genetic Information Preferences Survey';
-
-  // Canvas uri
-  window.__va.canvasUri = '/src/client/projects/vandaid_test/test.html';
+  // window.__va.title = 'Genetic Information Preferences Survey';
 
   // Form name
   window.__va.formName = 'my_first_instrument';

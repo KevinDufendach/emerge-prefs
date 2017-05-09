@@ -21,17 +21,20 @@ a:hover {
 }
 
 .collapse-bar {
-    width: 20px;
+    background-color: transparent;
+    width: 15px;
     height: 100%;
     overflow: hidden;
     cursor: pointer;
     outline: none;
-    position: relative;
+    position: absolute;
+    left: 0;
     z-index: 10;
+    font-size: small;
 }
 
 .collapse-bar:hover {
-    background-color: #D8D8D8;
+    background-color: rgba(127,127,127,0.5);
 }
 
 .submit-fab {

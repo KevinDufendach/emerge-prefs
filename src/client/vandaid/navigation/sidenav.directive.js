@@ -10,7 +10,7 @@
   /* @ngInject */
   function vandaidSidenav() {
     var directive = {
-      replace: true,
+      // replace: true,
       bindToController: true,
       controller: SidenavController,
       controllerAs: 'vm',
@@ -33,7 +33,6 @@
     $scope.$mdMedia = $mdMedia;
     vm.$onInit = activate;
 
-    // console.log(__va);
     vm.logo = __va.logo || '/src/client/vandaid/content/img/Vanderbilt-Logo-white500x500.png';
 
     //////////

@@ -79,28 +79,29 @@
 <!-- BROWSE HAPPY ENDS HERE -->
 
 <!--Side Navigation-->
-<va-sidenav></va-sidenav>
-<!--<va-collapse-bar hide show-gt-md collapsed="sidebarCollapsed"></va-collapse-bar>-->
+<md-sidenav class="md-sidenav-left md-whiteframe-z1" flex
+            ng-class="{'collapsed' : sidebarCollapsed && $mdMedia('md')}"
+            md-is-locked-open="$mdMedia('gt-sm')"
+            md-component-id="left-sidenav">
+  <va-sidenav></va-sidenav>
+</md-sidenav>
+<div layout="row" flex style="position: relative">
+
+  <va-collapse-bar hide show-md collapsed="sidebarCollapsed"></va-collapse-bar>
 
 
-<!--Main Space-->
-<div layout="column" flex ng-cloak>
-  <!--Header-->
-  <va-top-bar><h3>Loading...</h3></va-top-bar>
+  <!--Main Space-->
+  <div layout="column" flex ng-cloak>
+    <!--Header-->
+    <va-top-bar><h3>Loading...</h3></va-top-bar>
 
-  <!--Main Content-->
-  <va-canvas class="page-container" flex layout-fill>
-    <vandaid-test></vandaid-test>
-  </va-canvas>
+    <!--Main Content-->
+    <va-canvas class="page-container" flex layout-fill>
+      <vandaid-test></vandaid-test>
+    </va-canvas>
 
-  <!--<va-identity-bar><h3>Loading...</h3></va-identity-bar>-->
-
-  <!--<div flex layout="row" class="page-background">-->
-  <!--&lt;!&ndash;Main Content&ndash;&gt;-->
-  <!--<div style="position: relative" flex>-->
-  <!--</div>-->
-  <!--</div>-->
-  <va-submit-button class="submit-fab"></va-submit-button>
+    <va-submit-button hide show-gt-sm class="submit-fab"></va-submit-button>
+  </div>
 </div>
 
 <!-- Angular Material Dependencies -->
