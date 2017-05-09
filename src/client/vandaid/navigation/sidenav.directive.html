@@ -2,21 +2,23 @@
             md-is-locked-open="$mdMedia('gt-sm')"
             md-component-id="left-sidenav">
 
+  <!--Toolbar for small screens-->
   <md-toolbar class="md-toolbar-tools va-sidebar-toolbar" layout="row" hide-gt-sm>
     <md-button hide-gt-md class="md-icon-button" ng-click="vm.toggleSidenav('left-sidenav')">
       <md-icon>close</md-icon>
     </md-button>
+
     <div layout="row" flex class="identity-bar-logo" layout-align="center center" layout-padding
          ng-style="{'background-color': vm.getBackground()}">
       <img ng-src="{{vm.logo}}">
     </div>
   </md-toolbar>
+
+  <!--Image icon for med+ screens-->
   <div hide show-gt-sm layout-align="center center" layout-padding layout="row" flex="none"
        class="md-whiteframe-3dp"
        ng-style="{'background-color': vm.getBackground()}">
-    <div>
     <img class="side-nav-logo" ng-src="{{vm.logo}}">
-    </div>
   </div>
 
   <md-content>
