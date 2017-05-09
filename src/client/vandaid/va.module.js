@@ -6,7 +6,7 @@
      * Angular modules
      */
     'va.core',
-    'va.sandbox',
+    // 'va.sandbox',
     'krd-redcap',
     'va.tools',
     'va.fields',

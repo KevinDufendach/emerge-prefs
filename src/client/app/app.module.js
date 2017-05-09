@@ -3,6 +3,8 @@
 
   angular
     .module('app', [
-      'va'
+      'va',
+      'app.theming',
+      'app.constants'
     ])
 })();

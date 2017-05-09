@@ -10,32 +10,30 @@
   /* @ngInject */
   function vandaidSidenav() {
     var directive = {
-      replace: true,
+      // replace: true,
       bindToController: true,
       controller: SidenavController,
       controllerAs: 'vm',
       templateUrl: '/src/client/vandaid/navigation/sidenav.directive.html',
-      scope: {
-        collapsed: '='
-      },
       restrict: 'EA'
     };
     return directive;
   }
 
-  SidenavController.$inject = ['$mdSidenav', 'vandaidFieldService', '$vaShared', '$scope', '$mdMedia'];
+  SidenavController.$inject = ['$mdSidenav', 'vandaidFieldService', '$scope', '$mdMedia', '__va'];
 
   /* @ngInject */
-  function SidenavController($mdSidenav, vandaidFieldService, $vaShared, $scope, $mdMedia) {
+  function SidenavController($mdSidenav, vandaidFieldService, $scope, $mdMedia, __va) {
     var vm = this;
     vm.fields = [];
     vm.fs = vandaidFieldService;
     vm.toggleSidenav = toggleSidenav;
     vm.submit = submit;
 
-    $scope.$vaShared = $vaShared;
-    vm.$mdMedia = $mdMedia;
+    $scope.$mdMedia = $mdMedia;
     vm.$onInit = activate;
+
+    vm.logo = __va.logo || '/src/client/vandaid/content/img/Vanderbilt-Logo-white500x500.png';
 
     //////////
 

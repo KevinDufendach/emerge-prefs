@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"><![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]-->
-<!--[if IE 9]><html class="no-js lt-ie10" lang="en"><![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"><![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if IE 9]>
+<html class="no-js lt-ie10" lang="en"><![endif]-->
 <!--[if gt IE 9]><!-->
 
 <html lang="en" ng-app="app">
@@ -24,65 +28,79 @@
 
   <style>
     .browsehappy {
-      display:block;
-      width:100%;
-      height:100px;
-      background-color:#f2dede;
+      display: block;
+      width: 100%;
+      height: 100px;
+      background-color: #f2dede;
       margin: 0 0 10px;
-      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 22px;
       line-height: 1.4;
       color: #333;
-      vertical-align:middle;
+      vertical-align: middle;
     }
-    .browsehappy span{
-      vertical-align:middle;
-      margin:20px 20px 20px 20px;
-      background:url("https://cdn.rawgit.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png") no-repeat;
-      height:64px;
-      width:64px;
-      display:inline-block;
+
+    .browsehappy span {
+      vertical-align: middle;
+      margin: 20px 20px 20px 20px;
+      background: url("https://cdn.rawgit.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png") no-repeat;
+      height: 64px;
+      width: 64px;
+      display: inline-block;
     }
   </style>
 </head>
 
-<body layout="column">
+<body layout="row">
 
 <!-- BROWSE HAPPY BEGINS HERE -->
 <!--[if IE 6]>
-<p class="browsehappy"><img />You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<p class="browsehappy"><img/>You are using an <strong>outdated</strong> browser. Please <a
+    href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 <!--[if IE 7]>
-<p class="browsehappy"><img src="https://cdn.rawgit.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png" />You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<p class="browsehappy"><img
+    src="https://cdn.rawgit.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png"/>You are using
+  an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+  your experience.</p>
 <![endif]-->
 <!--[if IE 8]>
-<p class="browsehappy"><img src="https://cdn.rawgit.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png" />You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<p class="browsehappy"><img
+    src="https://cdn.rawgit.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png"/>You are using
+  an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+  your experience.</p>
 <![endif]-->
 <!--[if IE 9]>
-<p class="browsehappy"><img src="https://cdn.rawgit.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png" />You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<p class="browsehappy"><img
+    src="https://cdn.rawgit.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png"/>You are using
+  an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+  your experience.</p>
 <![endif]-->
 <!-- BROWSE HAPPY ENDS HERE -->
 
-<!--Header-->
-<va-identity-bar><h3>Loading...</h3></va-identity-bar>
+<!--Side Navigation-->
+<md-sidenav class="md-sidenav-left md-whiteframe-z1" flex
+            ng-class="{'collapsed' : sidebarCollapsed && $mdMedia('md')}"
+            md-is-locked-open="$mdMedia('gt-sm')"
+            md-component-id="left-sidenav">
+  <va-sidenav flex></va-sidenav>
+</md-sidenav>
+<div layout="row" flex style="position: relative">
 
-<!--Main Space-->
-<div layout="row" flex ng-cloak>
-  <!--Side Navigation-->
-  <!--<va-sidenav ></va-sidenav>-->
+  <va-collapse-bar hide show-md collapsed="sidebarCollapsed"></va-collapse-bar>
 
-  <va-sidenav collapsed="sidebarCollapsed"></va-sidenav>
 
-  <div flex layout="row" class="page-background">
-    <va-collapse-bar hide show-gt-md collapsed="sidebarCollapsed"></va-collapse-bar>
+  <!--Main Space-->
+  <div layout="column" flex ng-cloak>
+    <!--Header-->
+    <va-top-bar collapsed="sidebarCollapsed"><h3>Loading...</h3></va-top-bar>
 
     <!--Main Content-->
-    <div style="position: relative" flex>
-      <va-canvas class="page-container" flex layout-fill>
-        <vandaid-test></vandaid-test>
-      </va-canvas>
-      <va-submit-button class="submit-fab"></va-submit-button>
-    </div>
+    <va-canvas class="page-container" flex layout-fill>
+      <vandaid-test></vandaid-test>
+    </va-canvas>
+
+    <va-submit-button hide show-gt-sm class="submit-fab"></va-submit-button>
   </div>
 </div>
 
@@ -103,6 +121,8 @@
 <script src="/src/client/app/constants.module.js"></script>
 <script src="/src/client/app/env.constant.js"></script>
 <script src="/src/client/app/vandaidTest.directive.js"></script>
+<script src="/src/client/app/theming.module.js"></script>
+<!--<script src="/src/client/app/cchmc.palette.js"></script>-->
 
 <!--Core-->
 <script src="/src/client/vandaid/va.module.js"></script>
@@ -119,9 +139,9 @@
 <script src="/src/client/vandaid/theming/theming.config.js"></script>
 
 <!--Sandbox-->
-<script src="/src/client/vandaid/sandbox/sandbox.module.js"></script>
-<script src="/src/client/vandaid/sandbox/sandbox.directive.js"></script>
-<script src="/src/client/vandaid/sandbox/scopeTest.directive.js"></script>
+<!--<script src="/src/client/vandaid/sandbox/sandbox.module.js"></script>-->
+<!--<script src="/src/client/vandaid/sandbox/sandbox.directive.js"></script>-->
+<!--<script src="/src/client/vandaid/sandbox/scopeTest.directive.js"></script>-->
 
 <!--REDCap-->
 <script src="/src/client/vandaid/redcap/redcap.module.js"></script>
@@ -141,6 +161,7 @@
 <script src="/src/client/vandaid/navigation/menubar.directive.js"></script>
 <script src="/src/client/vandaid/navigation/sidenav.directive.js"></script>
 <script src="/src/client/vandaid/navigation/collapsebar.directive.js"></script>
+<script src="/src/client/vandaid/navigation/topbar.directive.js"></script>
 
 <!--User-->
 <script src="/src/client/vandaid/user/user.module.js"></script>

@@ -16,9 +16,9 @@
     return directive;
   }
 
-  IdentityBarController.$inject = ['vandaidUserService', '$mdSidenav', '__va', '$scope'];
+  IdentityBarController.$inject = ['vandaidUserService', '$mdSidenav', '__va'];
 
-  function IdentityBarController(vandaidUserService, $mdSidenav, __va, $scope) {
+  function IdentityBarController(vandaidUserService, $mdSidenav, __va) {
     var vm = this;
 
     vm.toggleSidenav = toggleSidenav;
