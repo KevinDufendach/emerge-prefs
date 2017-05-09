@@ -50,11 +50,8 @@
   /* @ngInject */
   function vandaidCollapseBar() {
     var directive = {
-      // replace: true,
-      // require: 'ngModel',
-      // link: linkFn,
       bindToController: true,
-      // compile: compileFn,
+      compile: compileFn,
       controller: collapseBarController,
       controllerAs: 'vm',
       templateUrl: '/src/client/vandaid/navigation/collapsebar.directive.html',
@@ -74,18 +71,6 @@
         attrs.collapsed = false;
       }
     }
-
-    //   function linkFn(scope, element, attrs, ngModel) {
-    //     if (!ngModel) return;
-    //
-    //     element.on("click", function() {
-    //       ngModel.$setViewValue(!ngModel.$viewValue);
-    //       scope.$apply();
-    //     })
-    //
-    //     // I think the 'ngModel' is ctrl[0], then the project controller is ctrl[1], etc. based on github code for angular
-    //
-    //   }
   }
 
   collapseBarController.$inject = ['$vaShared'];
