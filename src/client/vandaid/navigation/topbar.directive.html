@@ -1,0 +1,21 @@
+<md-toolbar md-whiteframe="3" class="md-hue-2">
+  <div layout="row" class="md-toolbar-tools md-whiteframe-3dp">
+    <h2>{{vm.title}}</h2>
+    <span flex></span>
+    <div ng-hide="vm.isLoggedIn" layout="row">
+      <p>You are not logged in</p>
+    </div>
+    <md-button ng-show="vm.isLoggedIn" class="md-icon-button" ng-click="vm.submit()">
+      <md-icon>save</md-icon>
+    </md-button>
+    <md-button hide-gt-sm class="md-icon-button"
+               ng-click="vm.toggleSidenav('left-sidenav')">
+      <md-icon>edit</md-icon>
+    </md-button>
+    <md-button hide show-md class="md-icon-button"
+               ng-class="{'md-raised': vm.collapsed, 'md-primary': vm.collapsed}"
+               ng-click="vm.collapsed = !vm.collapsed">
+      <md-icon>edit</md-icon>
+    </md-button>
+  </div>
+</md-toolbar>

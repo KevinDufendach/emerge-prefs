@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('app.constants', []);
+    .module('app.theming', []);
 
 })();

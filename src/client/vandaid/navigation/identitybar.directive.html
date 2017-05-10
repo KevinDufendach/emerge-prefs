@@ -1,0 +1,26 @@
+<md-toolbar layout="row" class="md-menu-toolbar md-whiteframe-z3">
+  <!--<div layout="row">-->
+  <div hide-xs class="identity-bar-logo" layout="row" layout-align="center center"
+       ng-style="{'background-color': vm.getBackground()}">
+    <img src="{{vm.getLogo()}}"/>
+  </div>
+  <!--</div>-->
+  <div flex>
+    <md-toolbar class="md-hue-2">
+      <div class="md-toolbar-tools">
+        <h2>VandAID<span hide show-gt-sm> - Active Interface Design</span></h2>
+        <span flex></span>
+        <div ng-hide="vm.isLoggedIn" layout="row">
+          <p>You are not logged in</p>
+        </div>
+        <md-button hide-gt-md class="md-icon-button"
+                   ng-click="vm.toggleSidenav('left-sidenav')">
+          <md-icon>edit</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <div flex hide-xs>
+      <vandaid-menu-bar></vandaid-menu-bar>
+    </div>
+  </div>
+</md-toolbar>
