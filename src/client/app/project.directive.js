@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('va.project')
+    .module('app')
     .directive('emergePrefs', emergePrefs);
 
   emergePrefs.$inject = [];
@@ -13,7 +13,7 @@
       bindToController: true,
       controller: EmergePrefsController,
       controllerAs: 'vm',
-      templateUrl: '/projects/js/project.directive.html',
+      templateUrl: '/src/client/app/project.directive.html',
       restrict: 'EA',
       scope: {}
     };
@@ -48,7 +48,7 @@
     ////////////
 
     function initialize() {
-      retrieveConditionsFromUri('/projects/content/conditions.json');
+      retrieveConditionsFromUri('/src/client/content/conditions.json');
     }
 
     function getConditions() {
@@ -109,7 +109,7 @@
     }
 
     function getImageUrl(value) {
-      var prefix = '/projects/content/img/';
+      var prefix = '/src/client/content/img/';
 
       switch(value) {
         case 'ADRENAL':

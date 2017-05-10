@@ -17,7 +17,7 @@
   window.__va.accentPalette = 'pink';
 
   // Logo
-  window.__va.logo = '/projects/content/img/CCHMC_CBI_TAG_TM_RGB_400px_lores-shadow.png';
+  window.__va.logo = '/src/client/content/img/CCHMC_CBI_TAG_TM_RGB_400px_lores.jpg';
   window.__va.logoBackground = '#F0F0F0';
 
   // Title

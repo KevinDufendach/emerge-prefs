@@ -1,10 +1,11 @@
-<link href="/projects/content/style.css" rel="stylesheet">
+<link href="/src/client/content/style.css" rel="stylesheet">
 
 <h1>My Report</h1>
 
 <table class="condition-table">
   <tbody>
   <tr>
+    <th>Always Include</th>
     <th>Primary Organ(s) or Cancer</th>
     <th>Condition</th>
     <th>Description</th>
@@ -13,7 +14,8 @@
     <th>Adult Onset</th>
     <th>Carrier Status</th>
   </tr>
-  <tr ng-repeat="condition in vm.getConditions()" ng-class="{'not-shown': !vm.getShownStatus(condition)}">
+  <tr ng-repeat="condition in vm.getConditions()" ng-class="{'not-shown': !condition.alwaysInclude || !vm.getShownStatus(condition)}">
+    <td><md-switch aria-label="Always include {{condition.condition}}" ng-model="condition.alwaysInclude"></md-switch></td>
     <td class="td-center"><img ng-repeat="organ in condition.organs" class="organ-img" ng-src="{{vm.getImageUrl(organ)}}" /></td>
     <td>{{condition.condition}}</td>
     <td>{{condition.description}}</td>
@@ -24,9 +26,3 @@
   </tr>
   </tbody>
 </table>
-
-<!--<h4>Conditions</h4>-->
-<!--<textarea rows="10" cols="60">{{vm.getConditions() | json}}</textarea>-->
-
-<!--<h4>Values:</h4>-->
-<!--<textarea rows="10" cols="60">{{va | json}}</textarea>-->

@@ -89,7 +89,6 @@
 
   <va-collapse-bar hide show-md collapsed="sidebarCollapsed"></va-collapse-bar>
 
-
   <!--Main Space-->
   <div layout="column" flex ng-cloak>
     <!--Header-->
@@ -97,7 +96,7 @@
 
     <!--Main Content-->
     <va-canvas class="page-container" flex layout-fill>
-      <vandaid-test></vandaid-test>
+      <emerge-prefs></emerge-prefs>
     </va-canvas>
 
     <va-submit-button hide show-gt-sm class="submit-fab"></va-submit-button>
@@ -120,9 +119,12 @@
 <script src="/src/client/app/app.module.js"></script>
 <script src="/src/client/app/constants.module.js"></script>
 <script src="/src/client/app/env.constant.js"></script>
-<script src="/src/client/app/vandaidTest.directive.js"></script>
+<!--<script src="/src/client/app/vandaidTest.directive.js"></script>-->
 <script src="/src/client/app/theming.module.js"></script>
-<!--<script src="/src/client/app/cchmc.palette.js"></script>-->
+
+<script src="/src/client/app/project.directive.js"></script>
+
+<!--Project Constants-->
 
 <!--Core-->
 <script src="/src/client/vandaid/va.module.js"></script>
