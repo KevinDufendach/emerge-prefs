@@ -1,0 +1,27 @@
+<md-tabs md-dynamic-height md-selected="vm.selectedIndex">
+  <md-tab ng-repeat="field in vm.fields">
+    <vandaid-field-pane field="field" type="{{field.type}}"></vandaid-field-pane>
+  </md-tab>
+  <md-tab label="index">
+    <div class="md-padding">
+      <h1>My Tab Content</h1>
+      <p>I am some text in this tab's content</p>
+      <p>more</p>
+      <p>Buehler...</p>
+      <p>Buehler...</p>
+      <p>Buehler...</p>
+      <p>Buehler...</p>
+    </div>
+  </md-tab>
+  <md-tab label="myTab2">
+    <div>
+      <h1>My second Tab Content</h1>
+    </div>
+  </md-tab>
+</md-tabs>
+<!--<md-button ng-click="vm.previous()">Prev</md-button>-->
+<div layout="row">
+  <div flex></div>
+  <md-button class="md-raised" ng-click="vm.previous()">Previous</md-button>
+  <md-button class="md-raised md-primary" ng-click="vm.next()">Next</md-button>
+</div>

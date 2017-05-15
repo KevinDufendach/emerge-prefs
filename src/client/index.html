@@ -89,18 +89,24 @@
 
   <va-collapse-bar hide show-md collapsed="sidebarCollapsed"></va-collapse-bar>
 
-
   <!--Main Space-->
   <div layout="column" flex ng-cloak>
     <!--Header-->
     <va-top-bar collapsed="sidebarCollapsed"><h3>Loading...</h3></va-top-bar>
+    <md-content>
 
-    <!--Main Content-->
-    <va-canvas class="page-container" flex layout-fill>
-      <vandaid-test></vandaid-test>
-    </va-canvas>
+      <div hide-gt-md class="md-whiteframe-z2">
+        <va-field-tabs></va-field-tabs>
+      </div>
 
-    <va-submit-button hide show-gt-sm class="submit-fab"></va-submit-button>
+      <!--Main Content-->
+      <va-canvas class="page-container" flex layout-fill>
+        <vandaid-test></vandaid-test>
+      </va-canvas>
+
+      <va-submit-button hide show-gt-sm class="submit-fab"></va-submit-button>
+
+    </md-content>
   </div>
 </div>
 
@@ -162,6 +168,7 @@
 <script src="/src/client/vandaid/navigation/sidenav.directive.js"></script>
 <script src="/src/client/vandaid/navigation/collapsebar.directive.js"></script>
 <script src="/src/client/vandaid/navigation/topbar.directive.js"></script>
+<script src="/src/client/vandaid/navigation/fieldtabs.directive.js"></script>
 
 <!--User-->
 <script src="/src/client/vandaid/user/user.module.js"></script>
