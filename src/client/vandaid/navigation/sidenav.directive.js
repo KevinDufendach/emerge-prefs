@@ -15,9 +15,16 @@
       controller: SidenavController,
       controllerAs: 'vm',
       templateUrl: '/src/client/vandaid/navigation/sidenav.directive.html',
-      restrict: 'EA'
+      restrict: 'EA',
+      compile: compileFn
     };
     return directive;
+
+    function compileFn(elem) {
+      // wrap tag
+      var contents = elem.html();
+      elem.html('<sidenav-content><div>' + contents + '</div></sidenav-content>');
+    }
   }
 
   SidenavController.$inject = ['$mdSidenav', 'vandaidFieldService', '$scope', '$mdMedia', '__va'];
@@ -25,8 +32,7 @@
   /* @ngInject */
   function SidenavController($mdSidenav, vandaidFieldService, $scope, $mdMedia, __va) {
     var vm = this;
-    vm.fields = [];
-    vm.fs = vandaidFieldService;
+    vm.fields = vandaidFieldService.fields;
     vm.toggleSidenav = toggleSidenav;
     vm.submit = submit;
 
@@ -40,8 +46,7 @@
     function activate() {
       vandaidFieldService.getFields()
         .then(
-          function (fields) {
-            vm.fields = fields;
+          function () {
           }
         )
     }

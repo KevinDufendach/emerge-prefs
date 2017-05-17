@@ -30,16 +30,20 @@
     vm.next = next;
     vm.previous = previous;
     vm.selectedIndex = 0;
+    vm.ready = false;
 
     vm.$onInit = activate;
 
     //////////
 
     function activate() {
+
+
       vandaidFieldService.getFields()
         .then(
           function (fields) {
             vm.fields = fields;
+            vm.ready = true;
           }
         )
     }
@@ -47,7 +51,7 @@
 
     function next() {
       console.log(vm.selectedIndex);
-      vm.selectedIndex = Math.min(vm.selectedIndex + 1, 1) ;
+      vm.selectedIndex = Math.min(vm.selectedIndex + 1, vm.fields.length) ;
     }
 
     function previous() {

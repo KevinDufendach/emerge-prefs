@@ -51,7 +51,7 @@
   </style>
 </head>
 
-<body layout="row">
+<body layout="column">
 
 <!-- BROWSE HAPPY BEGINS HERE -->
 <!--[if IE 6]>
@@ -79,34 +79,45 @@
 <!-- BROWSE HAPPY ENDS HERE -->
 
 <!--Side Navigation-->
-<md-sidenav class="md-sidenav-left md-whiteframe-z1" flex
-            ng-class="{'collapsed' : sidebarCollapsed && $mdMedia('md')}"
-            md-is-locked-open="$mdMedia('gt-sm')"
-            md-component-id="left-sidenav">
-  <va-sidenav flex></va-sidenav>
-</md-sidenav>
-<div layout="row" flex style="position: relative">
+<!--<md-sidenav class="md-sidenav-left md-whiteframe-z1" flex -->
+<!--ng-class="{'collapsed' : sidebarCollapsed && $mdMedia('md')}"-->
+<!--md-is-locked-open="$mdMedia('gt-sm')"-->
+<!--md-component-id="left-sidenav">-->
 
-  <va-collapse-bar hide show-md collapsed="sidebarCollapsed"></va-collapse-bar>
+<!--</md-sidenav>-->
+<va-top-bar collapsed="sidebarCollapsed"><h3>Loading...</h3></va-top-bar>
 
-  <!--Main Space-->
-  <div layout="column" flex ng-cloak>
-    <!--Header-->
-    <va-top-bar collapsed="sidebarCollapsed"><h3>Loading...</h3></va-top-bar>
-    <md-content>
+<div layout="row" flex>
+  <va-sidenav class="md-whiteframe-db3" flex layout="column"
+              ng-class="{'collapsed' : sidebarCollapsed && $mdMedia('md')}"></va-sidenav>
 
-      <div hide-gt-md class="md-whiteframe-z2">
-        <va-field-tabs></va-field-tabs>
-      </div>
+  <div layout="row" flex style="position: relative">
+    <va-collapse-bar hide show-md collapsed="sidebarCollapsed"></va-collapse-bar>
 
-      <!--Main Content-->
-      <va-canvas class="page-container" flex layout-fill>
-        <vandaid-test></vandaid-test>
-      </va-canvas>
+    <!--Main Space-->
+    <div layout="column" flex ng-cloak>
+      <!--Header-->
+      <md-content>
+        <expandable ng-class="{expanded: myVar}">
+          <h1>You expanded me!!!</h1>
+          <p>I am the expanded content</p>
+        </expandable>
 
-      <va-submit-button hide show-gt-sm class="submit-fab"></va-submit-button>
+        <md-button ng-click="myVar = !myVar">Expand Me</md-button>{{myVar}}
 
-    </md-content>
+        <div hide-gt-sm class="md-whiteframe-z2">
+          <va-field-tabs></va-field-tabs>
+        </div>
+
+        <!--Main Content-->
+        <va-canvas flex layout-fill>
+          <vandaid-test></vandaid-test>
+        </va-canvas>
+
+
+      </md-content>
+    </div>
+    <va-submit-button hide show-gt-sm class="submit-fab"></va-submit-button>
   </div>
 </div>
 
@@ -169,6 +180,7 @@
 <script src="/src/client/vandaid/navigation/collapsebar.directive.js"></script>
 <script src="/src/client/vandaid/navigation/topbar.directive.js"></script>
 <script src="/src/client/vandaid/navigation/fieldtabs.directive.js"></script>
+<script src="/src/client/vandaid/navigation/expandable.directive.js"></script>
 
 <!--User-->
 <script src="/src/client/vandaid/user/user.module.js"></script>

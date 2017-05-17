@@ -183,20 +183,24 @@ div[contentEditable]:active {
     cursor: pointer;
 }
 
-md-sidenav,
-md-sidenav.md-locked-open,
-md-sidenav.md-closed.md-locked-open-add-active {
+va-sidenav,
+va-sidenav.md-locked-open,
+va-sidenav.md-closed.md-locked-open-add-active {
     min-width: 400px !important;
     /*width: 350px !important;*/
     max-width: 400px !important;
 }
 
-md-sidenav {
+va-sidenav {
+    max-height: 100%;
+
+    min-width: 400px !important;
+    max-width: 400px !important;
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
 }
 
-md-sidenav.collapsed {
+va-sidenav.collapsed {
     min-width: 0 !important;
     max-width: 0 !important;
     overflow: hidden;
@@ -205,12 +209,18 @@ md-sidenav.collapsed {
     transition: all 0.5s;
 }
 
-va-sidenav {
-    min-width: 383px !important;
-    /*width: 350px !important;*/
-    max-width: 400px !important;
-    height: 100%;
+sidenav-content {
+    margin:0 !important;
+    padding:0 !important;
+    display: flex
+
 }
+
+/*va-sidenav {*/
+    /*min-width: 383px !important;*/
+    /*!*width: 350px !important;*!*/
+    /*max-width: 400px !important;*/
+/*}*/
 
 .rotate {
     transform: rotate(0deg);
@@ -283,3 +293,35 @@ va-identity-bar {
     z-index: 3;
 }
 
+
+expandable {
+    /*padding: 0 !important;*/
+    /*margin: 0 !important;*/
+}
+
+expandable > expandable-content > div {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 30px, 0);
+    transform: translate3d(0, 30px, 0);
+    -webkit-transition: all 0.25s;
+    transition: all 0.25s;
+
+    overflow: auto;
+}
+
+expandable.expanded > expandable-content > div {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+expandable-content {
+    box-sizing:border-box;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    max-height: 0;
+
+    padding: 0 !important;
+    margin: 0 !important;
+}
