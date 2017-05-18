@@ -13,7 +13,8 @@
   angular
     .module('va.tools')
     .directive('expandable', ExpandDirective)
-    .animation('.expanded', ExpandAnimation);
+    .animation('.v-expanded', VerticalExpandAnimation)
+    .animation('.h-expanded', HorizontalExpandAnimation);
 
   function ExpandDirective() {
     var directive = {
@@ -22,41 +23,50 @@
     };
     return directive;
 
-    function compileFn(element) {
-      // wrap tag
-      var contents = element.html();
-      element.html('<expandable-content style="{margin:0 !important; padding:0 !important}" ><div>' + contents + '</div></expandable-content>');
+    function compileFn(elem, attrs) {
+      var contents = elem.html();
+
+      // wrap tag using attrs.direction to determine direction for expansion
+      if (!attrs.direction || attrs.direction !== 'horizontal') {
+        elem.html('<expandable-content class="expand-vertical"><div>' + contents + '</div></expandable-content>');
+      } else {
+        elem.html('<expandable-content class="expand-horizontal"><div>' + contents + '</div></expandable-content>');
+      }
+
     }
   }
 
-  ExpandAnimation.$inject = ['$animateCss'];
+  VerticalExpandAnimation.$inject = ['$animateCss', '$log'];
 
-  function ExpandAnimation($animateCss) {
+  function VerticalExpandAnimation($animateCss, $log) {
     return {
       addClass: function (element, className, done) {
         // console.log('expand class added');
 
-        var paneContent = angular.element(element[0].querySelector('expandable-content')),
-          paneInner = angular.element(paneContent[0].querySelector('div'));
+        var paneContent = angular.element(element[0]);
+        var paneInner = angular.element(paneContent[0].querySelector('expandable-content'));
+        var paneDiv = angular.element(paneInner[0].querySelector('div'));
 
-        var height = paneInner[0].offsetHeight;
+
+        var height = paneDiv[0].offsetHeight;
+        $log.log('paneDiv opening offsetHeight: ' + height);
         // Note: offsetHeight does not include margin if specified by inner content
 
-        var expandAnimation = $animateCss(paneContent, {
+        var expandAnimation = $animateCss(paneInner, {
           easing: 'ease',
-          from: {maxHeight: '0px'},
+          from: {maxHeight: '0'},
           to: {maxHeight: height + 'px'},
           duration: 0.25
         });
 
         expandAnimation.start().done(function () {
-          paneContent.css('max-height', 'none');
+          paneInner.css('max-height', 'none');
           done();
         });
 
         return function (isCancelled) {
           if (isCancelled) {
-            paneContent.css('max-height', 'none');
+            paneInner.css('max-height', 'none');
           }
         };
 
@@ -64,13 +74,18 @@
       removeClass: function (element, className, done) {
         // console.log('expand class removed');
 
-        var paneContent = angular.element(element[0].querySelector('expandable-content')),
-          paneInner = angular.element(paneContent[0].querySelector('div'));
+        // var paneContent = angular.element(element[0].querySelector('expandable')),
+        //   paneInner = angular.element(paneContent[0].querySelector('expandable-content'));
 
-        var height = paneInner[0].offsetHeight;
+        var paneContent = angular.element(element[0]);
+        var paneInner = angular.element(paneContent[0].querySelector('expandable-content'));
+        var paneDiv = angular.element(paneInner[0].querySelector('div'));
+
+        var height = paneDiv[0].offsetHeight;
+        $log.log('paneDiv closing offsetHeight: ' + height);
         // Note: offsetHeight does not include margin if specified by inner content
 
-        var collapseAnimation = $animateCss(paneContent, {
+        var collapseAnimation = $animateCss(paneInner, {
           easing: 'ease',
           from: {maxHeight: height + 'px'},
           to: {maxHeight: '0px'},
@@ -81,7 +96,74 @@
 
         return function (isCancelled) {
           if (isCancelled) {
-            paneContent.css('max-height', '0px');
+            paneInner.css('max-height', '0px');
+          }
+        };
+      }
+    };
+  }
+
+  HorizontalExpandAnimation.$inject = ['$animateCss', '$log'];
+
+  function HorizontalExpandAnimation($animateCss, $log) {
+    return {
+      addClass: function (element, className, done) {
+        // console.log('expand class added');
+
+        var paneContent = angular.element(element[0]);
+        var paneInner = angular.element(paneContent[0].querySelector('expandable-content'));
+        var paneDiv = angular.element(paneInner[0].querySelector('div'));
+
+
+        var width = paneDiv[0].offsetWidth;
+        $log.log('Opening paneDiv offsetWidth: ' + width);
+        // Note: offsetHeight does not include margin if specified by inner content
+
+        var expandAnimation = $animateCss(paneInner, {
+          easing: 'ease',
+          from: {maxWidth: '0'},
+          to: {maxWidth: width + 'px'},
+          duration: 0.25
+        });
+
+        expandAnimation.start().done(function () {
+          paneInner.css('max-width', 'none');
+          done();
+        });
+
+        return function (isCancelled) {
+          if (isCancelled) {
+            paneInner.css('max-width', 'none');
+          }
+        };
+
+      },
+      removeClass: function (element, className, done) {
+        // console.log('expand class removed');
+
+        // var paneContent = angular.element(element[0].querySelector('expandable')),
+        //   paneInner = angular.element(paneContent[0].querySelector('expandable-content'));
+
+        var paneContent = angular.element(element[0]);
+        var paneInner = angular.element(paneContent[0].querySelector('expandable-content'));
+        var paneDiv = angular.element(paneInner[0].querySelector('div'));
+
+        var width = paneDiv[0].offsetWidth;
+        $log.log('Closing paneDiv offsetWidth: ' + width);
+        // Note: offsetHeight does not include margin if specified by inner content
+
+        var collapseAnimation = $animateCss(paneInner, {
+          easing: 'ease',
+          from: {maxWidth: width + 'px'},
+          to: {maxWidth: '0px'},
+          duration: 0.25
+        });
+
+        collapseAnimation.start().done(done);
+
+        return function (isCancelled) {
+          if (isCancelled) {
+            paneInner.css('max-width', '0px');
           }
         };
       }

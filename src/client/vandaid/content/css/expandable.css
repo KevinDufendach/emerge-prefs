@@ -1,0 +1,31 @@
+expandable > expandable-content > div {
+  opacity: 0;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+
+  display: inline-block;
+  overflow: auto;
+}
+
+expandable.v-expanded > expandable-content > div,
+expandable.h-expanded > expandable-content > div {
+  opacity: 1;
+}
+
+expandable > expandable-content.expand-horizontal {
+  max-width: 0;
+}
+
+expandable > expandable-content.expand-vertical {
+  max-height: 0;
+}
+
+expandable > expandable-content {
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  overflow: hidden;
+
+  padding: 0 !important;
+  margin: 0 !important;
+}
