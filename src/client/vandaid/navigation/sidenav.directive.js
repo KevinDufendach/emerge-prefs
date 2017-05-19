@@ -22,8 +22,8 @@
 
     function compileFn(elem) {
       // wrap tag
-      var contents = elem.html();
-      elem.html('<sidenav-content><div>' + contents + '</div></sidenav-content>');
+      // var contents = elem.html();
+      // elem.html('<sidenav-content><div>' + contents + '</div></sidenav-content>');
     }
   }
 

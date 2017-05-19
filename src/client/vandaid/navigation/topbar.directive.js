@@ -15,16 +15,16 @@
       controllerAs: 'vm',
       restrict: 'AE',
       scope: {
-        collapsed: '='
+        expanded: '='
       }
     };
     return directive;
   }
 
-  topBarController.$inject = ['vandaidUserService', '$mdSidenav', '__va', 'vandaidFieldService'];
+  topBarController.$inject = ['vandaidUserService', '__va', 'vandaidFieldService'];
 
   /* @ngInject */
-  function topBarController(vandaidUserService, $mdSidenav, __va, vandaidFieldService) {
+  function topBarController(vandaidUserService, __va, vandaidFieldService) {
     var vm = this;
 
     vm.toggleSidenav = toggleSidenav;
@@ -38,7 +38,7 @@
     //////////////
 
     function toggleSidenav(navID) {
-      $mdSidenav(navID).toggle();
+      // $mdSidenav(navID).toggle();
     }
 
     function getLogo() {

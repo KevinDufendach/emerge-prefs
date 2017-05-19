@@ -11,19 +11,17 @@
       bindToController: true,
       controller: submitButtonCtrl,
       controllerAs: 'vm',
-      templateUrl: '/src/client/vandaid/fields/submitButton.directive.html',
+      template: '<md-button class="md-primary md-raised" aria-label="Save and Submit" ng-click="vm.submit()">Save and Submit</md-button>',
       restrict: 'EA',
       scope: {}
     };
     return directive;
-
   }
 
   submitButtonCtrl.$inject = ['vandaidFieldService'];
 
   function submitButtonCtrl(vandaidFieldService) {
     this.submit = vandaidFieldService.submit;
-
   }
 
 })();

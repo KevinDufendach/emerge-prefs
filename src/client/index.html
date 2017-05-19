@@ -85,58 +85,30 @@
 <!--md-component-id="left-sidenav">-->
 
 <!--</md-sidenav>-->
-<va-top-bar collapsed="sidebarCollapsed"><h3>Loading...</h3></va-top-bar>
+<va-top-bar><h3>Loading...</h3></va-top-bar>
 
 <div layout="row" flex>
+  <expandable hide show-gt-sm direction="horizontal" md-whiteframe="3" ng-class="{'h-expanded': sidebarExpanded}"
+              md-colors="::{background: 'accent-400'}">
+    <va-sidenav layout="row" flex></va-sidenav>
+  </expandable>
   <!--<va-sidenav class="md-whiteframe-db3" flex layout="column"-->
-              <!--ng-class="{'collapsed' : sidebarCollapsed && $mdMedia('md')}"></va-sidenav>-->
+  <!--ng-class="{'collapsed' : sidebarCollapsed && $mdMedia('md')}"></va-sidenav>-->
 
   <div layout="row" flex style="position: relative">
-    <va-collapse-bar hide show-md collapsed="sidebarCollapsed"></va-collapse-bar>
+    <va-collapse-bar hide show-md expanded="sidebarExpanded"></va-collapse-bar>
 
     <!--Main Space-->
     <div layout="column" flex ng-cloak>
       <!--Header-->
-      <md-content>
+      <div hide-gt-sm class="md-whiteframe-z2">
+        <va-field-tabs></va-field-tabs>
+      </div>
 
-        <div layout="column">
-          <expandable ng-class="{'v-expanded': verticalVar}">
-            <div class="test-div">
-              <h1>You expanded me!!!</h1>
-              <p>I am the vertically expanded content</p>
-            </div>
-          </expandable>
-          <div>
-            <h1>I'm after the expandable</h1>
-          </div>
-
-        </div>
-        <md-button ng-click="verticalVar = !verticalVar">Expand Me</md-button>{{myVar}}
-
-        <div layout="row">
-          <expandable direction="horizontal" ng-class="{'h-expanded': myVar}">
-            <div style="min-width: 400px" class="test-div">
-              <h2>Horizontally expanding</h2>
-              <p>I am the expanded content</p>
-
-            </div>
-          </expandable>
-          <div>
-            <h1>I'm after the expandable</h1>
-          </div>
-
-        </div>
-
-        <md-button ng-click="myVar = !myVar">Expand Me</md-button>{{myVar}}
-
-        <div hide-gt-sm class="md-whiteframe-z2">
-          <va-field-tabs></va-field-tabs>
-        </div>
-
-        <!--Main Content-->
-        <va-canvas flex layout-fill>
-          <vandaid-test></vandaid-test>
-        </va-canvas>
+      <!--Main Content-->
+      <va-canvas flex layout-fill>
+        <vandaid-test></vandaid-test>
+      </va-canvas>
 
 
       </md-content>

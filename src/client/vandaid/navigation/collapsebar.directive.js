@@ -57,18 +57,18 @@
       templateUrl: '/src/client/vandaid/navigation/collapsebar.directive.html',
       restrict: 'EA',
       scope: {
-        collapsed: '=',
-        collapseDirection: '@'
+        expanded: '=',
+        expandDirection: '@'
       }
     };
     return directive;
 
     function compileFn(elem, attrs) {
-      if (!attrs.collapseDirection) {
-        attrs.collapseDirection = 'left';
+      if (!attrs.expandDirection) {
+        attrs.expandDirection = 'left';
       }
-      if (!attrs.collapsed) {
-        attrs.collapsed = false;
+      if (!attrs.expanded) {
+        attrs.expanded = true;
       }
     }
   }
@@ -84,17 +84,17 @@
     //////////
 
     function onInit() {
-      if (vm.collapseDirection === 'right') {
+      if (vm.expandDirection === 'right') {
         leftDirection = false;
       }
     }
 
     function toggle() {
-      vm.collapsed = !vm.collapsed;
+      vm.expanded = !vm.expanded;
     }
 
     function shouldRotate180() {
-      return (leftDirection && vm.collapsed) || (!leftDirection && !vm.collapsed);
+      return (leftDirection && !vm.expanded) || (!leftDirection && vm.expanded);
     }
   }
 

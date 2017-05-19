@@ -186,6 +186,7 @@ div[contentEditable]:active {
 va-sidenav,
 va-sidenav.md-locked-open,
 va-sidenav.md-closed.md-locked-open-add-active {
+  display: block;
   min-width: 400px !important;
   /*width: 350px !important;*/
   max-width: 400px !important;
@@ -291,10 +292,4 @@ va-identity-bar {
   background: inherit !important;
   color: inherit !important;
   z-index: 3;
-}
-
-
-.test-div {
-  background-color: lightblue;
-
 }
