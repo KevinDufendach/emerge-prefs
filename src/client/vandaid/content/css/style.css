@@ -52,7 +52,7 @@ va-canvas {
   display: block;
   position: relative;
   overflow: auto;
-  -webkit-overflow-scrolling: touch;
+  /*-webkit-overflow-scrolling: touch;*/
 
   background-color: inherit;
   padding: 16px;
@@ -60,16 +60,14 @@ va-canvas {
 }
 
 .page-no-holes {
-  margin: 0 auto;
-  background-size: 81px 1056px;
-  padding: 0 0 0 24px;
+  padding: 24px;
   min-width: 816px;
   max-width: 816px;
   min-height: 1056px;
 
   height: auto;
   box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
+  overflow: auto;
   background-color: white;
 }
 

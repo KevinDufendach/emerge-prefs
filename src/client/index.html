@@ -86,15 +86,12 @@
 
 <!--</md-sidenav>-->
 <va-top-bar><h3>Loading...</h3></va-top-bar>
-<!--<div flex>abcdefg</div>-->
 <div layout="row" flex>
   <expandable hide show-gt-sm direction="horizontal" md-whiteframe="3" ng-class="{'h-expanded': sidebarExpanded}"
               md-colors="::{background: 'accent-400'}"
               layout="row">
     <va-sidenav flex></va-sidenav>
   </expandable>
-  <!--<va-sidenav class="md-whiteframe-db3" flex layout="column"-->
-  <!--ng-class="{'collapsed' : sidebarCollapsed && $mdMedia('md')}"></va-sidenav>-->
 
   <div layout="row" flex style="position: relative">
     <va-collapse-bar hide show-md expanded="sidebarExpanded"></va-collapse-bar>
@@ -102,7 +99,7 @@
     <!--Main Space-->
     <div layout="column" flex ng-cloak>
       <!--Header-->
-      <div hide-gt-sm class="md-whiteframe-z2">
+      <div hide-gt-sm class="md-whiteframe-z4">
         <va-field-tabs></va-field-tabs>
       </div>
 
