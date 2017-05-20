@@ -1,0 +1,28 @@
+.content {
+  overflow: auto;
+  display: inline-block;
+}
+
+.h-wrapper {
+  max-width: 0;
+}
+
+.v-wrapper {
+  max-height: 0;
+}
+
+.h-wrapper,
+.v-wrapper {
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  overflow: hidden;
+
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.fixedSize {
+  width: 500px;
+  height: 300px;
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "order": 0,
+    "id": "recipient_name",
+    "type": "text",
+    "label": "Who should receive this letter?",
+    "field_note": "",
+    "options": []
+  },
+  {
+    "order": 1,
+    "id": "source",
+    "type": "radio",
+    "label": "From where are you writing?",
+    "field_note": "Choose the most specific option",
+    "options": [
+      {
+        "value": "cinti",
+        "label": "Cincinnati"
+      },
+      {
+        "value": "oh",
+        "label": "Ohio"
+      },
+      {
+        "value": "usa",
+        "label": "United States"
+      },
+      {
+        "value": "earth",
+        "label": "Earth"
+      },
+      {
+        "value": "universe",
+        "label": "Universe"
+      }
+    ]
+  },
+  {
+    "order": 2,
+    "id": "ice_cream",
+    "type": "yesno",
+    "label": "Do you like ice cream?",
+    "field_note": "",
+    "options": [
+      {
+        "value": true,
+        "label": "yes"
+      },
+      {
+        "value": false,
+        "label": "no"
+      }
+    ]
+  },
+  {
+    "order": 3,
+    "id": "ice_cream_scoops",
+    "type": "checkbox",
+    "label": "Which scoops of ice cream do you want on your cone?",
+    "field_note": "",
+    "options": [
+      {
+        "value": "1",
+        "label": "Vanilla"
+      },
+      {
+        "value": "2",
+        "label": "Mint"
+      },
+      {
+        "value": "3",
+        "label": "Chocolate"
+      },
+      {
+        "value": "4",
+        "label": "Superman"
+      }
+    ]
+  },
+  {
+    "order": 4,
+    "id": "ready",
+    "type": "truefalse",
+    "label": "I think this note is ready to send.",
+    "field_note": "Send option will not be available until this is checked",
+    "options": [
+      {
+        "value": true,
+        "label": "true"
+      },
+      {
+        "value": false,
+        "label": "false"
+      }
+    ]
+  }
+]

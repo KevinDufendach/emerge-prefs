@@ -1,0 +1,10 @@
+<md-tabs class="md-accent md-hue-3" md-dynamic-height md-selected="vm.selectedIndex" md-border-bottom>
+  <md-tab ng-repeat="field in vm.fields" label="Q{{$index + 1}}">
+    <vandaid-field-pane field="field" type="{{field.type}}"></vandaid-field-pane>
+  </md-tab>
+</md-tabs>
+<div layout="row">
+  <div flex></div>
+  <md-button class="md-raised" ng-click="vm.previous()">Previous</md-button>
+  <md-button class="md-raised md-accent" ng-click="vm.next()">Next</md-button>
+</div>

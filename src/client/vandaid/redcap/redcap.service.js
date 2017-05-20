@@ -96,7 +96,7 @@
      *   )
      */
     function retrieveFieldsFromREDCap(formName) {
-      return retrieveFieldsFromUri('rest/redcap-metadata', formName);
+      return retrieveFieldsFromUri('/rest/redcap-metadata', formName);
     }
 
     /**
