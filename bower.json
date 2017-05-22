@@ -1,0 +1,21 @@
+{
+  "name": "vandaid",
+  "version": "0.0.1",
+  "description": "Vanderbilt Active Interface Design",
+  "authors": [
+    "Kevin Dufendach, MD"
+  ],
+  "license": "Apache",
+  "homepage": "https://ob.tools",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {},
+  "dependencies": {
+    "angular-material": "^1.1.1"
+  }
+}

@@ -1,44 +1,31 @@
+<!--Toolbar for small screens-->
 
-
-  <!--Toolbar for small screens-->
-  <md-toolbar class="md-toolbar-tools va-sidebar-toolbar" layout="row" hide-gt-sm>
-    <md-button hide-gt-md class="md-icon-button md-accent" ng-click="vm.toggleSidenav('left-sidenav')">
-      <md-icon>close</md-icon>
-    </md-button>
-
-    <div layout="row" flex class="identity-bar-logo" layout-align="center center" layout-padding
-         ng-style="{'background-color': vm.getBackground()}">
-      <img ng-src="{{vm.logo}}">
+<!--&lt;!&ndash;Image icon for med+ screens&ndash;&gt;-->
+<!--<div hide show-gt-sm layout-align="center center" layout-padding layout="row" flex="none"-->
+<!--class="md-whiteframe-3dp"-->
+<!--ng-style="{'background-color': vm.getBackground()}">-->
+<!--<img class="side-nav-logo" ng-src="{{vm.logo}}">-->
+<!--</div>-->
+<md-content md-colors="::{background: 'accent-400'}" flex>
+  <!-- Field List -->
+  <!--<md-progress-circular ng-show="!vm.isReady()" md-mode="indeterminate"></md-progress-circular>-->
+  <md-list>
+    <div ng-repeat="field in vm.fields">
+      <vandaid-field-pane field="field" type="{{field.type}}"></vandaid-field-pane>
     </div>
-  </md-toolbar>
+  </md-list>
 
-  <!--Image icon for med+ screens-->
-  <div hide show-gt-sm layout-align="center center" layout-padding layout="row" flex="none"
-       class="md-whiteframe-3dp"
-       ng-style="{'background-color': vm.getBackground()}">
-    <img class="side-nav-logo" ng-src="{{vm.logo}}">
+  <!-- Submit button -->
+  <div layout-padding layout="row">
+    <span flex></span>
+    <va-submit-button></va-submit-button>
+    <span flex></span>
   </div>
 
-  <md-content>
-    <!-- Field List -->
-    <md-list>
-      <div ng-repeat="field in vm.fs.fields">
-        <vandaid-field-pane field="field" type="{{field.type}}"></vandaid-field-pane>
-      </div>
-    </md-list>
+  <div class="footer" layout="column" layout-align="center center">
+    <img src="/src/client/vandaid/content/img/Vanderbilt-Logo-white500x500.png">
+    <div>Powered by Vanderbilt</div>
+    <div>Licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">the Apache License, Version 2.0.</a></div>
+  </div>
 
-    <!-- Submit button -->
-    <div layout-padding layout="row">
-      <span flex></span>
-      <va-submit-button></va-submit-button>
-      <span flex></span>
-    </div>
-
-    <div class="footer" layout="column" layout-align="center center">
-      <img src="/src/client/vandaid/content/img/Vanderbilt-Logo-white500x500.png">
-      <div>Powered by Vanderbilt</div>
-      <div>Licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">the Apache License, Version 2.0.</a>
-      </div>
-    </div>
-
-  </md-content>
+</md-content>

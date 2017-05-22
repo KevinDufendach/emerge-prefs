@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>
-<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"><![endif]-->
-<!--[if IE 7]>
-<html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
-<!--[if IE 8]>
-<html class="no-js lt-ie9" lang="en"><![endif]-->
-<!--[if IE 9]>
-<html class="no-js lt-ie10" lang="en"><![endif]-->
-<!--[if gt IE 9]><!-->
-
 <html lang="en" ng-app="app">
 
 <head>
@@ -21,90 +11,42 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link rel="stylesheet" href="/src/client/vandaid/content/css/style.css">
-  <link rel="stylesheet" href="/src/client/vandaid/content/css/expandable.css">
+  <!--<link rel="stylesheet" href="/src/client/test.css">-->
   <link rel="shortcut icon" href="/src/client/content/img/favicon.ico">
 
-  <title>VandAID - Active Interface Design by Vanderbilt</title>
-
-  <style>
-    .browsehappy {
-      display: block;
-      width: 100%;
-      height: 100px;
-      background-color: #f2dede;
-      margin: 0 0 10px;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-size: 22px;
-      line-height: 1.4;
-      color: #333;
-      vertical-align: middle;
-    }
-
-    .browsehappy span {
-      vertical-align: middle;
-      margin: 20px 20px 20px 20px;
-      background: url("https://cdn.rawgit.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png") no-repeat;
-      height: 64px;
-      width: 64px;
-      display: inline-block;
-    }
-  </style>
+  <title>Expand Test</title>
 </head>
 
-<body layout="column" ng-controller="vaCtrl">
+<body layout="column">
 
-<!-- BROWSE HAPPY BEGINS HERE -->
-<!--[if IE 6]>
-<p class="browsehappy"><img/>You are using an <strong>outdated</strong> browser. Please <a
-    href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
-<!--[if IE 7]>
-<p class="browsehappy"><img
-    src="https://cdn.rawgit.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png"/>You are using
-  an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve
-  your experience.</p>
-<![endif]-->
-<!--[if IE 8]>
-<p class="browsehappy"><img
-    src="https://cdn.rawgit.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png"/>You are using
-  an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve
-  your experience.</p>
-<![endif]-->
-<!--[if IE 9]>
-<p class="browsehappy"><img
-    src="https://cdn.rawgit.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png"/>You are using
-  an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve
-  your experience.</p>
-<![endif]-->
-<!-- BROWSE HAPPY ENDS HERE -->
-
-<va-top-bar><h3>Loading...</h3></va-top-bar>
-<div layout="row" flex>
-  <expandable hide show-gt-sm direction="horizontal" md-whiteframe="3" ng-class="{'h-expanded': sidebarExpanded || $mdMedia('gt-md')}"
-              md-colors="::{background: 'accent-400'}"
-              layout="row">
-    <va-sidenav flex></va-sidenav>
-  </expandable>
-
-  <div layout="row" flex style="position: relative">
-    <va-collapse-bar hide show-md expanded="sidebarExpanded"></va-collapse-bar>
-
-    <!--Main Space-->
-    <div layout="column" flex ng-cloak>
-      <!--Header-->
-      <md-toolbar hide-gt-sm class="md-whiteframe-3dp md-hue-3">
-        <va-field-tabs></va-field-tabs>
-      </md-toolbar>
-
-      <!--Main Content-->
-      <va-canvas flex layout-fill>
-        <emerge-prefs></emerge-prefs>
-      </va-canvas>
+<div layout="column">
+  <expandable direction="vertical" ng-class="{'v-expanded': verticalVar}">
+    <div class="test-div">
+      <h1>You expanded me!!!</h1>
+      <p>I am the vertically expanded content</p>
     </div>
-
-    <va-submit-button hide show-gt-sm class="submit-fab"></va-submit-button>
+  </expandable>
+  <div>
+    <h1>Post-Vertical</h1>
   </div>
 </div>
+<md-button ng-click="verticalVar = !verticalVar">Expand Me</md-button>
+
+<div layout="row">
+  <expandable direction="horizontal" ng-class="{'h-expanded': horizontalVar}">
+    <div style="min-width: 400px" class="test-div">
+      <h2>Horizontally expanding</h2>
+      <p>I am the expanded content</p>
+
+    </div>
+  </expandable>
+  <div>
+    <h1>I'm after the expandable</h1>
+  </div>
+</div>
+<md-button ng-click="horizontalVar = !horizontalVar">Expand Me</md-button>
+
+
 
 <!-- Angular Material Dependencies -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
@@ -122,16 +64,12 @@
 <script src="/src/client/app/app.module.js"></script>
 <script src="/src/client/app/constants.module.js"></script>
 <script src="/src/client/app/env.constant.js"></script>
-<!--<script src="/src/client/app/vandaidTest.directive.js"></script>-->
+<script src="/src/client/app/vandaidTest.directive.js"></script>
 <script src="/src/client/app/theming.module.js"></script>
-
-<script src="/src/client/app/project.directive.js"></script>
-
-<!--Project Constants-->
+<!--<script src="/src/client/app/cchmc.palette.js"></script>-->
 
 <!--Core-->
 <script src="/src/client/vandaid/va.module.js"></script>
-<script src="/src/client/vandaid/va.ctrl.js"></script>
 
 <script src="/src/client/vandaid/core/core.module.js"></script>
 <script src="/src/client/vandaid/core/core.iconprovider.js"></script>
@@ -143,6 +81,11 @@
 <script src="/src/client/vandaid/theming/theming.module.js"></script>
 <script src="/src/client/vandaid/theming/vanderbilt.palette.js"></script>
 <script src="/src/client/vandaid/theming/theming.config.js"></script>
+
+<!--Sandbox-->
+<!--<script src="/src/client/vandaid/sandbox/sandbox.module.js"></script>-->
+<!--<script src="/src/client/vandaid/sandbox/sandbox.directive.js"></script>-->
+<!--<script src="/src/client/vandaid/sandbox/scopeTest.directive.js"></script>-->
 
 <!--REDCap-->
 <script src="/src/client/vandaid/redcap/redcap.module.js"></script>
