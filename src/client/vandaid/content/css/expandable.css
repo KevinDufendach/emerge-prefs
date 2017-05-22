@@ -15,12 +15,12 @@ expandable.h-expanded > expandable-content > div {
 }
 
 expandable > expandable-content.expand-horizontal {
-  max-width: 0;
+  /*max-width: 0;*/
   overflow-x: hidden;
 }
 
 expandable > expandable-content.expand-vertical {
-  max-height: 0;
+  /*max-height: 0;*/
   overflow-y: hidden;
 }
 

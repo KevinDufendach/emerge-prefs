@@ -65,6 +65,8 @@ va-canvas {
   max-width: 816px;
   min-height: 1056px;
 
+  margin: auto;
+
   height: auto;
   box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.25);
   overflow: auto;

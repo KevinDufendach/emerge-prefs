@@ -51,7 +51,7 @@
   </style>
 </head>
 
-<body layout="column">
+<body layout="column" ng-controller="vaCtrl">
 
 <!-- BROWSE HAPPY BEGINS HERE -->
 <!--[if IE 6]>
@@ -78,16 +78,9 @@
 <![endif]-->
 <!-- BROWSE HAPPY ENDS HERE -->
 
-<!--Side Navigation-->
-<!--<md-sidenav class="md-sidenav-left md-whiteframe-z1" flex -->
-<!--ng-class="{'collapsed' : sidebarCollapsed && $mdMedia('md')}"-->
-<!--md-is-locked-open="$mdMedia('gt-sm')"-->
-<!--md-component-id="left-sidenav">-->
-
-<!--</md-sidenav>-->
 <va-top-bar><h3>Loading...</h3></va-top-bar>
 <div layout="row" flex>
-  <expandable hide show-gt-sm direction="horizontal" md-whiteframe="3" ng-class="{'h-expanded': sidebarExpanded}"
+  <expandable hide show-gt-sm direction="horizontal" md-whiteframe="3" ng-class="{'h-expanded': sidebarExpanded || $mdMedia('gt-md')}"
               md-colors="::{background: 'accent-400'}"
               layout="row">
     <va-sidenav flex></va-sidenav>
@@ -134,6 +127,7 @@
 
 <!--Core-->
 <script src="/src/client/vandaid/va.module.js"></script>
+<script src="/src/client/vandaid/va.ctrl.js"></script>
 
 <script src="/src/client/vandaid/core/core.module.js"></script>
 <script src="/src/client/vandaid/core/core.iconprovider.js"></script>
@@ -145,11 +139,6 @@
 <script src="/src/client/vandaid/theming/theming.module.js"></script>
 <script src="/src/client/vandaid/theming/vanderbilt.palette.js"></script>
 <script src="/src/client/vandaid/theming/theming.config.js"></script>
-
-<!--Sandbox-->
-<!--<script src="/src/client/vandaid/sandbox/sandbox.module.js"></script>-->
-<!--<script src="/src/client/vandaid/sandbox/sandbox.directive.js"></script>-->
-<!--<script src="/src/client/vandaid/sandbox/scopeTest.directive.js"></script>-->
 
 <!--REDCap-->
 <script src="/src/client/vandaid/redcap/redcap.module.js"></script>

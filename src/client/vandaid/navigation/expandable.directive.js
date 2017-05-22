@@ -26,18 +26,47 @@
     function compileFn(elem, attrs) {
       var contents = elem.html();
 
-      // wrap tag using attrs.direction to determine direction for expansion
+      var dir = 'vertical';
+      // wrap tag using attrs.direction to determine direction for expansion. Default is 'vertical'
       if (!attrs.direction || attrs.direction !== 'horizontal') {
         elem.html('<expandable-content class="expand-vertical"><div>' + contents + '</div></expandable-content>');
       } else {
+        dir = 'horizontal';
         elem.html('<expandable-content class="expand-horizontal"><div>' + contents + '</div></expandable-content>');
       }
 
+      try {
+        var paneContent = angular.element(elem[0]);
+        var paneInner = angular.element(paneContent[0].querySelector('expandable-content'));
+        var paneDiv = angular.element(paneInner[0].querySelector('div'));
+      } catch (e) {
+        $log.error(e.message);
+      }
+
+      if (dir === 'vertical') {
+        var height = paneDiv[0].offsetHeight;
+
+        try {
+          // Add maxHeight to the element
+          paneInner.css('maxHeight', height + 'px');
+        } catch (e) {
+          $log.error(e.message);
+        }
+
+      } else {
+        var width = paneDiv[0].offsetWidth;
+
+        try {
+          // Add maxWidth to the element
+          paneInner.css('maxWidth', width + 'px');
+        } catch (e) {
+          $log.error(e.message);
+        }
+      }
     }
   }
 
   VerticalExpandAnimation.$inject = ['$animateCss', '$log'];
-
   function VerticalExpandAnimation($animateCss, $log) {
     return {
       addClass: function (element, className, done) {
@@ -46,7 +75,6 @@
         var paneContent = angular.element(element[0]);
         var paneInner = angular.element(paneContent[0].querySelector('expandable-content'));
         var paneDiv = angular.element(paneInner[0].querySelector('div'));
-
 
         var height = paneDiv[0].offsetHeight;
         $log.log('paneDiv opening offsetHeight: ' + height);
@@ -104,16 +132,14 @@
   }
 
   HorizontalExpandAnimation.$inject = ['$animateCss', '$log'];
-
   function HorizontalExpandAnimation($animateCss, $log) {
     return {
-      addClass: function (element, className, done) {
+      addClass: function (elem, className, done) {
         // console.log('expand class added');
 
-        var paneContent = angular.element(element[0]);
+        var paneContent = angular.element(elem[0]);
         var paneInner = angular.element(paneContent[0].querySelector('expandable-content'));
         var paneDiv = angular.element(paneInner[0].querySelector('div'));
-
 
         var width = paneDiv[0].offsetWidth;
         $log.log('Opening paneDiv offsetWidth: ' + width);
