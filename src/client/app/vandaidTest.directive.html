@@ -1,6 +1,7 @@
 <link type="text/css" rel="stylesheet" href="/src/client/projects/vandaid_test/test.css"/>
 
-<vandaid-paper>
+<div class="page-no-holes">
+
   <h1>Dear {{va.recipient_name}},</h1>
 
   <p>I am writing from <span ng-switch="va.source">
@@ -34,4 +35,4 @@
   <textarea rows="10" cols="60">{{va | json}}</textarea>
   <h4>Fields:</h4>
   <textarea rows="10" cols="60">{{fields | json}}</textarea>
-</vandaid-paper>
+</div>
