@@ -296,3 +296,7 @@ va-identity-bar {
   color: inherit !important;
   z-index: 3;
 }
+
+.transparent {
+  background-color: transparent;
+}
