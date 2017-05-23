@@ -332,7 +332,9 @@
     {
       "return_phenotype": "Fluoropyrimidine toxicity",
       "condition": "Fluoropyrimidine toxicity",
-      "organs": "MEDICINE",
+      "organs": [
+        "MEDICINE"
+      ],
       "description": "Fluoropyrimidines are a type of chemotherapy for cancerous tumors. People with certain gene variation need lower doses or different medicine.",
       "preventable": true,
       "treatable": true,

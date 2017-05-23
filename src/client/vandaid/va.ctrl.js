@@ -5,13 +5,11 @@
     .module('va')
     .controller('vaCtrl', mainCtrl);
 
-  mainCtrl.$inject = ['$scope', '$log'];
+  mainCtrl.$inject = ['$scope', '$vaThemingService', '$log'];
 
-  function mainCtrl($scope, $log) {
+  function mainCtrl($scope, $vaThemingService, $log) {
     $scope.sidebarExpanded = true;
-
-    $log.log($scope.sidebarExpanded);
+    $scope.$vaThemingService = $vaThemingService;
   }
-
 
 })();

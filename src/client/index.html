@@ -81,7 +81,7 @@
 <va-top-bar><h3>Loading...</h3></va-top-bar>
 <div layout="row" flex>
   <expandable hide show-gt-sm direction="horizontal" md-whiteframe="3" ng-class="{'h-expanded': sidebarExpanded || $mdMedia('gt-md')}"
-              md-colors="::{background: 'accent-100'}"
+              md-colors="::{background: $vaThemingService.getSideBarBackground()}"
               layout="row">
     <va-sidenav flex></va-sidenav>
   </expandable>
@@ -122,11 +122,10 @@
 <script src="/src/client/app/app.module.js"></script>
 <script src="/src/client/app/constants.module.js"></script>
 <script src="/src/client/app/env.constant.js"></script>
-<!--<script src="/src/client/app/vandaidTest.directive.js"></script>-->
 <script src="/src/client/app/theming.module.js"></script>
+<script src="/src/client/app/cchmc.palette.js"></script>
 <script src="/src/client/app/conditions/conditions.module.js"></script>
 <script src="/src/client/app/conditions/conditions.factory.js"></script>
-
 <script src="/src/client/app/project.directive.js"></script>
 
 <!--Project Constants-->
@@ -145,6 +144,7 @@
 <script src="/src/client/vandaid/theming/theming.module.js"></script>
 <script src="/src/client/vandaid/theming/vanderbilt.palette.js"></script>
 <script src="/src/client/vandaid/theming/theming.config.js"></script>
+<script src="/src/client/vandaid/theming/themingservice.factory.js"></script>
 
 <!--REDCap-->
 <script src="/src/client/vandaid/redcap/redcap.module.js"></script>

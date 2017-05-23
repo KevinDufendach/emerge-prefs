@@ -34,7 +34,7 @@
     );
 
     var ctrlApi = {
-      conditions: conditionFactory.conditions,
+      getConditions: getConditions,
       getShownStatus: getShownStatus,
       getImageUrl: getImageUrl
     };
@@ -43,6 +43,10 @@
 
     ////////////
 
+    function getConditions() {
+      return conditionFactory.conditions;
+    }
+
     function getShownStatus(condition) {
       if (!vandaidFieldService.isReady()) {
         return true;
@@ -50,17 +54,18 @@
 
       return (
         (((condition.preventable && vm.va.adol_preventable[1]) ||
-          (!condition.preventable && vm.va.adol_preventable[2])) &&
+        (!condition.preventable && vm.va.adol_preventable[2])) &&
         ((condition.treatable && vm.va.adol_treatable[1]) ||
-          (!condition.treatable && vm.va.adol_treatable[2])) &&
+        (!condition.treatable && vm.va.adol_treatable[2])) &&
         (!condition.adult_onset || vm.va.adol_adult_onset == "1")) || condition.alwaysInclude
       )
     }
 
+
     function getImageUrl(value) {
       var prefix = '/src/client/content/img/';
 
-      switch(value) {
+      switch (value) {
         case 'ADRENAL':
           return prefix + 'kidneys.png';
         case 'VESSEL':
@@ -68,7 +73,8 @@
         case 'JOINT':
           return prefix + 'joint.png';
         case 'CANCER':
-          return prefix + 'cancer.png';
+        default:
+            return prefix + 'cancer.png';
       }
     }
 

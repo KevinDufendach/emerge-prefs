@@ -13,16 +13,18 @@
   window.__va.baseUrl = '/';
 
   // Palette
+  window.__va.primaryPalette = 'ccteal';
+  window.__va.accentPalette = 'ccpink';
 
-  window.__va.primaryPalette = 'cyan';
-  window.__va.accentPalette = 'deep-purple';
+  // Navigation
+  window.__va.top_bar_background = 'grey-50';
+  window.__va.side_bar_background = 'primary-A100';
 
   // Logo
-  window.__va.logo = '/src/client/content/img/CCHMC_CBI_TAG_TM_RGB_400px_lores.jpg';
-  window.__va.logoBackground = '#F0F0F0';
+  window.__va.logo = '/src/client/content/img/CCHMC_logo_ht128px.png';
 
   // Title
-  // window.__va.title = 'Genetic Information Preferences Survey';
+  window.__va.title = 'Genetic Information Preferences Survey';
 
   // Form name
   window.__va.formName = 'adolescent_preferences';

@@ -21,10 +21,10 @@
     return directive;
   }
 
-  topBarController.$inject = ['vandaidUserService', '__va', 'vandaidFieldService'];
+  topBarController.$inject = ['vandaidUserService', '__va', 'vandaidFieldService', '$vaThemingService'];
 
   /* @ngInject */
-  function topBarController(vandaidUserService, __va, vandaidFieldService) {
+  function topBarController(vandaidUserService, __va, vandaidFieldService, $vaThemingService) {
     var vm = this;
 
     vm.toggleSidenav = toggleSidenav;
@@ -46,7 +46,7 @@
     }
 
     function getBackground() {
-      return __va.logoBackground || 'rgb(153,127,61)';
+      return $vaThemingService.getTopBarBackground();
     }
   }
 

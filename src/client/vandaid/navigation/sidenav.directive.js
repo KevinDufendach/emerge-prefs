@@ -27,14 +27,16 @@
     }
   }
 
-  SidenavController.$inject = ['$mdSidenav', 'vandaidFieldService', '$scope', '$mdMedia', '__va'];
+  SidenavController.$inject = ['$mdSidenav', 'vandaidFieldService', '$scope', '$mdMedia', '__va', '$log'];
 
   /* @ngInject */
-  function SidenavController($mdSidenav, vandaidFieldService, $scope, $mdMedia, __va) {
+  function SidenavController($mdSidenav, vandaidFieldService, $scope, $mdMedia, __va, $log) {
     var vm = this;
     vm.fields = vandaidFieldService.fields;
     vm.toggleSidenav = toggleSidenav;
     vm.submit = submit;
+    var state = false;
+    vm.isReady = isReady;
 
     $scope.$mdMedia = $mdMedia;
     vm.$onInit = activate;
@@ -47,12 +49,18 @@
       vandaidFieldService.getFields()
         .then(
           function () {
+            state = true;
           }
         )
     }
 
     function toggleSidenav(navID) {
       $mdSidenav(navID).toggle();
+    }
+
+    function isReady() {
+      $log.log('SideNav status: ' + state);
+      return state;
     }
 
     function submit() {
