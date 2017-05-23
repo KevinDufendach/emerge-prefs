@@ -1,11 +1,6 @@
 <md-content flex class="transparent">
   <!-- Field List -->
-  <!--<md-progress-circular ng-show="!vm.isReady()" md-mode="indeterminate"></md-progress-circular>-->
-  <md-list>
-    <div ng-repeat="field in vm.fields">
-      <vandaid-field-pane field="field" type="{{field.type}}"></vandaid-field-pane>
-    </div>
-  </md-list>
+  <vandaid-field-pane ng-repeat="field in vm.fields" field="field" type="{{field.type}}"></vandaid-field-pane>
 
   <!-- Submit button -->
   <div layout-padding layout="row">
