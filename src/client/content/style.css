@@ -1,26 +1,31 @@
 .condition-table {
     border-collapse: collapse;
     border: 3px solid gray;
-    background-color: white;
 }
 
 .condition-table td, .condition-table th {
     border: 1px solid gray;
+
 }
 
 .condition-table th {
-    background-color: lightblue;
+    background-color: rgb(0, 174, 199);
+    color: white;
+}
+
+.condition-table td {
+    -webkit-transition: background-color 0.5s, color 0.3s;
+    transition: background-color 0.5s, color 0.3s;
 }
 
 .not-shown {
     background-color: lightgray;
-    color: rgba(100,100,100,0.5);
-    /*text-decoration: line-through;*/
+    color: rgba(100, 100, 100, 0.4);
 }
 
 .td-center {
-    text-align:center;
-    vertical-align:middle;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .organ-img {
@@ -31,4 +36,60 @@
 
 .not-shown img {
     opacity: 0.5;
+}
+
+/*md-checkbox.explicit_negative.md-checked .md-container:before, md-checkbox.explicit_negative.md-focused .md-container:before{*/
+/*color: darkgreen;*/
+/*}*/
+
+md-checkbox.explicit_negative.md-focused .md-container:before {
+    background-color: darkred;
+}
+
+md-checkbox.explicit_negative .md-ink-ripple {
+    color: lightcoral;
+}
+
+md-checkbox.explicit_negative .md-icon {
+    background-color: red;
+}
+
+md-checkbox.explicit_negative .md-icon:after {
+    border-color: rgba(255, 255, 255, 0.87);
+}
+
+/* ************************ */
+
+md-checkbox.explicit_negative.md-checked.md-focused .md-container:before {
+    background-color: rgba(144, 238, 144, .87);
+}
+
+md-checkbox.explicit_negative.md-checked .md-ink-ripple {
+    color: rgb(144, 238, 144);
+}
+
+md-checkbox.explicit_negative.md-checked .md-icon {
+    background-color: green;
+}
+
+md-checkbox.explicit_negative.md-checked .md-icon:after {
+    border-color: rgba(255, 255, 255, 0.87);
+}
+
+/* ************************ */
+
+md-checkbox.explicit_negative.md-indeterminate.md-focused .md-container:before {
+    background-color: rgba(0, 174, 199, 0.26);
+}
+
+md-checkbox.explicit_negative.md-indeterminate .md-ink-ripple {
+    color: rgba(0, 174, 199, 0.87);
+}
+
+md-checkbox.explicit_negative.md-indeterminate .md-icon {
+    background-color: rgba(0, 0, 0, 0.38);
+}
+
+md-checkbox.explicit_negative.md-indeterminate .md-icon:after {
+    border-color: rgba(255, 255, 255, 0.87);
 }

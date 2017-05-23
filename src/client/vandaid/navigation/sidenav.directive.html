@@ -1,6 +1,9 @@
 <md-content flex class="transparent">
   <!-- Field List -->
-  <vandaid-field-pane ng-repeat="field in vm.fields" field="field" type="{{field.type}}"></vandaid-field-pane>
+  <section ng-repeat="field in vm.fields">
+    <!--<md-subheader>{{field.label}}</md-subheader>-->
+    <vandaid-field-pane field="field" type="{{field.type}}"></vandaid-field-pane>
+  </section>
 
   <!-- Submit button -->
   <div layout-padding layout="row">

@@ -1,5 +1,6 @@
 {
   "headers": {
+    "id": "unique_id",
     "return_phenotype": "Returnable Phenotypes",
     "condition": "Participant handout \"Condition\"",
     "organs": "Participant handout \"Primary organ(s) or cancer",
@@ -16,6 +17,7 @@
   },
   "data": [
     {
+      "id": "CAH",
       "return_phenotype": "21-hydroxylase Deficient Congenital Adrenal Hyperplasia",
       "condition": "21-hydroxylase Deficient Congenital Adrenal Hyperplasia",
       "organs": [
@@ -33,6 +35,7 @@
       "snv_references": "OMIM, https://ghr.nlm.nih.gov/condition/21-hydroxylase-deficiency#diagnosis, http://www.ncbi.nlm.nih.gov/books/NBK1171/"
     },
     {
+      "id": "AORTA",
       "return_phenotype": "Abnormalities of the Aorta,",
       "condition": "Connective tissue disorders with serious bleeding risk",
       "organs": [
@@ -50,6 +53,7 @@
       "snv_references": ""
     },
     {
+      "id": "A1AT",
       "return_phenotype": "Alpha-1 antitrypsin deficiency",
       "condition": "Alpha-1 antitrypsin deficiency",
       "organs": [
@@ -68,6 +72,7 @@
       "snv_references": ""
     },
     {
+      "id": "ARRHYTHMIA",
       "return_phenotype": "Arrhythmia syndromes with risk for sudden cardiac death (Can this include arrhythmogenic right ventricular cardiomyopathy?)",
       "condition": "Arrhythmia syndromes with risk for sudden cardiac death ",
       "organs": [
@@ -85,6 +90,7 @@
       "snv_references": ""
     },
     {
+      "id": "BLOOM",
       "return_phenotype": "Bloom syndrome",
       "condition": "Cancer that might start during childhood or adulthood",
       "organs": [
@@ -103,6 +109,7 @@
       "snv_references": "OMIM, https://ghr.nlm.nih.gov/condition/bloom-syndrome, http://www.ncbi.nlm.nih.gov/books/NBK1398/"
     },
     {
+      "id": "BREASTCA",
       "return_phenotype": "Breast cancer",
       "condition": "Cancer that might start during adulthood - preventable",
       "organs": [
@@ -120,6 +127,7 @@
       "snv_references": ""
     },
     {
+      "id": "CARN",
       "return_phenotype": "Carnitine Palmitoyltransferase II Deficiency",
       "condition": "metabolism disorders",
       "organs": [
@@ -139,6 +147,7 @@
       "snv_references": "OMIM, https://ghr.nlm.nih.gov/condition/carnitine-palmitoyltransferase-ii-deficiency, http://www.ncbi.nlm.nih.gov/books/NBK1253/, http://www.babysfirsttest.org/newborn-screening/conditions/carnitine-"
     },
     {
+      "id": "CPVT",
       "return_phenotype": "Catecholaminergic polymorphic ventricular tachycardia ",
       "condition": "Arrhythmia syndromes with risk for sudden cardiac death",
       "organs": [
@@ -156,6 +165,7 @@
       "snv_references": ""
     },
     {
+      "id": "COLONCA",
       "return_phenotype": "Colon cancer  (Not Juvenile Polyposis or FAP related)",
       "condition": "Cancer that might start during adulthood - preventable",
       "organs": [
@@ -173,6 +183,7 @@
       "snv_references": ""
     },
     {
+      "id": "COWDEN",
       "return_phenotype": "Cowden syndrome",
       "condition": "Cowden syndrome",
       "organs": [
@@ -191,6 +202,7 @@
       "snv_references": ""
     },
     {
+      "id": "CF",
       "return_phenotype": "Cystic Fibrosis",
       "condition": "Cystic Fibrosis",
       "organs": [
@@ -208,6 +220,7 @@
       "snv_references": ""
     },
     {
+      "id": "EDS",
       "return_phenotype": "Ehlers Danlos syndrome",
       "condition": "Ehlers Danlos syndrome",
       "organs": [
@@ -225,6 +238,7 @@
       "snv_references": ""
     },
     {
+      "id": "EDSVASC",
       "return_phenotype": "Ehlers Danlos syndrome, vascular type",
       "condition": "Connective tissue disorders with serious bleeding risk",
       "organs": [
@@ -243,6 +257,7 @@
       "snv_references": ""
     },
     {
+      "id": "FABRY",
       "return_phenotype": "Fabry disease",
       "condition": "Fabry disease",
       "organs": [
@@ -262,6 +277,7 @@
       "snv_references": ""
     },
     {
+      "id": "FVLT",
       "return_phenotype": "Factor 5 Leiden thrombophilia",
       "condition": "Factor 5 Leiden thrombophilia",
       "organs": [
@@ -279,6 +295,7 @@
       "snv_references": "https://ghr.nlm.nih.gov/condition/factor-v-leiden-thrombophilia#; http://www.ncbi.nlm.nih.gov/books/NBK1368/; http://circ.ahajournals.org/content/107/15/e94.full"
     },
     {
+      "id": "FHCHOL",
       "return_phenotype": "Familial hypercholesterolemia",
       "condition": "Familial hypercholesterolemia",
       "organs": [
@@ -296,6 +313,7 @@
       "snv_references": ""
     },
     {
+      "id": "FMF",
       "return_phenotype": "Familial Mediterranean fever",
       "condition": "Familial Mediterranean fever",
       "organs": [
@@ -313,6 +331,7 @@
       "snv_references": "OMIM, https://ghr.nlm.nih.gov/condition/familial-mediterranean-fever, http://www.ncbi.nlm.nih.gov/books/NBK1227/"
     },
     {
+      "id": "FMTC",
       "return_phenotype": "Familial medullary thyroid cancer",
       "condition": "cancers that might start during childhood or adulthood- preventable",
       "organs": [
@@ -330,6 +349,7 @@
       "snv_references": ""
     },
     {
+      "id": "FLUOROPYRIMIDINE",
       "return_phenotype": "Fluoropyrimidine toxicity",
       "condition": "Fluoropyrimidine toxicity",
       "organs": [
@@ -347,6 +367,7 @@
       "snv_references": "https://www.pharmgkb.org/guideline/PA166109594"
     },
     {
+      "id": "GSD1",
       "return_phenotype": "Glycogen storage disease Type 1/von Gierke disease",
       "condition": "metabolism disorders",
       "organs": [
@@ -365,6 +386,7 @@
       "snv_references": "OMIM, https://ghr.nlm.nih.gov/condition/glycogen-storage-disease-type-i#diagnosis, http://www.ncbi.nlm.nih.gov/books/NBK1312/"
     },
     {
+      "id": "HEMIMIGRAINEATAXIA",
       "return_phenotype": "Hemiplegic migraine and sporadic ataxia",
       "condition": "Hemiplegic migraine and sporadic ataxia",
       "organs": [
@@ -383,6 +405,7 @@
       "snv_references": ""
     },
     {
+      "id": "FRUCT",
       "return_phenotype": "Hereditary fructose intolerance",
       "condition": "metabolism disorders",
       "organs": [
@@ -401,6 +424,7 @@
       "snv_references": "OMIM, http://www.ncbi.nlm.nih.gov/books/NBK333439/"
     },
     {
+      "id": "HEMOCHROMATOSIS",
       "return_phenotype": "Hereditary hemochromatosis",
       "condition": "Hereditary hemochromatosis",
       "organs": [
@@ -420,6 +444,7 @@
       "snv_references": "https://ghr.nlm.nih.gov/condition/hereditary-hemochromatosis#diagnosis, https://medlineplus.gov/ency/article/000327.htm, http://www.ncbi.nlm.nih.gov/books/NBK1440/"
     },
     {
+      "id": "HHT",
       "return_phenotype": "Hereditary hemorrhagic telangiectasia syndrome",
       "condition": "Hereditary hemorrhagic telangiectasia syndrome",
       "organs": [
@@ -437,6 +462,7 @@
       "snv_references": ""
     },
     {
+      "id": "HPPS",
       "return_phenotype": "Hereditary paraganglioma-pheochromocytoma syndrome ",
       "condition": "Cancers that might start during childhood or adulthood",
       "organs": [
@@ -454,6 +480,7 @@
       "snv_references": ""
     },
     {
+      "id": "HCM",
       "return_phenotype": "Hypertrophic cardiomyopathy, dilated cardiomyopathy with risk for sudden cardiac death",
       "condition": "Hypertrophic cardiomyopathy, dilated cardiomyopathy with risk for sudden cardiac death",
       "organs": [
@@ -471,6 +498,7 @@
       "snv_references": ""
     },
     {
+      "id": "IMMUNODF",
       "return_phenotype": "Immunodeficiency",
       "condition": "Immunodeficiency",
       "organs": [
@@ -488,6 +516,7 @@
       "snv_references": ""
     },
     {
+      "id": "LIFRMNI",
       "return_phenotype": "Li-Fraumeni syndrome",
       "condition": "cancers that might start during childhood or adulthood",
       "organs": [
@@ -505,6 +534,7 @@
       "snv_references": ""
     },
     {
+      "id": "LOEYSDIETZ",
       "return_phenotype": "Loeys-Dietz ",
       "condition": "Connective tissue disorders with serious bleeding risk",
       "organs": [
@@ -523,6 +553,7 @@
       "snv_references": ""
     },
     {
+      "id": "XYINFERT",
       "return_phenotype": "Male infertility ",
       "condition": "Male infertility ",
       "organs": [
@@ -540,6 +571,7 @@
       "snv_references": ""
     },
     {
+      "id": "MHT",
       "return_phenotype": "Malignant hyperthermia susceptibility",
       "condition": "Malignant hyperthermia susceptibility",
       "organs": [
@@ -557,6 +589,7 @@
       "snv_references": ""
     },
     {
+      "id": "MSUD",
       "return_phenotype": "Maple syrup urine disease type 1b",
       "condition": "metabolism disorders",
       "organs": [
@@ -576,6 +609,7 @@
       "snv_references": "OMIM, http://www.ncbi.nlm.nih.gov/books/NBK1319/#msud.Clinical_Characteristics, http://www.babysfirsttest.org/newborn-screening/conditions/maple-syrup-urine-disease-msud"
     },
     {
+      "id": "MARFAN",
       "return_phenotype": "Marfan syndrome ",
       "condition": "Connective tissue disorders with serious bleeding risk",
       "organs": [
@@ -594,6 +628,7 @@
       "snv_references": ""
     },
     {
+      "id": "MATUREDBM",
       "return_phenotype": "Maturity onset diabetes in the young",
       "condition": "Maturity onset diabetes in the young",
       "organs": [
@@ -611,6 +646,7 @@
       "snv_references": ""
     },
     {
+      "id": "MCAD",
       "return_phenotype": "MCAD deficiency",
       "condition": "metabolism disorders",
       "organs": [
@@ -628,6 +664,7 @@
       "snv_references": "OMIM, http://www.ncbi.nlm.nih.gov/gtr/conditions/C0220710/,  http://www.babysfirsttest.org/newborn-screening/conditions/medium-chain-acyl-coa-dehydrogenase-deficiency, Touma EH, Charpentier C. Medium chain acyl-CoA dehydrogenase deficiency. Archives of Disease in Childhood. 1992;67(1):142-145."
     },
     {
+      "id": "MEN1",
       "return_phenotype": "Multiple endocrine neoplasia type 1 ",
       "condition": "cancers that might start during childhood or adulthood",
       "organs": [
@@ -645,6 +682,7 @@
       "snv_references": ""
     },
     {
+      "id": "MEN2",
       "return_phenotype": "Multiple endocrine neoplasia type 2",
       "condition": "cancers that might start during childhood or adulthood- preventable",
       "organs": [
@@ -662,6 +700,7 @@
       "snv_references": ""
     },
     {
+      "id": "NF2",
       "return_phenotype": "NF2",
       "condition": "Neurofibromatosis Type 2",
       "organs": [
@@ -679,6 +718,7 @@
       "snv_references": ""
     },
     {
+      "id": "OTCD",
       "return_phenotype": "Ornithine transcarbamylase deficiency",
       "condition": "Ornithine transcarbamylase deficiency",
       "organs": [
@@ -698,6 +738,7 @@
       "snv_references": ""
     },
     {
+      "id": "OSTEOPET",
       "return_phenotype": "osteopetrosis",
       "condition": "osteopetrosis",
       "organs": [
@@ -715,6 +756,7 @@
       "snv_references": ""
     },
     {
+      "id": "OVARIANCA",
       "return_phenotype": "Ovarian cancer",
       "condition": "cancers that might start during adulthood - preventable",
       "organs": [
@@ -732,6 +774,7 @@
       "snv_references": ""
     },
     {
+      "id": "PANCRCA",
       "return_phenotype": "Pancreatic cancer",
       "condition": "cancers that might start during adulthood",
       "organs": [
@@ -749,6 +792,7 @@
       "snv_references": ""
     },
     {
+      "id": "PEUTZJEGHERS",
       "return_phenotype": "Peutz-Jeghers syndrome",
       "condition": "Cancers that might start during childhood or adulthood",
       "organs": [
@@ -766,6 +810,7 @@
       "snv_references": ""
     },
     {
+      "id": "FPS",
       "return_phenotype": "Polyposis syndromes with risk for colon cancer",
       "condition": "polyposis syndromes that can start in childhood or adulthood and increase the risk for colon cancer",
       "organs": [
@@ -783,6 +828,7 @@
       "snv_references": ""
     },
     {
+      "id": "PPHN",
       "return_phenotype": "Primary pulmonary hypertension",
       "condition": "Primary pulmonary hypertension",
       "organs": [
@@ -800,6 +846,7 @@
       "snv_references": ""
     },
     {
+      "id": "PROSTATECA",
       "return_phenotype": "Prostate cancer",
       "condition": "cancers that might start during adulthood",
       "organs": [
@@ -817,6 +864,7 @@
       "snv_references": ""
     },
     {
+      "id": "RB",
       "return_phenotype": "Retinoblastoma",
       "condition": "Retinoblastoma",
       "organs": [
@@ -834,6 +882,7 @@
       "snv_references": ""
     },
     {
+      "id": "TS",
       "return_phenotype": "Tuberous sclerosis",
       "condition": "Tuberous sclerosis",
       "organs": [
@@ -852,6 +901,7 @@
       "snv_references": ""
     },
     {
+      "id": "TYR1",
       "return_phenotype": "Tyrosinemia, type I",
       "condition": "metabolism disorders",
       "organs": [
@@ -871,6 +921,7 @@
       "snv_references": "OMIM, https://ghr.nlm.nih.gov/condition/tyrosinemia#diagnosis, http://www.ncbi.nlm.nih.gov/books/NBK1515/, http://www.babysfirsttest.org/newborn-screening/conditions/tyrosinemia-type-i"
     },
     {
+      "id": "VHL",
       "return_phenotype": "Von Hippel Lindau syndrome",
       "condition": "cancers that might start during childhood or adulthood",
       "organs": [
@@ -888,6 +939,7 @@
       "snv_references": ""
     },
     {
+      "id": "WILMS",
       "return_phenotype": "Wilms tumor",
       "condition": "Wilms tumor",
       "organs": [

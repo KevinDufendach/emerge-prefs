@@ -18,7 +18,8 @@
 
   // Navigation
   window.__va.top_bar_background = 'grey-50';
-  window.__va.side_bar_background = 'primary-900';
+  window.__va.side_bar_background = 'primary-500';
+  window.__va.submit_button_class = 'md-accent';
 
   // Logo
   window.__va.logo = '/src/client/content/img/CCHMC_logo_ht128px.png';

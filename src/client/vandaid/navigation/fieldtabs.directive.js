@@ -50,7 +50,6 @@
 
 
     function next() {
-      console.log(vm.selectedIndex);
       vm.selectedIndex = Math.min(vm.selectedIndex + 1, vm.fields.length) ;
     }
 

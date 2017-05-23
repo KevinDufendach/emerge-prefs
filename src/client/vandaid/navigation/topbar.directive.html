@@ -3,12 +3,12 @@
   <img class="identity-bar-logo"
        ng-src="{{::vm.getLogo()}}">
   <span flex></span>
-  <h2>{{vm.title}}</h2>
+  <h1 hide show-gt-xs>{{vm.title}}</h1>
   <span flex></span>
   <div ng-hide="vm.isLoggedIn" layout="row">
     <p>You are not logged in</p>
   </div>
-  <md-button ng-show="vm.isLoggedIn" class="md-icon-button md-accent" ng-click="vm.submit()">
+  <md-button ng-show="vm.isLoggedIn && !vm.$mdMedia('gt-sm')" class="md-icon-button md-accent" ng-click="vm.submit()">
     <md-icon>save</md-icon>
   </md-button>
 </md-toolbar>

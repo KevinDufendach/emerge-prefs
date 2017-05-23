@@ -5,7 +5,8 @@
 <table class="condition-table">
   <tbody>
   <tr>
-    <th>Always Include</th>
+    <th>Always Include/Exclude</th>
+    <!--<th>Always Exclude</th>-->
     <th>Primary Organ(s) or Cancer</th>
     <th>Condition</th>
     <th>Description</th>
@@ -14,15 +15,36 @@
     <th>Adult Onset</th>
     <th>Carrier Status</th>
   </tr>
-  <tr ng-repeat="condition in vm.getConditions()" ng-class="{'not-shown': !vm.getShownStatus(condition)}">
-    <td><md-switch aria-label="Always include {{condition.condition}}" ng-model="condition.alwaysInclude"></md-switch></td>
-    <td class="td-center"><img ng-repeat="organ in condition.organs" class="organ-img" ng-src="{{vm.getImageUrl(organ)}}" /></td>
+  <tr ng-repeat="condition in vm.getConditions()"
+      ng-class="{'not-shown': !vm.getShownStatus(condition), 'shown': vm.getShownStatus(condition)}">
+    <td class="td-center">
+      <label flex ng-click="vm.cycleManual(condition.id)">
+      <md-checkbox class="explicit_negative"
+                   aria-label="Always include/exclude {{condition.condition}}"
+                   ng-checked="va.manual_include[condition.id]"
+                   md-indeterminate="!va.manual_include[condition.id] && !va.manual_exclude[condition.id]"></md-checkbox>
+      </label>
+    </td>
+    <td class="td-center"><img ng-repeat="organ in condition.organs" class="organ-img"
+                               ng-src="{{vm.getImageUrl(organ)}}"/></td>
     <td>{{condition.condition}}</td>
     <td>{{condition.description}}</td>
-    <td class="td-center"><md-icon ng-show="condition.preventable" aria-label="check">check</md-icon></td>
-    <td class="td-center"><md-icon ng-show="condition.treatable" aria-label="check">check</md-icon></td>
-    <td class="td-center"><md-icon ng-show="condition.adult_onset" aria-label="check">check</md-icon></td>
-    <td class="td-center" ng-class="{'not-shown': condition.carrier && (va.adol_carrier != '1')}"><md-icon ng-show="condition.carrier" aria-label="check">check</md-icon></td>
+    <td class="td-center">
+      <md-icon ng-show="condition.preventable" aria-label="check">check</md-icon>
+    </td>
+    <td class="td-center">
+      <md-icon ng-show="condition.treatable" aria-label="check">check</md-icon>
+    </td>
+    <td class="td-center">
+      <md-icon ng-show="condition.adult_onset" aria-label="check">check</md-icon>
+    </td>
+    <td class="td-center" ng-class="{'not-shown': condition.carrier && (va.adol_carrier != '1')}">
+      <md-icon ng-show="condition.carrier" aria-label="check">check</md-icon>
+    </td>
   </tr>
   </tbody>
 </table>
+
+<textarea cols="80" rows="30">{{va | json}}</textarea>
+
+<!--<span ng-repeat="condition in vm.getConditions()">{{condition.id}}, {{condition.condition}} | </span>-->

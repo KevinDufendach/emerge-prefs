@@ -21,10 +21,10 @@
     return directive;
   }
 
-  topBarController.$inject = ['vandaidUserService', '__va', 'vandaidFieldService', '$vaThemingService'];
+  topBarController.$inject = ['vandaidUserService', '__va', 'vandaidFieldService', '$vaThemingService', '$mdMedia'];
 
   /* @ngInject */
-  function topBarController(vandaidUserService, __va, vandaidFieldService, $vaThemingService) {
+  function topBarController(vandaidUserService, __va, vandaidFieldService, $vaThemingService, $mdMedia) {
     var vm = this;
 
     vm.toggleSidenav = toggleSidenav;
@@ -32,6 +32,7 @@
     vm.getLogo = getLogo;
     vm.getBackground = getBackground;
     vm.submit = vandaidFieldService.submit;
+    vm.$mdMedia = $mdMedia
 
     vm.title = __va.title || 'VandAID - Active Interface Design';
 
