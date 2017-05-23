@@ -38,10 +38,6 @@
     opacity: 0.5;
 }
 
-/*md-checkbox.explicit_negative.md-checked .md-container:before, md-checkbox.explicit_negative.md-focused .md-container:before{*/
-/*color: darkgreen;*/
-/*}*/
-
 md-checkbox.explicit_negative.md-focused .md-container:before {
     background-color: darkred;
 }

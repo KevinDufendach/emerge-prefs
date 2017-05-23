@@ -243,7 +243,7 @@
       "condition": "Connective tissue disorders with serious bleeding risk",
       "organs": [
         "VESSEL",
-        "JOINTS"
+        "JOINT"
       ],
       "description": "Many different types of conditions that include possibility of weak blood vessel walls and life threatening vessel rupture and bleeding",
       "preventable": false,
@@ -317,7 +317,8 @@
       "return_phenotype": "Familial Mediterranean fever",
       "condition": "Familial Mediterranean fever",
       "organs": [
-        "PAIN"
+        "PAIN",
+        "JOINT"
       ],
       "description": "Episodes of pain in abdomen, chest or joints. Fever may occur with painful episodes",
       "preventable": true,
