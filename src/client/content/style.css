@@ -89,3 +89,29 @@ md-checkbox.explicit_negative.md-indeterminate .md-icon {
 md-checkbox.explicit_negative.md-indeterminate .md-icon:after {
     border-color: rgba(255, 255, 255, 0.87);
 }
+
+/* ***************************** */
+
+ul.tags {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+ul.tags li {
+    display: inline;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    font-size: small;
+}
+
+ul.tags li:after {
+    content: " | ";
+    color: #aaa;
+}
+
+ul.tags li:last-child:after {
+    content: "";
+}

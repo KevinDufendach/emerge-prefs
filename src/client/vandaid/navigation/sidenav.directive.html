@@ -1,7 +1,6 @@
 <md-content flex class="transparent">
   <!-- Field List -->
-  <section ng-repeat="field in vm.fields">
-    <!--<md-subheader>{{field.label}}</md-subheader>-->
+  <section ng-repeat="field in vm.fields" ng-if="field.branching_logic === ''">
     <vandaid-field-pane field="field" type="{{field.type}}"></vandaid-field-pane>
   </section>
 

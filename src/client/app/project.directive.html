@@ -1,8 +1,9 @@
 <link href="/src/client/content/style.css" rel="stylesheet">
 
 <h1>My Report</h1>
+<h4>A sample of conditions which may appear on a report</h4>
 
-<table class="condition-table">
+<table class="condition-table" ng-if="$mdMedia('gt-sm')">
   <tbody>
   <tr>
     <th>Always Include</th>
@@ -16,7 +17,7 @@
     <th>Carrier Status</th>
   </tr>
   <tr ng-repeat="condition in vm.getConditions()"
-      ng-class="{'not-shown': !vm.getShownStatus(condition), 'shown': vm.getShownStatus(condition)}">
+      ng-class="{'not-shown': !vm.getShownStatus(condition)}">
     <td class="td-center">
       <md-checkbox aria-label="Always include {{condition.condition}}"
                    class="md-primary"
@@ -50,6 +51,40 @@
   </tr>
   </tbody>
 </table>
+
+<md-list ng-if="!$mdMedia('gt-sm')">
+  <md-card ng-repeat="condition in vm.getConditions()" ng-class="{'not-shown': !vm.getShownStatus(condition)}">
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">{{condition.condition}}</span>
+      </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+      <p>{{condition.description}}</p>
+    </md-card-content>
+    <md-card-actions layout="row">
+      <ul class="tags">
+        <li ng-if="condition.preventable">Preventable</li>
+        <li ng-if="condition.treatable">Treatable</li>
+        <li ng-if="condition.adult_onset">Adult Onset</li>
+        <li ng-if="condition.carrier">Carrier Status</li>
+      </ul>
+      <span flex></span>
+      <md-checkbox aria-label="Always include {{condition.condition}}"
+                   class="md-primary"
+                   ng-checked="va.manual_include[condition.id]"
+                   md-indeterminate="!va.manual_include[condition.id] && vm.getShownStatus(condition, true)"
+                   ng-click="vm.setManual(condition.id, true)">Include
+      </md-checkbox>
+      <md-checkbox aria-label="Always include {{condition.condition}}"
+                   class="md-warn"
+                   ng-checked="va.manual_exclude[condition.id]"
+                   md-indeterminate="!va.manual_exclude[condition.id] && !vm.getShownStatus(condition, true)"
+                   ng-click="vm.setManual(condition.id, false)">Exclude
+      </md-checkbox>
+    </md-card-actions>
+  </md-card>
+</md-list>
 
 <!--<textarea cols="80" rows="30">{{va | json}}</textarea>-->
 <!--<span ng-repeat="condition in vm.getConditions()">{{condition.id}}, {{condition.condition}} | </span>-->

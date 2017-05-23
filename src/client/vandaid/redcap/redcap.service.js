@@ -5,9 +5,9 @@
     .module('krd-redcap')
     .factory('redcapService', redcapService);
 
-  redcapService.$inject = ['$http', '$q'];
+  redcapService.$inject = ['$http', '$q', '$log'];
 
-  function redcapService($http, $q) {
+  function redcapService($http, $q, $log) {
     var self = this;
 
     var idCount = 0;
@@ -36,8 +36,9 @@
       this.order = idCount++;
       this.id = metadata.field_name;
       this.type = metadata.field_type;
-      this.label = metadata.field_label || "";
-      this.field_note = metadata.field_note || "";
+      this.label = metadata.field_label;
+      this.field_note = metadata.field_note;
+      this.branching_logic = metadata.branching_logic;
       this.options = optionsTranslator(this.type, metadata.select_choices_or_calculations);
     }
 
@@ -299,7 +300,7 @@
 
         if (value.constructor === Object) {
           Object.keys(value).forEach(function (key) {
-            data[fieldName + '___' + key] = formatValue(value[key]);
+            data[fieldName + '___' + key.toLowerCase()] = formatValue(value[key]);
           });
         } else {
           data[fieldName] = formatValue(value);
@@ -348,7 +349,7 @@
 
         $http(params).then(
           function (returnData) {
-            console.log("Submitted to REDCap: " + returnData.data.count);
+            $log.log("Submitted to REDCap: " + returnData.data.count);
 
             if (returnData.data.count === 1) {
               resolve(returnData);
@@ -357,7 +358,7 @@
             }
           },
           function (returnData) {
-            console.log("Unable to reach REDCap: " + returnData.statusText);
+            $log.log("Unable to reach REDCap: " + returnData.statusText);
 
             reject("Unable to reach REDCap: " + returnData.statusText);
           }

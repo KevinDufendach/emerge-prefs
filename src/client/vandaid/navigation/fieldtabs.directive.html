@@ -1,5 +1,5 @@
 <md-tabs class="md-primary md-hue-2" md-dynamic-height md-selected="vm.selectedIndex" md-border-bottom>
-  <md-tab ng-repeat="field in vm.fields" label="Question {{$index + 1}}">
+  <md-tab ng-repeat="field in vm.fields" label="Question {{$index + 1}}" ng-if="field.branching_logic === ''">
     <vandaid-field-pane field="field" type="{{field.type}}"></vandaid-field-pane>
   </md-tab>
 </md-tabs>
