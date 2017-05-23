@@ -20,79 +20,28 @@
     return directive;
   }
 
-  EmergePrefsController.$inject = ['$http', '$q', 'vandaidFieldService', '$scope'];
+  EmergePrefsController.$inject = ['vandaidFieldService', '$scope', 'conditionFactory'];
 
   /* @ngInject */
-  function EmergePrefsController($http, $q, vandaidFieldService, $scope) {
+  function EmergePrefsController(vandaidFieldService, $scope, conditionFactory) {
     var vm = this;
 
     vandaidFieldService.getFields().then(
-      function (fields) {
+      function () {
         $scope.va = vandaidFieldService.values;
         vm.va = vandaidFieldService.values;
       }
     );
 
-    var conditions = [];
-
     var ctrlApi = {
-      getConditions: getConditions,
+      conditions: conditionFactory.conditions,
       getShownStatus: getShownStatus,
       getImageUrl: getImageUrl
     };
 
-    initialize();
-
     return ctrlApi;
 
     ////////////
-
-    function initialize() {
-      retrieveConditionsFromUri('/src/client/content/conditions.json');
-    }
-
-    function getConditions() {
-      return conditions;
-    }
-
-    /**
-     * Function to retrieve conditions from a URI (could be a rest API, e.g. python script). Convenience function of
-     * retrieveFieldsFromREDCap provided
-     *
-     * @returns $q promise function with data as an array of fields. Use 'then' logic.
-     *
-     * e.g.
-     *   var rcFields;
-     *   retrieveFieldsFromUri('myREDCapMetadataExportFile').then(
-     *     // on success
-     *     function (data) {
-     *       rcFields = data;
-     *       initialize();
-     *     },
-     *     // on failure
-     *     function (response) {
-     *       console.log(response);
-     *     }
-     *   )
-     */
-    function retrieveConditionsFromUri(uri) {
-      return $q(function (resolve, reject) {
-        $http.get(uri)
-          .then(
-            // On success
-            function (response) {
-              // ToDo: reject if error retrieving data or not formatted correctly
-              conditions = response.data;
-
-              resolve();
-            },
-            // On failure
-            function (response) {
-              reject(response);
-            }
-          );
-      });
-    }
 
     function getShownStatus(condition) {
       if (!vandaidFieldService.isReady()) {
@@ -100,11 +49,11 @@
       }
 
       return (
-        ((condition.preventable && vm.va.adol_preventable[1]) ||
+        (((condition.preventable && vm.va.adol_preventable[1]) ||
           (!condition.preventable && vm.va.adol_preventable[2])) &&
         ((condition.treatable && vm.va.adol_treatable[1]) ||
           (!condition.treatable && vm.va.adol_treatable[2])) &&
-        (!condition.adult_onset || vm.va.adol_adult_onset == "1")
+        (!condition.adult_onset || vm.va.adol_adult_onset == "1")) || condition.alwaysInclude
       )
     }
 

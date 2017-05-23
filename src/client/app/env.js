@@ -13,8 +13,9 @@
   window.__va.baseUrl = '/';
 
   // Palette
+
   window.__va.primaryPalette = 'cyan';
-  window.__va.accentPalette = 'pink';
+  window.__va.accentPalette = 'deep-purple';
 
   // Logo
   window.__va.logo = '/src/client/content/img/CCHMC_CBI_TAG_TM_RGB_400px_lores.jpg';

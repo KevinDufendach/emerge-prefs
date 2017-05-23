@@ -5,6 +5,7 @@
     .module('app', [
       'va',
       'app.theming',
-      'app.constants'
+      'app.constants',
+      'app.conditions'
     ])
 })();

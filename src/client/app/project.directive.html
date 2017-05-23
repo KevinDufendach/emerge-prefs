@@ -14,7 +14,7 @@
     <th>Adult Onset</th>
     <th>Carrier Status</th>
   </tr>
-  <tr ng-repeat="condition in vm.getConditions()" ng-class="{'not-shown': !condition.alwaysInclude || !vm.getShownStatus(condition)}">
+  <tr ng-repeat="condition in vm.conditions" ng-class="{'not-shown': !vm.getShownStatus(condition)}">
     <td><md-switch aria-label="Always include {{condition.condition}}" ng-model="condition.alwaysInclude"></md-switch></td>
     <td class="td-center"><img ng-repeat="organ in condition.organs" class="organ-img" ng-src="{{vm.getImageUrl(organ)}}" /></td>
     <td>{{condition.condition}}</td>
