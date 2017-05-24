@@ -1,13 +1,50 @@
 <link href="/src/client/content/style.css" rel="stylesheet">
 
 <h1>My Report</h1>
-<h4>A sample of conditions which may appear on a report</h4>
+<div layout="row">
+  <h4>A sample of conditions which may appear on a report</h4>
+  <span flex></span>
+  <md-button hide-gt-sm
+             aria-label="Include All"
+             ng-click="vm.setAll(true)"
+             class="md-icon-button"
+             ng-class="{'md-primary md-raised': includeAll}">
+    <md-tooltip>Include All</md-tooltip>
+    <md-icon md-svg-src="/src/client/content/img/pin.svg" class="s24" aria-label="pin"></md-icon>
+  </md-button>
+  <md-button hide-gt-sm
+             aria-label="Exclude All"
+             ng-click="vm.setAll(false)"
+             class="md-icon-button"
+             ng-class="{'md-warn md-raised': excludeAll}">
+    <md-tooltip>Exclude All</md-tooltip>
+    <md-icon class="s24" aria-label="exclude">close</md-icon>
+  </md-button>
+</div>
 
 <table class="condition-table" ng-if="$mdMedia('gt-sm')">
   <tbody>
   <tr>
-    <th>Always Include</th>
-    <th>Always Exclude</th>
+    <th>
+      <md-button
+          aria-label="Include All"
+          ng-click="vm.setAll(true)"
+          class="md-icon-button"
+          ng-class="{'md-primary md-raised': includeAll}">
+        <md-tooltip>Include All</md-tooltip>
+        <md-icon md-svg-src="/src/client/content/img/pin.svg" class="s24" aria-label="pin"></md-icon>
+      </md-button>
+    </th>
+    <th>
+      <md-button
+          aria-label="Exclude All"
+          ng-click="vm.setAll(false)"
+          class="md-icon-button"
+          ng-class="{'md-warn md-raised': excludeAll}">
+        <md-tooltip>Exclude All</md-tooltip>
+        <md-icon class="s24" aria-label="exclude">close</md-icon>
+      </md-button>
+    </th>
     <th>Primary Organ(s) or Cancer</th>
     <th>Condition</th>
     <th>Description</th>
@@ -19,18 +56,36 @@
   <tr ng-repeat="condition in vm.getConditions()"
       ng-class="{'not-shown': !vm.getShownStatus(condition)}">
     <td class="td-center">
-      <md-checkbox aria-label="Always include {{condition.condition}}"
-                   class="md-primary"
-                   ng-checked="va.manual_include[condition.id]"
-                   md-indeterminate="!va.manual_include[condition.id] && vm.getShownStatus(condition, true)"
-                   ng-click="vm.setManual(condition.id, true)"></md-checkbox>
+      <md-button
+          aria-label="Always include {{condition.condition}}"
+          ng-class="{'md-primary md-raised': va.manual_include[condition.id]}"
+          ng-click="vm.setManual(condition.id, true)"
+          class="md-icon-button">
+        <md-tooltip>Always Include</md-tooltip>
+        <md-icon md-svg-src="/src/client/content/img/pin.svg" class="s24" aria-label="pin"></md-icon>
+      </md-button>
+
+      <!--<md-checkbox aria-label="Always include {{condition.condition}}"-->
+      <!--class="md-primary"-->
+      <!--ng-checked="va.manual_include[condition.id]"-->
+      <!--md-indeterminate="!va.manual_include[condition.id] && vm.getShownStatus(condition, true)"-->
+      <!--ng-click="vm.setManual(condition.id, true)"></md-checkbox>-->
     </td>
     <td class="td-center">
-      <md-checkbox aria-label="Always include {{condition.condition}}"
-                   class="md-warn"
-                   ng-checked="va.manual_exclude[condition.id]"
-                   md-indeterminate="!va.manual_exclude[condition.id] && !vm.getShownStatus(condition, true)"
-                   ng-click="vm.setManual(condition.id, false)"></md-checkbox>
+      <md-button
+          aria-label="Always exclude {{condition.condition}}"
+          ng-class="{'md-warn md-raised': va.manual_exclude[condition.id]}"
+          ng-click="vm.setManual(condition.id, false)"
+          class="md-icon-button">
+        <md-tooltip>Always Exclude</md-tooltip>
+        <md-icon class="s24" aria-label="exclude">close</md-icon>
+      </md-button>
+
+      <!--<md-checkbox aria-label="Always include {{condition.condition}}"-->
+                   <!--class="md-warn"-->
+                   <!--ng-checked="va.manual_exclude[condition.id]"-->
+                   <!--md-indeterminate="!va.manual_exclude[condition.id] && !vm.getShownStatus(condition, true)"-->
+                   <!--ng-click="vm.setManual(condition.id, false)"></md-checkbox>-->
     </td>
     <td class="td-center"><img ng-repeat="organ in condition.organs" class="organ-img"
                                ng-src="{{vm.getImageUrl(organ)}}"/></td>
@@ -70,18 +125,22 @@
         <li ng-if="condition.carrier">Carrier Status</li>
       </ul>
       <span flex></span>
-      <md-checkbox aria-label="Always include {{condition.condition}}"
-                   class="md-primary"
-                   ng-checked="va.manual_include[condition.id]"
-                   md-indeterminate="!va.manual_include[condition.id] && vm.getShownStatus(condition, true)"
-                   ng-click="vm.setManual(condition.id, true)">Include
-      </md-checkbox>
-      <md-checkbox aria-label="Always include {{condition.condition}}"
-                   class="md-warn"
-                   ng-checked="va.manual_exclude[condition.id]"
-                   md-indeterminate="!va.manual_exclude[condition.id] && !vm.getShownStatus(condition, true)"
-                   ng-click="vm.setManual(condition.id, false)">Exclude
-      </md-checkbox>
+      <md-button
+          aria-label="Always include {{condition.condition}}"
+          ng-class="{'md-primary md-raised': va.manual_include[condition.id]}"
+          ng-click="vm.setManual(condition.id, true)"
+          class="md-icon-button">
+        <md-tooltip>Always Include</md-tooltip>
+        <md-icon md-svg-src="/src/client/content/img/pin.svg" class="s24" aria-label="pin"></md-icon>
+      </md-button>
+      <md-button
+          aria-label="Always exclude {{condition.condition}}"
+          ng-class="{'md-warn md-raised': va.manual_exclude[condition.id]}"
+          ng-click="vm.setManual(condition.id, false)"
+          class="md-icon-button">
+        <md-tooltip>Always Exclude</md-tooltip>
+        <md-icon class="s24" aria-label="exclude">close</md-icon>
+      </md-button>
     </md-card-actions>
   </md-card>
 </md-list>

@@ -32,6 +32,10 @@
     vm.$onInit = initialize;
     vm.cycleManual = cycleManual;
     vm.setManual = setManual;
+    vm.setAll = setAll;
+
+    $scope.includeAll = false;
+    $scope.excludeAll = false;
 
     ////////////
 
@@ -100,16 +104,8 @@
           vm.va.manual_exclude[conditionId] = false;
         }
 
-        // if (value) {
-        //   if (vm.va.manual_include[conditionId]) {
-        //     vm.va.manual_exclude[conditionId] = false;
-        //   }
-        // } else {
-        //   if (vm.va.manual_exclude[conditionId]) {
-        //     vm.va.manual_include[conditionId] = false;
-        //   }
-        // }
-
+        $scope.includeAll = false;
+        $scope.excludeAll = false;
       } catch (e) {
         $log.log('Error setting manual *clusion: ' + e);
       }
@@ -131,9 +127,34 @@
           }
         }
 
+        $scope.includeAll = false;
+        $scope.excludeAll = false;
       } catch (e) {
         $log.log('Error setting manual *clusion: ' + e);
       }
+    }
+
+    function setAll(value) {
+      var includeVal = value, excludeVal = !value;
+
+      // If all included or all excluded and pressed again, cancel that action
+      if (value && $scope.includeAll || !value && $scope.excludeAll) {
+        includeVal = false;
+        excludeVal = false;
+      }
+
+      angular.forEach(vm.va.manual_include,
+        function (val, key) {
+          vm.va.manual_include[key] = includeVal;
+        });
+
+      angular.forEach(vm.va.manual_exclude,
+        function (val, key) {
+          vm.va.manual_exclude[key] = excludeVal;
+        });
+
+      $scope.includeAll = includeVal;
+      $scope.excludeAll = excludeVal;
     }
 
     function getImageUrl(value) {
