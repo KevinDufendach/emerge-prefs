@@ -48,10 +48,10 @@
     <th>Primary Organ(s) or Cancer</th>
     <th>Condition</th>
     <th>Description</th>
-    <th>Preventable</th>
-    <th>Treatable</th>
-    <th>Adult Onset</th>
-    <th>Carrier Status</th>
+    <!--<th>Preventable</th>-->
+    <!--<th>Treatable</th>-->
+    <!--<th>Adult Onset</th>-->
+    <!--<th>Carrier Status</th>-->
   </tr>
   <tr ng-repeat="condition in vm.getConditions()"
       ng-class="{'not-shown': !vm.getShownStatus(condition)}">
@@ -64,12 +64,6 @@
         <md-tooltip>Always Include</md-tooltip>
         <md-icon md-svg-src="/content/img/pin.svg" class="s24" aria-label="pin"></md-icon>
       </md-button>
-
-      <!--<md-checkbox aria-label="Always include {{condition.condition}}"-->
-      <!--class="md-primary"-->
-      <!--ng-checked="va.manual_include[condition.id]"-->
-      <!--md-indeterminate="!va.manual_include[condition.id] && vm.getShownStatus(condition, true)"-->
-      <!--ng-click="vm.setManual(condition.id, true)"></md-checkbox>-->
     </td>
     <td class="td-center">
       <md-button
@@ -80,29 +74,34 @@
         <md-tooltip>Always Exclude</md-tooltip>
         <md-icon class="s24" aria-label="exclude">close</md-icon>
       </md-button>
-
-      <!--<md-checkbox aria-label="Always include {{condition.condition}}"-->
-                   <!--class="md-warn"-->
-                   <!--ng-checked="va.manual_exclude[condition.id]"-->
-                   <!--md-indeterminate="!va.manual_exclude[condition.id] && !vm.getShownStatus(condition, true)"-->
-                   <!--ng-click="vm.setManual(condition.id, false)"></md-checkbox>-->
     </td>
     <td class="td-center"><img ng-repeat="organ in condition.organs" class="organ-img"
                                ng-src="{{vm.getImageUrl(organ)}}"/></td>
     <td>{{condition.condition}}</td>
-    <td>{{condition.description}}</td>
-    <td class="td-center">
-      <md-icon ng-show="condition.preventable" aria-label="check">check</md-icon>
+    <td>
+      <p>{{condition.description}}</p>
+      <div class="md-warn" md-colors="::{color: 'warn'}"
+           ng-show="(condition.carrier && va.adol_carrier != '1'
+            && vm.getShownStatus(condition))">Carrier status would not be reported.</div>
+      <ul class="tags">
+        <li><span ng-class="::{'opacity-10': !condition.preventable}">Preventable</span></li>
+        <li><span ng-class="::{'opacity-10': !condition.treatable}">Treatable</span></li>
+        <li><span ng-class="::{'opacity-10': !condition.adult_onset}">Adult Onset</span></li>
+        <li><span ng-class="::{'opacity-10': !condition.carrier}">Carrier Status</span></li>
+      </ul>
     </td>
-    <td class="td-center">
-      <md-icon ng-show="condition.treatable" aria-label="check">check</md-icon>
-    </td>
-    <td class="td-center">
-      <md-icon ng-show="condition.adult_onset" aria-label="check">check</md-icon>
-    </td>
-    <td class="td-center" ng-class="{'not-shown': condition.carrier && (va.adol_carrier != '1')}">
-      <md-icon ng-show="condition.carrier" aria-label="check">check</md-icon>
-    </td>
+    <!--<td class="td-center">-->
+      <!--<md-icon ng-show="condition.preventable" aria-label="check">check</md-icon>-->
+    <!--</td>-->
+    <!--<td class="td-center">-->
+      <!--<md-icon ng-show="condition.treatable" aria-label="check">check</md-icon>-->
+    <!--</td>-->
+    <!--<td class="td-center">-->
+      <!--<md-icon ng-show="condition.adult_onset" aria-label="check">check</md-icon>-->
+    <!--</td>-->
+    <!--<td class="td-center" ng-class="{'not-shown': condition.carrier && (va.adol_carrier != '1')}">-->
+      <!--<md-icon ng-show="condition.carrier" aria-label="check">check</md-icon>-->
+    <!--</td>-->
   </tr>
   </tbody>
 </table>
@@ -116,13 +115,16 @@
     </md-card-title>
     <md-card-content>
       <p>{{condition.description}}</p>
+      <div class="md-warn" md-colors="::{color: 'warn'}"
+           ng-show="(condition.carrier && va.adol_carrier != '1'
+            && vm.getShownStatus(condition))">Carrier status would not be reported.</div>
     </md-card-content>
     <md-card-actions layout="row">
       <ul class="tags">
-        <li ng-if="condition.preventable">Preventable</li>
-        <li ng-if="condition.treatable">Treatable</li>
-        <li ng-if="condition.adult_onset">Adult Onset</li>
-        <li ng-if="condition.carrier">Carrier Status</li>
+        <li><span ng-class="::{'opacity-10': !condition.preventable}">Preventable</span></li>
+        <li><span ng-class="::{'opacity-10': !condition.treatable}">Treatable</span></li>
+        <li><span ng-class="::{'opacity-10': !condition.adult_onset}">Adult Onset</span></li>
+        <li><span ng-class="::{'opacity-10': !condition.carrier}">Carrier Status</span></li>
       </ul>
       <span flex></span>
       <md-button

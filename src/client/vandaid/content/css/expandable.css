@@ -1,36 +1,91 @@
-expandable > expandable-content > div {
-  opacity: 0;
-  -webkit-transition: all 0.25s;
-  transition: all 0.25s;
+expandable {
+    display: block;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
 
-  flex: 1;
-
-  display: inline-block;
-  overflow: auto;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
 }
 
-expandable.v-expanded > expandable-content > div,
-expandable.h-expanded > expandable-content > div {
-  opacity: 1;
+expandable expandable-content-wrapper expandable-content {
+    opacity: 0;
+    -webkit-transition: all 0.25s;
+    transition: all 0.25s;
+
+    flex: 1;
+
+    display: inline-block;
+    overflow: auto;
 }
 
-expandable > expandable-content.expand-horizontal {
-  /*max-width: 0;*/
-  overflow-x: hidden;
+expandable.v-expanded expandable-content-wrapper expandable-content,
+expandable.h-expanded expandable-content-wrapper expandable-content {
+    opacity: 1;
 }
 
-expandable > expandable-content.expand-vertical {
-  /*max-height: 0;*/
-  overflow-y: hidden;
+expandable expandable-content-wrapper.expand-horizontal {
+    /*background-color: red;*/
+    /*max-width: 0 !important;*/
+    -webkit-transition: all 0.25s;
+    transition: all 0.25s;
+
+    position: relative;
+    overflow-x: hidden;
+
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
 }
 
-expandable > expandable-content {
-  box-sizing: border-box;
-  display: block;
-  position: relative;
-
-  padding: 0 !important;
-  margin: 0 !important;
-
-  flex: 1;
+expandable.h-expanded expandable-content-wrapper.expand-horizontal {
+    /*background-color: blue;*/
+    /*max-width: none !important;*/
 }
+
+expandable > expandable-content-wrapper.expand-vertical {
+    /*max-height: 0;*/
+    overflow-y: hidden;
+}
+
+expandable-content-wrapper {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: scroll;
+}
+
+expandable-content {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    /*position: absolute;*/
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-transition: -webkit-transform 0.5s cubic-bezier(0, 0.35, 1, 0.25);
+    transition: -webkit-transform 0.5s cubic-bezier(0, 0.35, 1, 0.25);
+    transition: transform 0.5s cubic-bezier(0, 0.35, 1, 0.25);
+    transition: transform 0.5s cubic-bezier(0, 0.35, 1, 0.25), -webkit-transform 0.5s cubic-bezier(0, 0.35, 1, 0.25);
+    overflow: auto;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+/*expandable-content > div {*/
+    /*-webkit-box-flex: 1;*/
+    /*-webkit-flex: 1 0 100%;*/
+    /*flex: 1 0 100%;*/
+    /*min-width: 0;*/
+/*}*/
+
+/*expandable-content > div.ng-leave {*/
+    /*-webkit-animation: 1s md-tab-content-hide;*/
+    /*animation: 1s md-tab-content-hide;*/
+/*}*/

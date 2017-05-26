@@ -20,10 +20,10 @@
     return directive;
   }
 
-  EmergePrefsController.$inject = ['vandaidFieldService', '$scope', 'conditionFactory', '$log', '$mdMedia'];
+  EmergePrefsController.$inject = ['vandaidFieldService', '$scope', 'conditionFactory', '$log', '$mdMedia', '$mdColors'];
 
   /* @ngInject */
-  function EmergePrefsController(vandaidFieldService, $scope, conditionFactory, $log, $mdMedia) {
+  function EmergePrefsController(vandaidFieldService, $scope, conditionFactory, $log, $mdMedia, $mdColors) {
     var vm = this;
 
     vm.getConditions = getConditions;
@@ -36,6 +36,7 @@
 
     $scope.includeAll = false;
     $scope.excludeAll = false;
+    $scope.$mdColors = $mdColors;
 
     ////////////
 

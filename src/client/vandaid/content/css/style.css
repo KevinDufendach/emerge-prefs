@@ -304,3 +304,11 @@ va-identity-bar {
     background-color: transparent;
     color: inherit;
 }
+
+.hidden-text {
+    visibility: hidden;
+}
+
+.opacity-10 {
+    opacity: 0.1;
+}

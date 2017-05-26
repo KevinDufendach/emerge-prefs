@@ -29,16 +29,20 @@
       var dir = 'vertical';
       // wrap tag using attrs.direction to determine direction for expansion. Default is 'vertical'
       if (!attrs.direction || attrs.direction !== 'horizontal') {
-        elem.html('<expandable-content class="expand-vertical"><div>' + contents + '</div></expandable-content>');
+        elem.html('<expandable-content-wrapper class="expand-vertical"><expandable-content><div>' +
+          contents +
+          '</div></expandable-content></expandable-content-wrapper>');
       } else {
         dir = 'horizontal';
-        elem.html('<expandable-content class="expand-horizontal"><div>' + contents + '</div></expandable-content>');
+        elem.html('<expandable-content-wrapper class="expand-horizontal"><expandable-content><div>' +
+          contents +
+          '</div></expandable-content></expandable-content-wrapper>');
       }
 
       try {
         var paneContent = angular.element(elem[0]);
-        var paneInner = angular.element(paneContent[0].querySelector('expandable-content'));
-        var paneDiv = angular.element(paneInner[0].querySelector('div'));
+        var paneInner = angular.element(paneContent[0].querySelector('expandable-content-wrapper'));
+        var paneDiv = angular.element(paneInner[0].querySelector('expandable-content'));
       } catch (e) {
         $log.error(e.message);
       }
@@ -73,8 +77,8 @@
         // console.log('expand class added');
 
         var paneContent = angular.element(element[0]);
-        var paneInner = angular.element(paneContent[0].querySelector('expandable-content'));
-        var paneDiv = angular.element(paneInner[0].querySelector('div'));
+        var paneInner = angular.element(paneContent[0].querySelector('expandable-content-wrapper'));
+        var paneDiv = angular.element(paneInner[0].querySelector('expandable-content'));
 
         var height = paneDiv[0].offsetHeight;
         $log.log('paneDiv opening offsetHeight: ' + height);
@@ -106,8 +110,8 @@
         //   paneInner = angular.element(paneContent[0].querySelector('expandable-content'));
 
         var paneContent = angular.element(element[0]);
-        var paneInner = angular.element(paneContent[0].querySelector('expandable-content'));
-        var paneDiv = angular.element(paneInner[0].querySelector('div'));
+        var paneInner = angular.element(paneContent[0].querySelector('expandable-content-wrapper'));
+        var paneDiv = angular.element(paneInner[0].querySelector('expandable-content'));
 
         var height = paneDiv[0].offsetHeight;
         $log.log('paneDiv closing offsetHeight: ' + height);
@@ -138,8 +142,8 @@
         // console.log('expand class added');
 
         var paneContent = angular.element(elem[0]);
-        var paneInner = angular.element(paneContent[0].querySelector('expandable-content'));
-        var paneDiv = angular.element(paneInner[0].querySelector('div'));
+        var paneInner = angular.element(paneContent[0].querySelector('expandable-content-wrapper'));
+        var paneDiv = angular.element(paneInner[0].querySelector('expandable-content'));
 
         var width = paneDiv[0].offsetWidth;
         $log.log('Opening paneDiv offsetWidth: ' + width);
@@ -171,8 +175,8 @@
         //   paneInner = angular.element(paneContent[0].querySelector('expandable-content'));
 
         var paneContent = angular.element(element[0]);
-        var paneInner = angular.element(paneContent[0].querySelector('expandable-content'));
-        var paneDiv = angular.element(paneInner[0].querySelector('div'));
+        var paneInner = angular.element(paneContent[0].querySelector('expandable-content-wrapper'));
+        var paneDiv = angular.element(paneInner[0].querySelector('expandable-content'));
 
         var width = paneDiv[0].offsetWidth;
         $log.log('Closing paneDiv offsetWidth: ' + width);
