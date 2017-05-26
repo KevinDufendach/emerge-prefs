@@ -13,7 +13,7 @@
       bindToController: true,
       controller: EmergePrefsController,
       controllerAs: 'vm',
-      templateUrl: '/src/client/app/project.directive.html',
+      templateUrl: '/app/project.directive.html',
       restrict: 'EA',
       scope: {}
     };
@@ -158,7 +158,7 @@
     }
 
     function getImageUrl(value) {
-      var prefix = '/src/client/content/img/';
+      var prefix = '/content/img/';
 
       if (!value || typeof (value) !== 'string') return;
 

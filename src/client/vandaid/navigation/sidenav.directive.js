@@ -14,7 +14,7 @@
       bindToController: true,
       controller: SidenavController,
       controllerAs: 'vm',
-      templateUrl: '/src/client/vandaid/navigation/sidenav.directive.html',
+      templateUrl: '/vandaid/navigation/sidenav.directive.html',
       restrict: 'EA',
       compile: compileFn
     };
@@ -41,7 +41,7 @@
     $scope.$mdMedia = $mdMedia;
     vm.$onInit = activate;
 
-    vm.logo = __va.logo || '/src/client/vandaid/content/img/Vanderbilt-Logo-white500x500.png';
+    vm.logo = __va.logo || '/vandaid/content/img/Vanderbilt-Logo-white500x500.png';
 
     //////////
 

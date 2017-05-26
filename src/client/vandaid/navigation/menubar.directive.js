@@ -10,7 +10,7 @@
   function MenuBarDirective($mdDialog) {
     var directive = {
       restrict: 'E',
-      templateUrl: '/src/client/vandaid/navigation/menubar.directive.html',
+      templateUrl: '/vandaid/navigation/menubar.directive.html',
       controller: MenuBarController,
       controllerAs: 'ctrl'
     };

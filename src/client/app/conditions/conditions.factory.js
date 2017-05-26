@@ -23,7 +23,7 @@
     ////////////////
 
     function initialize() {
-      retrieveConditionsFromUri('/src/client/content/csv_export.json');
+      retrieveConditionsFromUri('/content/csv_export.json');
     }
 
     /**

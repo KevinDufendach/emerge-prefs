@@ -13,7 +13,7 @@
       bindToController: true,
       controller: FieldTabsController,
       controllerAs: 'vm',
-      templateUrl: '/src/client/vandaid/navigation/fieldtabs.directive.html',
+      templateUrl: '/vandaid/navigation/fieldtabs.directive.html',
       restrict: 'EA'
     };
     return directive;

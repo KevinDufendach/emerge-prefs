@@ -10,7 +10,7 @@
   function topBar() {
     var directive = {
       bindToController: true,
-      templateUrl: '/src/client/vandaid/navigation/topbar.directive.html',
+      templateUrl: '/vandaid/navigation/topbar.directive.html',
       controller: topBarController,
       controllerAs: 'vm',
       restrict: 'AE',
@@ -43,7 +43,7 @@
     }
 
     function getLogo() {
-      return __va.logo || '/src/client/vandaid/content/img/Vanderbilt-Logo-white500x500.png';
+      return __va.logo || '/vandaid/content/img/Vanderbilt-Logo-white500x500.png';
     }
 
     function getBackground() {

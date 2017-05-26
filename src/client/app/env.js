@@ -22,7 +22,7 @@
   window.__va.submit_button_class = 'md-accent';
 
   // Logo
-  window.__va.logo = '/src/client/content/img/CCHMC_logo_ht128px.png';
+  window.__va.logo = '/content/img/CCHMC_logo_ht128px.png';
 
   // Title
   window.__va.title = 'Genetic Information Preferences Survey';

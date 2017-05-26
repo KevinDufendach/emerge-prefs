@@ -54,7 +54,7 @@
       compile: compileFn,
       controller: collapseBarController,
       controllerAs: 'vm',
-      templateUrl: '/src/client/vandaid/navigation/collapsebar.directive.html',
+      templateUrl: '/vandaid/navigation/collapsebar.directive.html',
       restrict: 'EA',
       scope: {
         expanded: '=',

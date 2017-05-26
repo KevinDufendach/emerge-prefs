@@ -2,6 +2,26 @@ runtime: python27
 threadsafe: true
 api_version: 1
 
+skip_files:
+- ^(.*/)?.*/assets/.*$
+- ^(.*/)?.*/build/.*$
+- ^(.*/)?.*/test/.*$
+- ^(.*/)?.*/templates/.*$
+- ^(.*/)?.*/node_modules/.*$
+
+- ^(assets/.*)
+- ^(build/.*)
+- ^(test/.*)
+- ^(templates/.*)
+- ^(node_modules/.*)
+
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.DS_Store$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\..*$
+
 handlers:
 - url: /rest/.*
   script: vandaid.APP
@@ -10,7 +30,7 @@ handlers:
   static_files: bower_components/\1
   upload: bower_components/.*
 
-- url: /src/client/(.+)
+- url: /(.+)
   static_files: src/client/\1
   upload: src/client/.*
 

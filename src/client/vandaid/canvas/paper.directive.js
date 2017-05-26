@@ -11,7 +11,7 @@
       replace: true,
       transclude: true,
       restrict: 'E',
-      templateUrl: '/src/client/vandaid/canvas/paper.directive.html',
+      templateUrl: '/vandaid/canvas/paper.directive.html',
       scope: false
     };
     return directive;
