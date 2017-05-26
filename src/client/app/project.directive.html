@@ -48,10 +48,10 @@
     <th>Primary Organ(s) or Cancer</th>
     <th>Condition</th>
     <th>Description</th>
-    <!--<th>Preventable</th>-->
-    <!--<th>Treatable</th>-->
-    <!--<th>Adult Onset</th>-->
-    <!--<th>Carrier Status</th>-->
+    <th ng-if="$mdMedia('gt-md')">Preventable</th>
+    <th ng-if="$mdMedia('gt-md')">Treatable</th>
+    <th ng-if="$mdMedia('gt-md')">Adult Onset</th>
+    <th ng-if="$mdMedia('gt-md')">Carrier Status</th>
   </tr>
   <tr ng-repeat="condition in vm.getConditions()"
       ng-class="{'not-shown': !vm.getShownStatus(condition)}">
@@ -80,28 +80,32 @@
     <td>{{condition.condition}}</td>
     <td>
       <p>{{condition.description}}</p>
-      <div class="md-warn" md-colors="::{color: 'warn'}"
-           ng-show="(condition.carrier && va.adol_carrier != '1'
-            && vm.getShownStatus(condition))">Carrier status would not be reported.</div>
-      <ul class="tags">
-        <li><span ng-class="::{'opacity-10': !condition.preventable}">Preventable</span></li>
-        <li><span ng-class="::{'opacity-10': !condition.treatable}">Treatable</span></li>
-        <li><span ng-class="::{'opacity-10': !condition.adult_onset}">Adult Onset</span></li>
-        <li><span ng-class="::{'opacity-10': !condition.carrier}">Carrier Status</span></li>
-      </ul>
+      <div hide-gt-md>
+
+        <div class="md-warn" md-colors="::{color: 'warn'}"
+             ng-show="(condition.carrier && va.adol_carrier != '1'
+            && vm.getShownStatus(condition))">Carrier status would not be reported.
+        </div>
+        <ul class="tags">
+          <li><span ng-class="::{'opacity-10': !condition.preventable}">Preventable</span></li>
+          <li><span ng-class="::{'opacity-10': !condition.treatable}">Treatable</span></li>
+          <li><span ng-class="::{'opacity-10': !condition.adult_onset}">Adult Onset</span></li>
+          <li><span ng-class="::{'opacity-10': !condition.carrier}">Carrier Status</span></li>
+        </ul>
+      </div>
     </td>
-    <!--<td class="td-center">-->
-      <!--<md-icon ng-show="condition.preventable" aria-label="check">check</md-icon>-->
-    <!--</td>-->
-    <!--<td class="td-center">-->
-      <!--<md-icon ng-show="condition.treatable" aria-label="check">check</md-icon>-->
-    <!--</td>-->
-    <!--<td class="td-center">-->
-      <!--<md-icon ng-show="condition.adult_onset" aria-label="check">check</md-icon>-->
-    <!--</td>-->
-    <!--<td class="td-center" ng-class="{'not-shown': condition.carrier && (va.adol_carrier != '1')}">-->
-      <!--<md-icon ng-show="condition.carrier" aria-label="check">check</md-icon>-->
-    <!--</td>-->
+    <td ng-if="$mdMedia('gt-md')" class="td-center">
+      <md-icon ng-show="condition.preventable" aria-label="check">check</md-icon>
+    </td>
+    <td ng-if="$mdMedia('gt-md')" class="td-center">
+      <md-icon ng-show="condition.treatable" aria-label="check">check</md-icon>
+    </td>
+    <td ng-if="$mdMedia('gt-md')" class="td-center">
+      <md-icon ng-show="condition.adult_onset" aria-label="check">check</md-icon>
+    </td>
+    <td ng-if="$mdMedia('gt-md')" class="td-center" ng-class="{'not-shown': condition.carrier && (va.adol_carrier != '1')}">
+      <md-icon ng-show="condition.carrier" aria-label="check">check</md-icon>
+    </td>
   </tr>
   </tbody>
 </table>
@@ -117,7 +121,8 @@
       <p>{{condition.description}}</p>
       <div class="md-warn" md-colors="::{color: 'warn'}"
            ng-show="(condition.carrier && va.adol_carrier != '1'
-            && vm.getShownStatus(condition))">Carrier status would not be reported.</div>
+            && vm.getShownStatus(condition))">Carrier status would not be reported.
+      </div>
     </md-card-content>
     <md-card-actions layout="row">
       <ul class="tags">

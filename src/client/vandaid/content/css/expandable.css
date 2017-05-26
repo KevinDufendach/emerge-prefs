@@ -25,8 +25,6 @@ expandable.h-expanded expandable-content-wrapper expandable-content {
 }
 
 expandable expandable-content-wrapper.expand-horizontal {
-    /*background-color: red;*/
-    /*max-width: 0 !important;*/
     -webkit-transition: all 0.25s;
     transition: all 0.25s;
 
@@ -39,14 +37,8 @@ expandable expandable-content-wrapper.expand-horizontal {
     bottom: auto;
 }
 
-expandable.h-expanded expandable-content-wrapper.expand-horizontal {
-    /*background-color: blue;*/
-    /*max-width: none !important;*/
-}
-
 expandable > expandable-content-wrapper.expand-vertical {
-    /*max-height: 0;*/
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 
 expandable-content-wrapper {
@@ -57,14 +49,14 @@ expandable-content-wrapper {
     left: 0;
     right: 0;
     bottom: 0;
-    overflow-y: scroll;
 }
 
 expandable-content {
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
-    /*position: absolute;*/
+    position: relative;
+    /*padding-right: 0;*/
     top: 0;
     left: 0;
     right: 0;
@@ -73,7 +65,7 @@ expandable-content {
     transition: -webkit-transform 0.5s cubic-bezier(0, 0.35, 1, 0.25);
     transition: transform 0.5s cubic-bezier(0, 0.35, 1, 0.25);
     transition: transform 0.5s cubic-bezier(0, 0.35, 1, 0.25), -webkit-transform 0.5s cubic-bezier(0, 0.35, 1, 0.25);
-    overflow: auto;
+    /*overflow: auto;*/
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }

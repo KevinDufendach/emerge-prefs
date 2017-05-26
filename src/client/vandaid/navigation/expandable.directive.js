@@ -29,14 +29,14 @@
       var dir = 'vertical';
       // wrap tag using attrs.direction to determine direction for expansion. Default is 'vertical'
       if (!attrs.direction || attrs.direction !== 'horizontal') {
-        elem.html('<expandable-content-wrapper class="expand-vertical"><expandable-content><div>' +
+        elem.html('<expandable-content-wrapper class="expand-vertical"><expandable-content>' +
           contents +
-          '</div></expandable-content></expandable-content-wrapper>');
+          '</expandable-content></expandable-content-wrapper>');
       } else {
         dir = 'horizontal';
-        elem.html('<expandable-content-wrapper class="expand-horizontal"><expandable-content><div>' +
+        elem.html('<expandable-content-wrapper class="expand-horizontal"><expandable-content>' +
           contents +
-          '</div></expandable-content></expandable-content-wrapper>');
+          '</expandable-content></expandable-content-wrapper>');
       }
 
       try {
