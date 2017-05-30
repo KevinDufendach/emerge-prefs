@@ -5,9 +5,9 @@
     .module('va.fields')
     .factory('vandaidFieldService', fieldService);
 
-  fieldService.$inject = ['$q', 'redcapService', 'vandaidUserService', '__va'];
+  fieldService.$inject = ['$q', 'redcapService', 'vandaidUserService', '__va', '$log'];
 
-  function fieldService($q, redcapService, vandaidUserService, __va) {
+  function fieldService($q, redcapService, vandaidUserService, __va, $log) {
     var self = this;
 
     var states = {
@@ -26,12 +26,13 @@
     self.initializeResolveList = [];
     self.initializeRejectList = [];
 
-    initialize();
+    initializeFields();
+    loadDefaults();
 
     var service = {
       fields: self.fields,
       isReady: isReady,
-      // initialize: initialize,
+      // initialize: initializeFields,
       getFields: getFields,
       getValue: getValue,
       submit: submitFields,
@@ -144,7 +145,16 @@
     }
 
     function loadDefaults() {
-      redcapService.loadData(vandaidUserService.getUser(), __va.formName || 'my_first_instrumcnt');
+      redcapService.loadData(vandaidUserService.getUser(), __va.formName || 'my_first_instrumcnt').then(
+        // on successful load:
+        function() {
+          $log.log('Data successfully loaded');
+        },
+        function(e) {
+          $log.log('unable to load data: ' + e)
+        }
+
+      );
     }
   }
 

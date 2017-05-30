@@ -123,7 +123,7 @@
      */
     function retrieveFieldsFromUri(uri, formName) {
       return $q(function (resolve, reject) {
-        $http.get(uri)
+        $http.post(uri)
           .then(
             // On success
             function (response) {
@@ -413,8 +413,8 @@
           function (returnData) {
             $log.log('Successfully retrieved from REDCap');
 
-            if (returnData.data.count === 1) {
-              resolve(returnData);
+            if (returnData.data.length === 1) {
+              resolve(returnData.data[0]);
             } else {
               reject("Unable to submit to REDCap: " + returnData.data);
             }

@@ -15,7 +15,7 @@
 import json
 import webapp2
 import logging
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename='python_log.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 import validate_user
 
@@ -41,7 +41,7 @@ class RestHandler(webapp2.RequestHandler):
 
 class RedcapGetFieldMetadataHandler(RestHandler):
     
-    def get(self):
+    def post(self):
         url = config['api_url']
         
         form_fields = {
@@ -105,27 +105,33 @@ class RedcapImportRecordsHandler(RestHandler):
 class RedcapExportRecordsHandler(RestHandler):
 
     def post(self):
+        logging.debug('Beginning export handler')
+        
         url = config['api_url']
         
         r = json.loads(self.request.body)
         
+        
+        
         try:
             myUser = r['user']
             myForm = r['formName']
+            
+            
             
             if not(validate_user.validateUser(myUser['id'], myUser['key'])):
                 self.response.out.write('Unauthorized user')
                 return
         except urlfetch.Error:
             logging.exception('Exception with authorizing user')
-
+            
         apiFields = {
             'token': config['api_token'],
             'content': 'record',
             'format': 'json',
             'type': 'flat',
-            'records[0]': myUser,
-            'forms[0]': formName,
+            'records[0]': myUser['id'],
+            'forms[0]': myForm,
             'rawOrLabel': 'raw',
             'rawOrLabelHeaders': 'raw',
             'exportCheckboxLabel': 'false',
@@ -133,7 +139,7 @@ class RedcapExportRecordsHandler(RestHandler):
             'exportDataAccessGroups': 'false',
             'returnFormat': 'json',
         }
-        
+
         try:
             form_data = urllib.urlencode(apiFields)
             headers = {'Content-Type': 'application/x-www-form-urlencoded',
@@ -143,6 +149,8 @@ class RedcapExportRecordsHandler(RestHandler):
                 payload=form_data,
                 method=urlfetch.POST,
                 headers=headers)
+            
+            # self.response.write(json.dumps(form_data))
             self.response.write(result.content)
         except urlfetch.Error:
             logging.exception('Caught exception fetching url') 
@@ -201,7 +209,6 @@ class ValidateUser(RestHandler):
             self.response.out.write('UNAUTHORIZED')
                 
         return
-
 
 APP = webapp2.WSGIApplication([
     ('/rest/redcap-metadata', RedcapGetFieldMetadataHandler),
