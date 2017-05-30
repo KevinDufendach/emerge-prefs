@@ -13,8 +13,11 @@
     var states = {
       UNITIALIZED: 0,
       INITIALIZING: 1,
-      READY: 2
+      LOADING_DEFAULTS: 2,
+      READY: 3
     };
+
+    var pendingTasks = 0;
 
     var values = {};
 
@@ -28,7 +31,7 @@
     var service = {
       fields: self.fields,
       isReady: isReady,
-      initialize: initialize,
+      // initialize: initialize,
       getFields: getFields,
       getValue: getValue,
       submit: submitFields,
@@ -43,7 +46,7 @@
      * @returns {*} Promise callback that allows functionality after the service is initialized. Reminder:
      *    Callback should be fieldService.initialize().then( function onSuccess() { // doSomething } );
      */
-    function initialize() {
+    function initializeFields() {
       self.state = states.INITIALIZING;
 
       return $q(function (resolve, reject) {
@@ -100,7 +103,7 @@
           self.initializeRejectList.push(reject);
 
           if (self.state === states.UNITIALIZED) {
-            initialize();
+            initializeFields();
           }
         }
       )
@@ -131,9 +134,17 @@
       return values[fieldName];
     }
 
-
+    /**
+     * Submits fields to REDCap project. Uses UserService to get current user.
+     *
+     * @return {*} Returns promise from the redcap service
+     */
     function submitFields() {
-      return redcapService.submitData(values, vandaidUserService.getUser());
+      return redcapService.submitData(vandaidUserService.getUser(), values);
+    }
+
+    function loadDefaults() {
+      redcapService.loadData(vandaidUserService.getUser(), __va.formName || 'my_first_instrumcnt');
     }
   }
 

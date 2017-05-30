@@ -65,7 +65,6 @@ class RedcapGetFieldMetadataHandler(RestHandler):
             self.response.out.write('Caught exception fecthing url')
 #             logging.exception('Caught exception fetching url')
 
-
 class RedcapImportRecordsHandler(RestHandler):
 
     def post(self):
@@ -82,7 +81,7 @@ class RedcapImportRecordsHandler(RestHandler):
                 
         myFields = r['fields']
         
-        submitFields = {
+        apiFields = {
             'token': config['api_token'],
             'content': 'record',
             'format': 'json',
@@ -91,7 +90,7 @@ class RedcapImportRecordsHandler(RestHandler):
         }
         
         try:
-            form_data = urllib.urlencode(submitFields)
+            form_data = urllib.urlencode(apiFields)
             headers = {'Content-Type': 'application/x-www-form-urlencoded',
                        'Accept' : 'application/json'}
             result = urlfetch.fetch(
@@ -102,7 +101,95 @@ class RedcapImportRecordsHandler(RestHandler):
             self.response.write(result.content)
         except urlfetch.Error:
             logging.exception('Caught exception fetching url')
+
+class RedcapExportRecordsHandler(RestHandler):
+
+    def post(self):
+        url = config['api_url']
+        
+        r = json.loads(self.request.body)
+        
+        try:
+            myUser = r['user']
+            myForm = r['formName']
             
+            if not(validate_user.validateUser(myUser['id'], myUser['key'])):
+                self.response.out.write('Unauthorized user')
+                return
+        except urlfetch.Error:
+            logging.exception('Exception with authorizing user')
+
+        apiFields = {
+            'token': config['api_token'],
+            'content': 'record',
+            'format': 'json',
+            'type': 'flat',
+            'records[0]': myUser,
+            'forms[0]': formName,
+            'rawOrLabel': 'raw',
+            'rawOrLabelHeaders': 'raw',
+            'exportCheckboxLabel': 'false',
+            'exportSurveyFields': 'false',
+            'exportDataAccessGroups': 'false',
+            'returnFormat': 'json',
+        }
+        
+        try:
+            form_data = urllib.urlencode(apiFields)
+            headers = {'Content-Type': 'application/x-www-form-urlencoded',
+                       'Accept' : 'application/json'}
+            result = urlfetch.fetch(
+                url=url,
+                payload=form_data,
+                method=urlfetch.POST,
+                headers=headers)
+            self.response.write(result.content)
+        except urlfetch.Error:
+            logging.exception('Caught exception fetching url') 
+
+# def post(self):
+        # url = config['api_url']
+
+        # r = json.loads(self.request.body)
+        
+        # try:
+            # myUser = r['user']
+			# myForm = r['formName']
+			
+			# if not(validate_user.validateUser(myUser['id'], myUser['key'])):
+				# self.response.out.write('Unauthorized user')
+				# return
+		# except urlfetch.Error:
+			# logging.exception('Exception with authorizing user')
+
+        # apiFields = {
+            # 'token': config['api_token'],
+            # 'content': 'record',
+            # 'format': 'json',
+            # 'type': 'flat',
+			# 'records[0]': myUser,
+			# 'forms[0]': formName,
+            # 'rawOrLabel': 'raw',
+			# 'rawOrLabelHeaders': 'raw',
+			# 'exportCheckboxLabel': 'false',
+			# 'exportSurveyFields': 'false',
+			# 'exportDataAccessGroups': 'false',
+			# 'returnFormat': 'json',
+        # }
+        
+        # try:
+            # form_data = urllib.urlencode(apiFields)
+            # headers = {'Content-Type': 'application/x-www-form-urlencoded',
+                       # 'Accept' : 'application/json'}
+            # result = urlfetch.fetch(
+                # url=url,
+                # payload=form_data,
+                # method=urlfetch.POST,
+                # headers=headers)
+            # self.response.write(result.content)
+        # except urlfetch.Error:
+            # logging.exception('Caught exception fetching url') 
+			
 class ValidateUser(RestHandler):
     
     def post(self):
@@ -119,5 +206,6 @@ class ValidateUser(RestHandler):
 APP = webapp2.WSGIApplication([
     ('/rest/redcap-metadata', RedcapGetFieldMetadataHandler),
     ('/rest/redcap-import-records', RedcapImportRecordsHandler),
+    ('/rest/redcap-export-records', RedcapExportRecordsHandler),
     ('/rest/validate-user', ValidateUser)
 ], debug=True)

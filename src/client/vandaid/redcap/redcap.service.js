@@ -21,7 +21,8 @@
       // loadMetadataFieldsFromFile: loadMetadataFieldsFromFile,
       loadValuesFromFile: loadValuesFromFile,
       loadFieldValues: loadFieldValues,
-      submitData: submitData
+      submitData: submitData,
+      loadData: loadData
     };
     return service;
 
@@ -325,14 +326,20 @@
      *
      * @param user
      */
-    function submitData(values, user) {
+    function submitData(user, values) {
       return $q(function (resolve, reject) {
         if (!values) {
           reject('No data given');
         }
 
-        if (!user) {
+        if (!user ||
+          !(angular.isDefined(user.id) && angular.isDefined(user.key)) ||
+          user.id === "" ||
+          user.key === "") {
+          $log.log("No user defined");
+
           reject('No user specified');
+          return;
         }
 
         var data = translateToREDCapStyleFields(values);
@@ -350,6 +357,61 @@
         $http(params).then(
           function (returnData) {
             $log.log("Submitted to REDCap: " + returnData.data.count);
+
+            if (returnData.data.count === 1) {
+              resolve(returnData);
+            } else {
+              reject("Unable to submit to REDCap: " + returnData.data);
+            }
+          },
+          function (returnData) {
+            $log.log("Unable to reach REDCap: " + returnData.statusText);
+
+            reject("Unable to reach REDCap: " + returnData.statusText);
+          }
+        );
+
+      });
+    }
+
+    /**
+     * Load data from a REDCap record export
+     *
+     * @param user
+     */
+    function loadData(user, formName) {
+      $log.log("Attempting to load data");
+
+      return $q(function (resolve, reject) {
+        if (!formName) {
+          reject('Unable to load data: No form name given');
+        }
+
+        if (!user ||
+          !(angular.isDefined(user.id) && angular.isDefined(user.key)) ||
+          user.id === "" ||
+          user.key === "") {
+          $log.log("No user defined");
+
+          reject('No user specified');
+          return;
+        }
+
+        // data['record_id'] = user.id;
+
+        var params = {
+          method: "post",
+          url: "/rest/redcap-export-records",
+          data: {
+            user: user,
+            formName: formName
+          }
+        };
+
+        $http(params).then(
+          // On success
+          function (returnData) {
+            $log.log('Successfully retrieved from REDCap');
 
             if (returnData.data.count === 1) {
               resolve(returnData);
