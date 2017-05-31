@@ -13,10 +13,13 @@
     var idCount = 0;
 
     var service = {
-      fieldConstructor: fieldConstructor,
+      fieldConstructor: vandaidField,
       getInitialValue: getInitialValue,
       retrieveFieldsFromREDCap: retrieveFieldsFromREDCap,
       retrieveFieldsFromUri: retrieveFieldsFromUri,
+      addFieldValue: addFieldValue,
+      getVandAIDStyleFieldValue: getVandAIDStyleFieldValue,
+      updateToVandAIDStyleFieldValues: updateToVandAIDStyleFieldValues,
 
       // loadMetadataFieldsFromFile: loadMetadataFieldsFromFile,
       loadValuesFromFile: loadValuesFromFile,
@@ -33,9 +36,9 @@
      * Creates a field based on REDCap metadata
      * @metadata REDCap metadata
      */
-    function fieldConstructor(metadata) {
+    function vandaidField(metadata) {
       this.order = idCount++;
-      this.id = metadata.field_name;
+      this.id = metadata.field_name.toLowerCase();
       this.type = metadata.field_type;
       this.label = metadata.field_label;
       this.field_note = metadata.field_note;
@@ -46,7 +49,7 @@
     /**
      * Create a JavaScript-style value object (e.g. yes/no or true/false translated to T/F)
      */
-    function getInitialValue(field) {
+    function getInitialValue(field, index) {
       var value = '';
 
       switch (field.type) {
@@ -63,11 +66,13 @@
           }
           break;
         case 'checkbox':
-          // Create a fieldId___option1, fieldId___2, etc. value for checkboxes
-          value = {};
-          for (var j = 0; j < field.options.length; j++) {
-            value[field.options[j].value] = false;
+          if (!angular.isDefined(index)) {
+            $log.log('No index specified for field: ' + field.id + '. Returning default value of false');
+            value = false;
+            break;
           }
+
+          value = false;
           break;
         case "text":
         case "notes":
@@ -163,7 +168,7 @@
     }
 
     /**
-     * Translates a REDCap-style options string into an array of options
+     * Translates a REDCap-style options into parsable
      *
      * @param fieldType The type of field
      * @param options_string a REDCap string representation of choices or calculations, e.g. for a checkbox field
@@ -196,7 +201,7 @@
             if (result.length > 1) {
               options.push(
                 {
-                  "value": result[1],
+                  "value": result[1].toLowerCase(),
                   "label": result[2]
                 }
               )
@@ -290,33 +295,63 @@
       }
     }
 
-    function translateToREDCapStyleFields(values) {
-      var data = {};
-      var value;
+    /**
+     * Takes a list of values and optional fields and converts them to VandAID style fields as defined by field type or
+     * via pattern recognition of checkbox values
+     *
+     * @param values
+     * @param fields
+     */
+    function updateToVandAIDStyleFieldValues(values, fields) {
+      var pattern = /(.+)___(.+)/;
 
-      Object.keys(values).forEach(function (fieldName, index) {
-        // key: the name of the object key
-        // index: the ordinal position of the key within the object
-        value = values[fieldName];
+      angular.forEach(values, function(val, key) {
+        var result = pattern.exec(key);
 
-        if (value.constructor === Object) {
-          Object.keys(value).forEach(function (key) {
-            data[fieldName + '___' + key.toLowerCase()] = formatValue(value[key]);
-          });
+        // looks for items matching the 'key' pattern
+        if (result !== null) {
+          // If matches, use the 'checkbox' type
+          values[key] = getVandAIDStyleFieldValue('checkbox', val);
         } else {
-          data[fieldName] = formatValue(value);
+          // If no match, try to discover the field type in the list of fields (if it exists)
+          if (angular.isDefined(fields[key])) {
+            values[key] = getVandAIDStyleFieldValue(fields[key].type, val);
+          }
         }
       });
 
-      function formatValue(input) {
-        if (typeof(input) !== 'boolean') return input;
+    }
 
-        if (input) {
-          return '1';
-        } else {
-          return '0';
-        }
+    function getVandAIDStyleFieldValue(fieldType, value) {
+      // Set specific options (json formatted) for data type
+      switch (fieldType) {
+        case "checkbox":
+        case "yesno":
+        case "truefalse":
+          return ((typeof(value) === "boolean" && value) || value === "1");
+        case "radio":
+        case "text":
+        case "notes":
+        default:
+          return value || "";
       }
+    }
+
+    function translateToREDCapStyleFields(values) {
+//       var data = angular.copy(values);
+      var data = {};
+
+      angular.forEach(values, function (val, key) {
+        if (typeof(val) === "boolean") {
+          if (val) {
+            data[key.toLowerCase()] = "1";
+          }  else {
+            data[key.toLowerCase()] = "0";
+          }
+        } else {
+          data[key.toLowerCase()] = val;
+        }
+      });
 
       return data;
     }
@@ -429,5 +464,30 @@
       });
     }
 
+    /**
+     * Adds values from given field to specified values object. Optionally overwrites the current value
+     *
+     * @param field
+     * @param valuesObject
+     * @param overwrite
+     */
+    function addFieldValue(field, valuesObject, overwrite) {
+      var valueKey = '';
+      if (field.type === "checkbox") {
+        for (var i = 0; i < field.options.length; i++) {
+          valueKey = (field.id + '___' + field.options[i].value);
+
+          if (overwrite || !angular.isDefined(valuesObject[valueKey])) {
+            valuesObject[valueKey] = getInitialValue(field, i);
+          }
+        }
+      } else {
+        valueKey = field.id;
+
+        if (overwrite || !angular.isDefined(valuesObject[valueKey])) {
+          valuesObject[field.id] = getInitialValue(field);
+        }
+      }
+    }
   }
 })();

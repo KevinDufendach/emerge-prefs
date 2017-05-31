@@ -58,7 +58,7 @@
     <td class="td-center">
       <md-button
           aria-label="Always include {{condition.condition}}"
-          ng-class="{'md-primary md-raised': va.manual_include[condition.id]}"
+          ng-class="{'md-primary md-raised': va['manual_include___' + condition.id]}"
           ng-click="vm.setManual(condition.id, true)"
           class="md-icon-button">
         <md-tooltip>Always Include</md-tooltip>
@@ -68,7 +68,7 @@
     <td class="td-center">
       <md-button
           aria-label="Always exclude {{condition.condition}}"
-          ng-class="{'md-warn md-raised': va.manual_exclude[condition.id]}"
+          ng-class="{'md-warn md-raised': va['manual_exclude___' + condition.id]}"
           ng-click="vm.setManual(condition.id, false)"
           class="md-icon-button">
         <md-tooltip>Always Exclude</md-tooltip>
@@ -134,7 +134,7 @@
       <span flex></span>
       <md-button
           aria-label="Always include {{condition.condition}}"
-          ng-class="{'md-primary md-raised': va.manual_include[condition.id]}"
+          ng-class="{'md-primary md-raised': va['manual_include___' + condition.id]}"
           ng-click="vm.setManual(condition.id, true)"
           class="md-icon-button">
         <md-tooltip>Always Include</md-tooltip>
@@ -142,7 +142,7 @@
       </md-button>
       <md-button
           aria-label="Always exclude {{condition.condition}}"
-          ng-class="{'md-warn md-raised': va.manual_exclude[condition.id]}"
+          ng-class="{'md-warn md-raised': va['manual_exclude___' + condition.id]}"
           ng-click="vm.setManual(condition.id, false)"
           class="md-icon-button">
         <md-tooltip>Always Exclude</md-tooltip>

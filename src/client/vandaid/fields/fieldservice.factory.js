@@ -19,7 +19,7 @@
 
     var pendingTasks = 0;
 
-    var values = {};
+    self.values = {};
 
     self.fields = [];
     self.state = states.UNITIALIZED;
@@ -36,7 +36,7 @@
       getFields: getFields,
       getValue: getValue,
       submit: submitFields,
-      values: values
+      values: self.values
     };
     return service;
 
@@ -61,14 +61,11 @@
                 curField = new redcapService.fieldConstructor(data[i]);
                 self.fields.push(curField);
 
-                // Check if value for this field_id exists. If so, use that value,
-                // otherwise get initial value from REDCap service
-
-                if (angular.exists(values[curField.id])) {
-                  
-                }
-                values[curField.id] = redcapService.getInitialValue(curField);
+                // use REDCap service to add field value to the values object
+                redcapService.addFieldValue(curField, self.values, false);
               }
+
+              redcapService.updateToVandAIDStyleFieldValues(self.values, self.fields);
 
               self.state = states.READY;
 
@@ -133,13 +130,13 @@
      * @param code optional code for checkboxes. Ignored for other data types.
      */
     function getValue(fieldName, code) {
-      if (!fieldName || !values[fieldName]) return;
+      if (!fieldName || !self.values[fieldName]) return;
 
-      if (angular.isDefined(values[fieldName][code])) {
-        return values[fieldName][code];
+      if (angular.isDefined(self.values[fieldName + '___' + code])) {
+        return self.values[fieldName + '___' + code];
       }
 
-      return values[fieldName];
+      return self.values[fieldName];
     }
 
     /**
@@ -148,7 +145,7 @@
      * @return {*} Returns promise from the redcap service
      */
     function submitFields() {
-      return redcapService.submitData(vandaidUserService.getUser(), values);
+      return redcapService.submitData(vandaidUserService.getUser(), self.values);
     }
 
     function loadDefaults() {
@@ -157,7 +154,12 @@
         function(data) {
           $log.log('Data successfully loaded');
 
+          angular.forEach(data,
+            function (val, key) {
+              self.values[key.toLowerCase()] = val;
+            });
 
+          redcapService.updateToVandAIDStyleFieldValues(self.values, self.fields);
         },
         function(e) {
           $log.log('unable to load data: ' + e)

@@ -72,13 +72,12 @@
             '</md-radio-group>';
         case 'truefalse':
           return '<md-radio-group ng-model="vm.va[vm.field.id]">' +
-            '<md-radio-button ng-repeat="option in vm.field.options"' +
-            'ng-value="option.value">{{option.label}}' +
+            '<md-radio-button ng-repeat="option in vm.field.options" ng-value="option.value">{{option.label}}' +
             '</md-radio-button>' +
             '</md-radio-group>';
         case 'checkbox':
           return '<div><div ng-repeat="option in vm.field.options" class="checkbox">' +
-            '<md-checkbox ng-model="vm.va[vm.field.id][option.value]">{{ option.label }}</md-checkbox>' +
+            '<md-checkbox ng-model="vm.va[vm.field.id + \'___\' + option.value]">{{ option.label }}</md-checkbox>' +
             '</div></div>';
         default:
           return '<div layout="row" layout-sm="column" layout-align="space-around">' +

@@ -48,8 +48,8 @@
           $scope.va = vandaidFieldService.values;
           vm.va = vandaidFieldService.values;
 
-          vm.va.adol_preventable[1] = true;
-          vm.va.adol_treatable[1] = true;
+//           vm.va.adol_preventable___1 = true;
+//           vm.va.adol_treatable___1 = true;
         }
       );
     }
@@ -67,23 +67,23 @@
       }
 
       if (!ignoreOverrides) {
-        if (vm.va.manual_exclude[condition.id]) {
+        if (vm.va['manual_exclude___' + condition.id]) {
           return false;
         }
-        if (vm.va.manual_include[condition.id]) {
+        if (vm.va['manual_include___' + condition.id]) {
           return true;
         }
       }
 
       return (
         (
-          (condition.preventable && vm.va.adol_preventable[1]) ||
-          (!condition.preventable && vm.va.adol_preventable[2])
+          (condition.preventable && vm.va.adol_preventable___1) ||
+          (!condition.preventable && vm.va.adol_preventable___2)
         )
         &&
         (
-          (condition.treatable && vm.va.adol_treatable[1]) ||
-          (!condition.treatable && vm.va.adol_treatable[2])
+          (condition.treatable && vm.va.adol_treatable___1) ||
+          (!condition.treatable && vm.va.adol_treatable___2)
         )
         &&
         (!condition.adult_onset || vm.va.adol_adult_onset == "1")
@@ -94,15 +94,15 @@
       if (!conditionId) return;
 
       try {
-        if (vm.va.manual_include[conditionId]) {
-          vm.va.manual_include[conditionId] = false;
-          vm.va.manual_exclude[conditionId] = true;
-        } else if (vm.va.manual_exclude[conditionId]) {
-          vm.va.manual_include[conditionId] = false;
-          vm.va.manual_exclude[conditionId] = false;
+        if (vm.va['manual_include___' + conditionId]) {
+          vm.va['manual_include___' + conditionId] = false;
+          vm.va['manual_exclude___' + conditionId] = true;
+        } else if (vm.va['manual_exclude___' + conditionId]) {
+          vm.va['manual_include___' + conditionId] = false;
+          vm.va['manual_exclude___' + conditionId] = false;
         } else {
-          vm.va.manual_include[conditionId] = true;
-          vm.va.manual_exclude[conditionId] = false;
+          vm.va['manual_include___' + conditionId] = true;
+          vm.va['manual_exclude___' + conditionId] = false;
         }
 
         $scope.includeAll = false;
@@ -113,18 +113,18 @@
     }
 
     function setManual(conditionId, value) {
-      if (!conditionId) return;
+      if (!conditionId || typeof(conditionId) !== 'string') return;
 
       try {
         if (value) { // true is for manual include
-          vm.va.manual_include[conditionId] = !vm.va.manual_include[conditionId];
-          if (vm.va.manual_include[conditionId]) {
-            vm.va.manual_exclude[conditionId] = false;
+          vm.va['manual_include___' + conditionId] = !vm.va['manual_include___' + conditionId];
+          if (vm.va['manual_include___' + conditionId]) {
+            vm.va['manual_exclude___' + conditionId] = false;
           }
         } else {
-          vm.va.manual_exclude[conditionId] = !vm.va.manual_exclude[conditionId];
-          if (vm.va.manual_exclude[conditionId]) {
-            vm.va.manual_include[conditionId] = false;
+          vm.va['manual_exclude___' + conditionId] = !vm.va['manual_exclude___' + conditionId];
+          if (vm.va['manual_exclude___' + conditionId]) {
+            vm.va['manual_include___' + conditionId] = false;
           }
         }
 
@@ -144,14 +144,14 @@
         excludeVal = false;
       }
 
-      angular.forEach(vm.va.manual_include,
+      angular.forEach(vm.va,
         function (val, key) {
-          vm.va.manual_include[key] = includeVal;
-        });
-
-      angular.forEach(vm.va.manual_exclude,
-        function (val, key) {
-          vm.va.manual_exclude[key] = excludeVal;
+          if (key.substr(0, 17) === 'manual_include___') {
+            vm.va[key] = includeVal;
+          }
+          if (key.substr(0, 17) === 'manual_exclude___') {
+            vm.va[key] = excludeVal;
+          }
         });
 
       $scope.includeAll = includeVal;
@@ -201,7 +201,6 @@
           return prefix + 'pancreas.png';
         case 'STOMACH':
           return prefix + 'gi_tract.png';
-
         case 'VASDEFERENS':
           return prefix + 'scrotum.png';
         case 'VESSEL':

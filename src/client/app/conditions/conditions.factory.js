@@ -53,10 +53,15 @@
             // On success
             function (response) {
               // ToDo: reject if error retrieving data or not formatted correctly
+              
+              var condition;
 
               try {
                 for (var i = 0; i < response.data.data.length; i++) {
-                  self.conditions.push(response.data.data[i]);
+                  condition = response.data.data[i];
+                  condition.id = condition.id.toLowerCase();
+
+                  self.conditions.push(condition);
                 }
 
               } catch (e) {
