@@ -60,6 +60,13 @@
               for (i = 0; i < data.length; i++) {
                 curField = new redcapService.fieldConstructor(data[i]);
                 self.fields.push(curField);
+
+                // Check if value for this field_id exists. If so, use that value,
+                // otherwise get initial value from REDCap service
+
+                if (angular.exists(values[curField.id])) {
+                  
+                }
                 values[curField.id] = redcapService.getInitialValue(curField);
               }
 
@@ -147,8 +154,10 @@
     function loadDefaults() {
       redcapService.loadData(vandaidUserService.getUser(), __va.formName || 'my_first_instrumcnt').then(
         // on successful load:
-        function() {
+        function(data) {
           $log.log('Data successfully loaded');
+
+
         },
         function(e) {
           $log.log('unable to load data: ' + e)
