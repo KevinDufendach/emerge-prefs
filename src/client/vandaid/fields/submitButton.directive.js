@@ -28,7 +28,7 @@
         // on success
         function () {
           var toast = $mdToast.simple()
-            .textContent('Successfully saved to REDCap')
+            .textContent(__va.submit_button_text || 'Successfully saved to REDCap')
             .position('top right')
             .hideDelay(3000);
 

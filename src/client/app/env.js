@@ -20,6 +20,7 @@
   window.__va.top_bar_background = 'grey-50';
   window.__va.side_bar_background = 'primary-500';
   window.__va.submit_button_class = 'md-accent';
+  window.__va.submit_button_text = 'Preferences Saved';
 
   // Logo
   window.__va.logo = '/content/img/CCHMC_logo_ht128px.png';
