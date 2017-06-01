@@ -26,18 +26,20 @@
     self.initializeResolveList = [];
     self.initializeRejectList = [];
 
-    initializeFields();
-    loadDefaults();
+    // initializeFields();
+    // loadDefaults();
 
     var service = {
       fields: self.fields,
       isReady: isReady,
-      // initialize: initializeFields,
+      initialize: initialize,
       getFields: getFields,
       getValue: getValue,
       submit: submitFields,
       values: self.values
     };
+
+    initialize();
     return service;
 
     //////////////////
@@ -47,9 +49,42 @@
      * @returns {*} Promise callback that allows functionality after the service is initialized. Reminder:
      *    Callback should be fieldService.initialize().then( function onSuccess() { // doSomething } );
      */
-    function initializeFields() {
-      self.state = states.INITIALIZING;
+    function initialize() {
+      self.sate = states.INITIALIZING;
 
+      return $q.all(
+        [
+          initializeFields(),
+          vandaidUserService.verifyUser()
+            .then(loadDefaults())
+        ]
+      ).then(
+        // on success
+        function () {
+          redcapService.updateToVandAIDStyleFieldValues(self.values, self.fields);
+
+          for (var i = 0; i < self.initializeResolveList.length; i++) {
+            self.initializeResolveList[i](self.fields, self.values);
+          }
+
+          self.initializeResolveList.length = 0;
+          self.initializeRejectList.length = 0;
+        },
+
+        // on failure
+        function (e) {
+          for (var i = 0; i < self.initializeRejectList.length; i++) {
+            self.initializeRejectList[i](response);
+          }
+          self.initializeResolveList.length = 0;
+          self.initializeRejectList.length = 0;
+
+          $log.log('Error initializing field service: ' + e)
+        }
+      )
+    }
+
+    function initializeFields() {
       return $q(function (resolve, reject) {
         redcapService.retrieveFieldsFromREDCap(__va.formName)
           .then(
@@ -61,32 +96,15 @@
                 curField = new redcapService.fieldConstructor(data[i]);
                 self.fields.push(curField);
 
-                // use REDCap service to add field value to the values object
+                // use REDCap service to add field value to the values object. Don't overwrite
                 redcapService.addFieldValue(curField, self.values, false);
               }
-
-              redcapService.updateToVandAIDStyleFieldValues(self.values, self.fields);
-
-              self.state = states.READY;
-
-              for (i = 0; i < self.initializeResolveList.length; i++) {
-                self.initializeResolveList[i](self.fields);
-              }
-              self.initializeResolveList.length = 0;
-              self.initializeRejectList.length = 0;
 
               resolve(self.fields);
             },
             // On failure
-            function (response) {
-              var i;
-              for (i = 0; i < self.initializeRejectList.length; i++) {
-                self.initializeRejectList[i](response);
-              }
-              self.initializeResolveList.length = 0;
-              self.initializeRejectList.length = 0;
-
-              reject(response);
+            function (e) {
+              reject(e);
             }
           );
       })
@@ -149,23 +167,40 @@
     }
 
     function loadDefaults() {
-      redcapService.loadData(vandaidUserService.getUser(), __va.formName || 'my_first_instrumcnt').then(
-        // on successful load:
-        function(data) {
-          $log.log('Data successfully loaded');
+      if (!vandaidUserService.isLoggedIn()) {
+        loadData(vandaidUserService.getUser()).then(
+          // Nothing to do with resolve
+          angular.noop
+          ,
+          // If reject, try 'default' user settings
+          loadData(new vandaidUserService.userConstructor({id: 'default', key: ''}))
+        )
+      }
+    }
 
-          angular.forEach(data,
-            function (val, key) {
-              self.values[key.toLowerCase()] = val;
-            });
+    function loadData(user) {
+      return $q(function (resolve, reject) {
 
-          redcapService.updateToVandAIDStyleFieldValues(self.values, self.fields);
-        },
-        function(e) {
-          $log.log('unable to load data: ' + e)
-        }
+        redcapService.loadData(user, __va.formName || 'my_first_instrumcnt').then(
+          // on successful load:
+          function (data) {
+            $log.log('Data successfully loaded');
 
-      );
+            angular.forEach(data,
+              function (val, key) {
+                self.values[key] = val;
+              });
+            resolve(self.values);
+          },
+          function (e) {
+            $log.log('unable to load data: ' + e);
+
+            reject('unable to load data: ' + e);
+          }
+        );
+
+      })
+
     }
   }
 

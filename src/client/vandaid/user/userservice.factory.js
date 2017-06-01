@@ -18,7 +18,8 @@
       VERIFYING: 1,
       LOGGED_OUT: 2,
       SET: 3,
-      LOGGED_IN: 4
+      UNAUTHORIZED: 4,
+      LOGGED_IN: 5
     };
 
     var state = states.INITIAL;
@@ -29,7 +30,9 @@
     var service = {
       isLoggedIn: isLoggedIn,
       getUser: getUser,
-      getState: getState
+      getState: getState,
+      verifyUser: verifyExistingUser,
+      userConstructor: User
     };
     return service;
 
@@ -55,13 +58,34 @@
       return state >= states.SET;
     }
 
+    function verifyExistingUser() {
+      return $q(function(resolve, reject) {
+        if (state > 3) {
+          if (isLoggedIn()) {
+            resolve();
+          } else {
+            reject();
+          }
+        } else {
+          verifyUser(user.id, user.key).then(
+            function(val) {
+              resolve(val);
+            },
+            function(val) {
+              reject(val);
+            }
+          )
+        }
+      });
+    }
+
     /**
      * Verifies a user id and key
      *
      * @return {*}
      */
     function verifyUser(id, key) {
-      self.state = states.VERIFYING;
+      self.state = Math.max(states.VERIFYING, state);
 
       return $q(function (resolve, reject) {
         var params = {
@@ -81,12 +105,15 @@
             if (returnData.data === 'AUTHORIZED') {
               state = states.LOGGED_IN;
             } else {
-              state = states.LOGGED_OUT;
+              state = states.UNAUTHORIZED;
             }
+
+            resolve();
           },
           // on failure
           function (returnData) {
             console.log('verify request failed: ' + returnData);
+            reject();
           }
         )
       });
