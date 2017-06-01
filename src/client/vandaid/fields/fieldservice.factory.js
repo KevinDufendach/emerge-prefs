@@ -17,17 +17,12 @@
       READY: 3
     };
 
-    var pendingTasks = 0;
-
     self.values = {};
-
     self.fields = [];
     self.state = states.UNITIALIZED;
+
     self.initializeResolveList = [];
     self.initializeRejectList = [];
-
-    // initializeFields();
-    // loadDefaults();
 
     var service = {
       fields: self.fields,
@@ -40,6 +35,7 @@
     };
 
     initialize();
+
     return service;
 
     //////////////////
@@ -50,18 +46,20 @@
      *    Callback should be fieldService.initialize().then( function onSuccess() { // doSomething } );
      */
     function initialize() {
-      self.sate = states.INITIALIZING;
+      self.state = states.INITIALIZING;
 
       return $q.all(
         [
           initializeFields(),
-          vandaidUserService.verifyUser()
-            .then(loadDefaults())
+          verifyAndLoad()
         ]
       ).then(
         // on success
         function () {
+          $log.log('updating field styles');
           redcapService.updateToVandAIDStyleFieldValues(self.values, self.fields);
+
+          self.state = states.READY;
 
           for (var i = 0; i < self.initializeResolveList.length; i++) {
             self.initializeResolveList[i](self.fields, self.values);
@@ -84,7 +82,23 @@
       )
     }
 
+    function verifyAndLoad() {
+      return $q(function (resolve, reject) {
+        vandaidUserService.verifyUser()
+          .then(loadDefaults().then(
+            function () {
+              resolve();
+            },
+            function (e) {
+              reject(e);
+            }
+          ))
+      });
+    }
+
     function initializeFields() {
+      $log.log('initializing fields');
+
       return $q(function (resolve, reject) {
         redcapService.retrieveFieldsFromREDCap(__va.formName)
           .then(
@@ -167,20 +181,48 @@
     }
 
     function loadDefaults() {
-      if (!vandaidUserService.isLoggedIn()) {
-        loadData(vandaidUserService.getUser()).then(
-          // Nothing to do with resolve
-          angular.noop
-          ,
-          // If reject, try 'default' user settings
-          loadData(new vandaidUserService.userConstructor({id: 'default', key: ''}))
-        )
-      }
+      $log.log('loading defaults');
+
+      return $q(function (resolve, reject) {
+        if (vandaidUserService.isLoggedIn()) {
+          loadData(vandaidUserService.getUser())
+            .then(
+              // Nothing to do with resolve
+              function () {
+                resolve();
+              }
+              ,
+              // If reject, try 'default' user settings
+              function () {
+                $log.log('Validation failed, using default user');
+                var usr = new vandaidUserService.userConstructor({id: 'default', key: ''});
+                loadData(usr)
+                  .then(
+                    function () {
+                      resolve();
+                    },
+                    function () {
+                      reject();
+                    });
+              }
+            )
+        } else {
+          $log.log('using default user');
+          var usr = new vandaidUserService.userConstructor({id: 'default', key: ''});
+          loadData(usr).then(
+            function() {
+              resolve();
+            },
+            function(e) {
+              reject(e);
+            }
+          );
+        }
+      })
     }
 
     function loadData(user) {
       return $q(function (resolve, reject) {
-
         redcapService.loadData(user, __va.formName || 'my_first_instrumcnt').then(
           // on successful load:
           function (data) {

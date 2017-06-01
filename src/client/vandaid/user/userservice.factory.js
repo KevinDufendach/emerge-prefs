@@ -58,6 +58,11 @@
       return state >= states.SET;
     }
 
+    /**
+     * Verify
+     *
+     * @returns {*}
+     */
     function verifyExistingUser() {
       return $q(function(resolve, reject) {
         if (state > 3) {

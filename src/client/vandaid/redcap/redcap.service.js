@@ -451,9 +451,10 @@
             if (returnData.data.length === 1) {
               resolve(returnData.data[0]);
             } else {
-              reject("Unable to submit to REDCap: " + returnData.data);
+              reject("REDCap service data was non-zero length: " + returnData.data);
             }
           },
+          // $http fail callback
           function (returnData) {
             $log.log("Unable to reach REDCap: " + returnData.statusText);
 
