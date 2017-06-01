@@ -57,7 +57,7 @@
       ng-class="{'not-shown': !vm.getShownStatus(condition)}">
     <td class="td-center">
       <md-button
-          aria-label="Always include {{condition.condition}}"
+          aria-label="Always include {{::condition.condition}}"
           ng-class="{'md-primary md-raised': va['manual_include___' + condition.id]}"
           ng-click="vm.setManual(condition.id, true)"
           class="md-icon-button">
@@ -67,7 +67,7 @@
     </td>
     <td class="td-center">
       <md-button
-          aria-label="Always exclude {{condition.condition}}"
+          aria-label="Always exclude {{::condition.condition}}"
           ng-class="{'md-warn md-raised': va['manual_exclude___' + condition.id]}"
           ng-click="vm.setManual(condition.id, false)"
           class="md-icon-button">
@@ -75,13 +75,13 @@
         <md-icon class="s24" aria-label="exclude">close</md-icon>
       </md-button>
     </td>
-    <td class="td-center"><img ng-repeat="organ in condition.organs" class="organ-img"
-                               ng-src="{{vm.getImageUrl(organ)}}"/></td>
-    <td>{{condition.condition}}</td>
+    <td class="td-center">
+      <img ng-repeat="organ in condition.organs" class="organ-img" ng-src="{{::vm.getImageUrl(organ)}}"/>
+    </td>
+    <td>{{::condition.condition}}</td>
     <td>
-      <p>{{condition.description}}</p>
+      <p>{{::condition.description}}</p>
       <div hide-gt-md>
-
         <div class="md-warn" md-colors="::{color: 'warn'}"
              ng-show="(condition.carrier && va.adol_carrier != '1'
             && vm.getShownStatus(condition))">Carrier status would not be reported.
@@ -95,16 +95,17 @@
       </div>
     </td>
     <td ng-if="$mdMedia('gt-md')" class="td-center">
-      <md-icon ng-show="condition.preventable" aria-label="check">check</md-icon>
+      <md-icon ng-show="::condition.preventable" aria-label="check">check</md-icon>
     </td>
     <td ng-if="$mdMedia('gt-md')" class="td-center">
-      <md-icon ng-show="condition.treatable" aria-label="check">check</md-icon>
+      <md-icon ng-show="::condition.treatable" aria-label="check">check</md-icon>
     </td>
     <td ng-if="$mdMedia('gt-md')" class="td-center">
-      <md-icon ng-show="condition.adult_onset" aria-label="check">check</md-icon>
+      <md-icon ng-show="::condition.adult_onset" aria-label="check">check</md-icon>
     </td>
-    <td ng-if="$mdMedia('gt-md')" class="td-center" ng-class="{'not-shown': condition.carrier && (va.adol_carrier != '1')}">
-      <md-icon ng-show="condition.carrier" aria-label="check">check</md-icon>
+    <td ng-if="$mdMedia('gt-md')" class="td-center"
+        ng-class="{'not-shown': condition.carrier && (va.adol_carrier != '1')}">
+      <md-icon ng-show="::condition.carrier" aria-label="check">check</md-icon>
     </td>
   </tr>
   </tbody>
@@ -114,11 +115,11 @@
   <md-card ng-repeat="condition in vm.getConditions()" ng-class="{'not-shown': !vm.getShownStatus(condition)}">
     <md-card-title>
       <md-card-title-text>
-        <span class="md-headline">{{condition.condition}}</span>
+        <span class="md-headline">{{::condition.condition}}</span>
       </md-card-title-text>
     </md-card-title>
     <md-card-content>
-      <p>{{condition.description}}</p>
+      <p>{{::condition.description}}</p>
       <div class="md-warn" md-colors="::{color: 'warn'}"
            ng-show="(condition.carrier && va.adol_carrier != '1'
             && vm.getShownStatus(condition))">Carrier status would not be reported.
@@ -133,7 +134,7 @@
       </ul>
       <span flex></span>
       <md-button
-          aria-label="Always include {{condition.condition}}"
+          aria-label="Always include {{::condition.condition}}"
           ng-class="{'md-primary md-raised': va['manual_include___' + condition.id]}"
           ng-click="vm.setManual(condition.id, true)"
           class="md-icon-button">
@@ -141,7 +142,7 @@
         <md-icon md-svg-src="/content/img/pin.svg" class="s24" aria-label="pin"></md-icon>
       </md-button>
       <md-button
-          aria-label="Always exclude {{condition.condition}}"
+          aria-label="Always exclude {{::condition.condition}}"
           ng-class="{'md-warn md-raised': va['manual_exclude___' + condition.id]}"
           ng-click="vm.setManual(condition.id, false)"
           class="md-icon-button">
