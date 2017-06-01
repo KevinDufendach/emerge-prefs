@@ -51,7 +51,8 @@
   </style>
 </head>
 
-<body layout="column" ng-controller="vaCtrl">
+<body layout="row" ng-controller="vaCtrl">
+<md-content layout="column">
 
 <!-- BROWSE HAPPY BEGINS HERE -->
 <!--[if IE 6]>
@@ -105,6 +106,7 @@
     <va-submit-button hide show-gt-sm class="submit-fab"></va-submit-button>
   </div>
 </div>
+</md-content>
 
 <!-- Angular Material Dependencies -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
@@ -167,6 +169,7 @@
 <script src="/vandaid/navigation/topbar.directive.js"></script>
 <script src="/vandaid/navigation/fieldtabs.directive.js"></script>
 <script src="/vandaid/navigation/expandable.directive.js"></script>
+<script src="/vandaid/navigation/dataSubmitted.toastpreset.js"></script>
 
 <!--User-->
 <script src="/vandaid/user/user.module.js"></script>

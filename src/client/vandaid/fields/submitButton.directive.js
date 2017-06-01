@@ -18,13 +18,32 @@
     return directive;
   }
 
-  submitButtonCtrl.$inject = ['vandaidFieldService', '__va'];
+  submitButtonCtrl.$inject = ['vandaidFieldService', '__va', '$mdToast', '$log'];
 
-  function submitButtonCtrl(vandaidFieldService, __va) {
+  function submitButtonCtrl(vandaidFieldService, __va, $mdToast, $log) {
     var vm = this;
 
-    vm.submit = vandaidFieldService.submit;
-    vm.getButtonClass = function() {
+    vm.submit = function () {
+      vandaidFieldService.submit().then(
+        // on success
+        function () {
+          var toast = $mdToast.simple()
+            .textContent('Successfully saved to REDCap')
+            .position('top right')
+            .hideDelay(3000);
+
+          $mdToast.show(toast);
+
+        },
+        // on error
+        function (e) {
+          $log.log('Submission not successful: ' + e);
+          $mdToast.showSimple('Unable to submit: ' + e);
+        }
+      )
+    };
+
+    vm.getButtonClass = function () {
       return (__va.submit_button_class || 'md-accent');
     }
 

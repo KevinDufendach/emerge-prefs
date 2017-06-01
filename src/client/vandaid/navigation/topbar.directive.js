@@ -21,22 +21,43 @@
     return directive;
   }
 
-  topBarController.$inject = ['vandaidUserService', '__va', 'vandaidFieldService', '$vaThemingService', '$mdMedia'];
+  topBarController.$inject = ['vandaidUserService', '__va', 'vandaidFieldService', '$vaThemingService', '$mdMedia', '$mdToast', '$log'];
 
   /* @ngInject */
-  function topBarController(vandaidUserService, __va, vandaidFieldService, $vaThemingService, $mdMedia) {
+  function topBarController(vandaidUserService, __va, vandaidFieldService, $vaThemingService, $mdMedia, $mdToast, $log) {
     var vm = this;
 
     vm.toggleSidenav = toggleSidenav;
     vm.isLoggedIn = vandaidUserService.isLoggedIn();
     vm.getLogo = getLogo;
     vm.getBackground = getBackground;
-    vm.submit = vandaidFieldService.submit;
-    vm.$mdMedia = $mdMedia
+    vm.submit = submit;
+    vm.$mdMedia = $mdMedia;
 
     vm.title = __va.title || 'VandAID - Active Interface Design';
 
     //////////////
+
+    function submit() {
+      vandaidFieldService.submit().then(
+        // on success
+        function() {
+          // $log.log('successfully submitted to REDCap');
+          // $mdToast.testPreset();
+          var toast = $mdToast.simple()
+            .textContent('Successfully saved to REDCap')
+            .position('top right')
+            .hideDelay(3000);
+
+          $mdToast.show(toast);
+        },
+        function() {
+          $log.log('Unsuccessful submission to REDCap');
+          $mdToast.testPreset();
+        }
+
+      )
+    }
 
     function toggleSidenav(navID) {
       // $mdSidenav(navID).toggle();
