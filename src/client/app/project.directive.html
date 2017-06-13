@@ -47,7 +47,7 @@
     </th>
     <th>Primary Organ(s) or Cancer</th>
     <th>Condition</th>
-    <th>Description</th>
+    <!--<th>Description</th>-->
     <th ng-if="$mdMedia('gt-md')">Preventable</th>
     <th ng-if="$mdMedia('gt-md')">Treatable</th>
     <th ng-if="$mdMedia('gt-md')">Adult Onset</th>
@@ -78,9 +78,9 @@
     <td class="td-center">
       <img ng-repeat="organ in condition.organs" class="organ-img" ng-src="{{::vm.getImageUrl(organ)}}"/>
     </td>
-    <td>{{::condition.condition}}</td>
     <td>
-      <p>{{::condition.description}}</p>
+      <h4 class="condition-header">{{::condition.condition}}</h4>
+      <p class="condition-description">{{::condition.description}}</p>
       <div hide-gt-md>
         <div class="md-warn" md-colors="::{color: 'warn'}"
              ng-show="(condition.carrier && va.adol_carrier != '1'

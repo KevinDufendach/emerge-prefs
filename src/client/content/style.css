@@ -115,3 +115,12 @@ ul.tags li:after {
 ul.tags li:last-child:after {
     content: "";
 }
+
+.condition-header {
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+.condition-description {
+    margin: 6px 0;
+}
