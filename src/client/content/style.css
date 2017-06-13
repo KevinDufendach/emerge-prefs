@@ -124,3 +124,7 @@ ul.tags li:last-child:after {
 .condition-description {
     margin: 6px 0;
 }
+
+.overflow-auto {
+    overflow: auto;
+}

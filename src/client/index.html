@@ -53,8 +53,6 @@
 </head>
 
 <body layout="row" ng-controller="vaCtrl">
-<md-content layout="column">
-
 <!-- BROWSE HAPPY BEGINS HERE -->
 <!--[if IE 6]>
 <p class="browsehappy"><img/>You are using an <strong>outdated</strong> browser. Please <a
@@ -80,6 +78,8 @@
 <![endif]-->
 <!-- BROWSE HAPPY ENDS HERE -->
 
+
+<md-content layout="column" flex>
 <va-top-bar><h3>Loading...</h3></va-top-bar>
 <div layout="row" flex>
   <expandable hide show-gt-sm direction="horizontal" md-whiteframe="3" ng-class="{'h-expanded': sidebarExpanded || $mdMedia('gt-md')}"
@@ -99,7 +99,7 @@
       </md-toolbar>
 
       <!--Main Content-->
-      <va-canvas flex layout-fill>
+      <va-canvas flex layout-fill ng-class="$mdMedia('gt-sm') ? 'overflow-auto' : ''">
         <emerge-prefs></emerge-prefs>
       </va-canvas>
     </div>

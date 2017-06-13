@@ -111,7 +111,7 @@
   </tbody>
 </table>
 
-<md-list ng-if="!$mdMedia('gt-sm')">
+<md-list ng-if="!$mdMedia('gt-sm')" flex>
   <md-card ng-repeat="condition in vm.getConditions()" ng-class="{'not-shown': !vm.getShownStatus(condition)}">
     <md-card-title layout="row">
       <md-card-title-text>
