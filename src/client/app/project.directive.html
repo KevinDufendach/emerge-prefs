@@ -113,13 +113,15 @@
 
 <md-list ng-if="!$mdMedia('gt-sm')">
   <md-card ng-repeat="condition in vm.getConditions()" ng-class="{'not-shown': !vm.getShownStatus(condition)}">
-    <md-card-title>
+    <md-card-title layout="row">
       <md-card-title-text>
-        <span class="md-headline">{{::condition.condition}}</span>
+        <h4 class="condition-header">{{::condition.condition}}</h4>
       </md-card-title-text>
+      <span flex></span>
+      <img ng-repeat="organ in condition.organs" class="organ-img" ng-src="{{::vm.getImageUrl(organ)}}"/>
     </md-card-title>
     <md-card-content>
-      <p>{{::condition.description}}</p>
+      <p class="condition-description">{{::condition.description}}</p>
       <div class="md-warn" md-colors="::{color: 'warn'}"
            ng-show="(condition.carrier && va.adol_carrier != '1'
             && vm.getShownStatus(condition))">Carrier status would not be reported.
