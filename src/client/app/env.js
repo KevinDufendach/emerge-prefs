@@ -26,7 +26,7 @@
   window.__va.logo = '/content/img/CCHMC_logo_ht128px.png';
 
   // Title
-  window.__va.title = 'Genetic Information Preferences Survey';
+  window.__va.title = 'Decision Aid for Return of Genetic Results';
 
   // Form name
   window.__va.formName = 'adolescent_preferences';

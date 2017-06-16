@@ -23,7 +23,13 @@
     color: rgba(100, 100, 100, 0.4);
 }
 
-.td-center {
+.shown {
+    /*text-shadow: 0 0 10px #FFFFFF;*/
+    color: black;
+    background-color: white;
+}
+
+.center {
     text-align: center;
     vertical-align: middle;
 }

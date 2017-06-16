@@ -51,11 +51,11 @@
     <th ng-if="$mdMedia('gt-md')">Preventable</th>
     <th ng-if="$mdMedia('gt-md')">Treatable</th>
     <th ng-if="$mdMedia('gt-md')">Adult Onset</th>
-    <th ng-if="$mdMedia('gt-md')">Carrier Status</th>
+    <!--<th ng-if="$mdMedia('gt-md')">Carrier Status</th>-->
   </tr>
   <tr ng-repeat="condition in vm.getConditions()"
-      ng-class="{'not-shown': !vm.getShownStatus(condition)}">
-    <td class="td-center">
+      ng-class="(vm.getShownStatus(condition) ? 'shown' : 'not-shown')">
+    <td class="center">
       <md-button
           aria-label="Always include {{::condition.condition}}"
           ng-class="{'md-primary md-raised': va['manual_include___' + condition.id]}"
@@ -65,7 +65,7 @@
         <md-icon md-svg-src="/content/img/pin.svg" class="s24" aria-label="pin"></md-icon>
       </md-button>
     </td>
-    <td class="td-center">
+    <td class="center">
       <md-button
           aria-label="Always exclude {{::condition.condition}}"
           ng-class="{'md-warn md-raised': va['manual_exclude___' + condition.id]}"
@@ -75,17 +75,17 @@
         <md-icon class="s24" aria-label="exclude">close</md-icon>
       </md-button>
     </td>
-    <td class="td-center">
+    <td class="center">
       <img ng-repeat="organ in condition.organs" class="organ-img" ng-src="{{::vm.getImageUrl(organ)}}"/>
     </td>
     <td>
       <h4 class="condition-header">{{::condition.condition}}</h4>
       <p class="condition-description">{{::condition.description}}</p>
       <div hide-gt-md>
-        <div class="md-warn" md-colors="::{color: 'warn'}"
-             ng-show="(condition.carrier && va.adol_carrier != '1'
-            && vm.getShownStatus(condition))">Carrier status would not be reported.
-        </div>
+        <!--<div class="md-warn" md-colors="::{color: 'warn'}"-->
+             <!--ng-show="(condition.carrier && va.adol_carrier != '1'-->
+            <!--&& vm.getShownStatus(condition))">Carrier status would not be reported.-->
+        <!--</div>-->
         <ul class="tags">
           <li><span ng-class="::{'opacity-10': !condition.preventable}">Preventable</span></li>
           <li><span ng-class="::{'opacity-10': !condition.treatable}">Treatable</span></li>
@@ -93,19 +93,19 @@
           <li><span ng-class="::{'opacity-10': !condition.carrier}">Carrier Status</span></li>
         </ul>
       </div>
+      <div ng-if="::condition.carrier" class="center"
+           ng-class="(condition.carrier && (va.adol_carrier != '1') ? 'not-shown' : 'shown')">
+        <span>Carrier status would <span ng-show="va.adol_carrier != '1'">not </span>be reported</span>
+      </div>
     </td>
-    <td ng-if="$mdMedia('gt-md')" class="td-center">
+    <td ng-if="$mdMedia('gt-md')" class="center">
       <md-icon ng-show="::condition.preventable" aria-label="check">check</md-icon>
     </td>
-    <td ng-if="$mdMedia('gt-md')" class="td-center">
+    <td ng-if="$mdMedia('gt-md')" class="center">
       <md-icon ng-show="::condition.treatable" aria-label="check">check</md-icon>
     </td>
-    <td ng-if="$mdMedia('gt-md')" class="td-center">
+    <td ng-if="$mdMedia('gt-md')" class="center">
       <md-icon ng-show="::condition.adult_onset" aria-label="check">check</md-icon>
-    </td>
-    <td ng-if="$mdMedia('gt-md')" class="td-center"
-        ng-class="{'not-shown': condition.carrier && (va.adol_carrier != '1')}">
-      <md-icon ng-show="::condition.carrier" aria-label="check">check</md-icon>
     </td>
   </tr>
   </tbody>
@@ -122,9 +122,9 @@
     </md-card-title>
     <md-card-content>
       <p class="condition-description">{{::condition.description}}</p>
-      <div class="md-warn" md-colors="::{color: 'warn'}"
-           ng-show="(condition.carrier && va.adol_carrier != '1'
-            && vm.getShownStatus(condition))">Carrier status would not be reported.
+      <div ng-if="::condition.carrier" class="center"
+           ng-class="(condition.carrier && (va.adol_carrier != '1') ? 'not-shown' : 'shown')">
+        <span>Carrier status would <span ng-show="va.adol_carrier != '1'">not </span>be reported</span>
       </div>
     </md-card-content>
     <md-card-actions layout="row">
@@ -154,6 +154,3 @@
     </md-card-actions>
   </md-card>
 </md-list>
-
-<!--<textarea cols="80" rows="30">{{va | json}}</textarea>-->
-<!--<span ng-repeat="condition in vm.getConditions()">{{condition.id}}, {{condition.condition}} | </span>-->

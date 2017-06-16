@@ -47,9 +47,6 @@
         function () {
           $scope.va = vandaidFieldService.values;
           vm.va = vandaidFieldService.values;
-
-//           vm.va.adol_preventable___1 = true;
-//           vm.va.adol_treatable___1 = true;
         }
       );
     }
@@ -58,12 +55,24 @@
       return conditionFactory.conditions;
     }
 
+    /**
+     * Returns whether or not a condition should be shown based on the currently selected logic
+     *
+     * @param condition The specific condition to be shown
+     * @param ignoreOverrides {boolean} if set to TRUE, will ignore global override settings and only use conditional
+     * logic
+     * @returns {*} boolean of whether or not the condition should be shown
+     */
     function getShownStatus(condition, ignoreOverrides) {
       if (!angular.isDefined(ignoreOverrides)) {
         ignoreOverrides = false;
       }
       if (!vandaidFieldService.isReady()) {
         return true;
+      }
+
+      if (vm.va.include_all === "0") {
+        return false;
       }
 
       if (!ignoreOverrides) {
@@ -76,15 +85,9 @@
       }
 
       return (
-        (
-          (condition.preventable && vm.va.adol_preventable___1) ||
-          (!condition.preventable && vm.va.adol_preventable___2)
-        )
+        (condition.preventable || vm.va.adol_preventable == "1")
         &&
-        (
-          (condition.treatable && vm.va.adol_treatable___1) ||
-          (!condition.treatable && vm.va.adol_treatable___2)
-        )
+        (condition.treatable || vm.va.adol_treatable == "1")
         &&
         (!condition.adult_onset || vm.va.adol_adult_onset == "1")
       )

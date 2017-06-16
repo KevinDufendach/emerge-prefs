@@ -57,8 +57,8 @@
               var condition;
 
               try {
-                for (var i = 0; i < response.data.data.length; i++) {
-                  condition = response.data.data[i];
+                for (var i = 0; i < response.data.data[0].conditions.length; i++) {
+                  condition = response.data.data[0].conditions[i];
                   condition.id = condition.id.toLowerCase();
 
                   self.conditions.push(condition);
