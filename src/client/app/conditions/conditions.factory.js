@@ -13,6 +13,7 @@
 
     self.data = [];
     self.categoryList = [];
+    self.rawJson = {};
 
     var service = {
       data: self.data,
@@ -56,7 +57,6 @@
             // On success
             function (response) {
               // ToDo: reject if error retrieving data or not formatted correctly
-              
 
               try {
                 angular.forEach(response.data.data, function(conditionList, category) {
@@ -76,21 +76,6 @@
                   }
 
                 });
-                //
-                // for (var i = 0; i < response.data.data.length; i++) {
-                //
-                //   if (self.categoryList.indexOf(category) === -1) {
-                //     self.categoryList.push(category);
-                //   }
-                //
-                //   for (var j = 0; j < response.data.data[i].conditions.length; j++) {
-                //     condition = response.data.data[j].conditions[i];
-                //
-                //   }
-                //
-                //
-                // // for (var i = 0; i < response.data.data[0].conditions.length; i++) {
-                // }
 
                 resolve(self.data);
 

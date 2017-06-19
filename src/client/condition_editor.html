@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"><![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if IE 9]>
+<html class="no-js lt-ie10" lang="en"><![endif]-->
+<!--[if gt IE 9]><!-->
+
+<html lang="en" ng-app="app">
+
+<head>
+  <link href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,400italic,700' rel='stylesheet'
+        type='text/css'>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <!-- Material design icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="stylesheet" href="/vandaid/content/css/style.css">
+  <link rel="stylesheet" href="/vandaid/content/css/expandable.css">
+  <link rel="stylesheet" href="/vandaid/content/css/fields.css">
+  <link rel="shortcut icon" href="/content/img/favicon.ico">
+
+  <title>Condition Editor</title>
+
+  <style>
+    .browsehappy {
+      display: block;
+      width: 100%;
+      height: 100px;
+      background-color: #f2dede;
+      margin: 0 0 10px;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 22px;
+      line-height: 1.4;
+      color: #333;
+      vertical-align: middle;
+    }
+
+    .browsehappy span {
+      vertical-align: middle;
+      margin: 20px 20px 20px 20px;
+      background: url("https://cdn.rawgit.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png") no-repeat;
+      height: 64px;
+      width: 64px;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body layout="row" ng-controller="vaCtrl">
+<!-- BROWSE HAPPY BEGINS HERE -->
+<!--[if IE 6]>
+<p class="browsehappy"><img/>You are using an <strong>outdated</strong> browser. Please <a
+    href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<!--[if IE 7]>
+<p class="browsehappy"><img
+    src="https://cdn.rawgit.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png"/>You are using
+  an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+  your experience.</p>
+<![endif]-->
+<!--[if IE 8]>
+<p class="browsehappy"><img
+    src="https://cdn.rawgit.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png"/>You are using
+  an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+  your experience.</p>
+<![endif]-->
+<!--[if IE 9]>
+<p class="browsehappy"><img
+    src="https://cdn.rawgit.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png"/>You are using
+  an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+  your experience.</p>
+<![endif]-->
+<!-- BROWSE HAPPY ENDS HERE -->
+
+
+<div layout="column" flex>
+  <!--<va-top-bar><h3>Loading...</h3></va-top-bar>-->
+
+  <div layout="row" flex>
+    <condition-editor flex></condition-editor>
+
+
+    <!--<expandable hide show-gt-sm direction="horizontal" md-whiteframe="3"-->
+                <!--ng-class="{'h-expanded': sidebarExpanded || $mdMedia('gt-md')}"-->
+                <!--md-colors="::{background: $vaThemingService.getSideBarBackground()}"-->
+                <!--layout="row">-->
+      <!--<va-sidenav flex></va-sidenav>-->
+    <!--</expandable>-->
+
+    <div layout-gt-sm="row" flex style="position: relative" layout-fill>
+      <va-collapse-bar hide show-md expanded="sidebarExpanded"></va-collapse-bar>
+
+      <!--Main Space-->
+      <md-content layout="column" flex ng-cloak layout-fill>
+        <!--Header-->
+        <md-toolbar hide-gt-sm class="md-whiteframe-2dp">
+          <va-field-tabs></va-field-tabs>
+        </md-toolbar>
+
+        <!--Main Content-->
+        <va-canvas flex layout-fill
+                   ng-class="false && $mdMedia('gt-sm') ? 'overflow-auto' : ''">
+          <emerge-prefs></emerge-prefs>
+        </va-canvas>
+      </md-content>
+
+      <va-submit-button hide show-gt-sm class="submit-fab"></va-submit-button>
+    </div>
+  </div>
+</div>
+
+<!-- Angular Material Dependencies -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-resource.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.js"></script>
+
+<!-- Load environment variables -->
+<script src="/app/env.js"></script>
+
+<!-- My Custom Dependencies -->
+<!-- Project files -->
+<script src="/app/app.module.js"></script>
+<script src="/app/constants.module.js"></script>
+<script src="/app/env.constant.js"></script>
+<script src="/app/theming.module.js"></script>
+<script src="/app/cchmc.palette.js"></script>
+<script src="/app/conditions/conditions.module.js"></script>
+<script src="/app/conditions/conditions.factory.js"></script>
+<script src="/app/project.directive.js"></script>
+<script src="/app/conditions/condition_editor.directive.js"></script>
+
+<!--Project Constants-->
+
+<!--Core-->
+<script src="/vandaid/va.module.js"></script>
+<script src="/vandaid/va.ctrl.js"></script>
+
+<script src="/vandaid/core/core.module.js"></script>
+<script src="/vandaid/core/core.iconprovider.js"></script>
+<script src="/vandaid/tools/tools.module.js"></script>
+<script src="/vandaid/tools/tools.service.js"></script>
+<script src="/vandaid/tools/shared.service.js"></script>
+
+<!--Theming-->
+<script src="/vandaid/theming/theming.module.js"></script>
+<script src="/vandaid/theming/vanderbilt.palette.js"></script>
+<script src="/vandaid/theming/theming.config.js"></script>
+<script src="/vandaid/theming/themingservice.factory.js"></script>
+
+<!--REDCap-->
+<script src="/vandaid/redcap/redcap.module.js"></script>
+<script src="/vandaid/redcap/redcap.service.js"></script>
+
+<!--Fields-->
+<script src="/vandaid/fields/fields.module.js"></script>
+<script src="/vandaid/fields/fieldservice.factory.js"></script>
+<script src="/vandaid/fields/fieldpane.directive.js"></script>
+<script src="/vandaid/fields/fieldInputBox.directive.js"></script>
+<script src="/vandaid/fields/submitButton.directive.js"></script>
+
+<!--Navigation-->
+<script src="/vandaid/navigation/nav.module.js"></script>
+<script src="/vandaid/navigation/identitybar.directive.js"></script>
+<script src="/vandaid/navigation/keyboardshortcut.filter.js"></script>
+<script src="/vandaid/navigation/menubar.directive.js"></script>
+<script src="/vandaid/navigation/sidenav.directive.js"></script>
+<script src="/vandaid/navigation/collapsebar.directive.js"></script>
+<script src="/vandaid/navigation/topbar.directive.js"></script>
+<script src="/vandaid/navigation/fieldtabs.directive.js"></script>
+<script src="/vandaid/navigation/expandable.directive.js"></script>
+<script src="/vandaid/navigation/dataSubmitted.toastpreset.js"></script>
+
+<!--User-->
+<script src="/vandaid/user/user.module.js"></script>
+<script src="/vandaid/user/userservice.factory.js"></script>
+
+<!--Canvas-->
+<script src="/vandaid/canvas/canvas.module.js"></script>
+<script src="/vandaid/canvas/paper.directive.js"></script>
+<script src="/vandaid/canvas/canvas.directive.js"></script>
+
+</body>
+</html>
