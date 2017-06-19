@@ -134,6 +134,11 @@ ul.tags li:last-child:after {
     content: "";
 }
 
+.category-header {
+    background-color: rgba(84,88,90,.6);
+    color: white;
+}
+
 .condition-header {
     margin-top: 12px;
     margin-bottom: 6px;

@@ -94,7 +94,7 @@
       <va-collapse-bar hide show-md expanded="sidebarExpanded"></va-collapse-bar>
 
       <!--Main Space-->
-      <md-content layout="column" flex ng-cloak layout-fill>
+      <div layout="column" flex ng-cloak layout-fill>
         <!--Header-->
         <md-toolbar hide-gt-sm class="md-whiteframe-2dp">
           <va-field-tabs></va-field-tabs>
@@ -105,7 +105,7 @@
                    ng-class="false && $mdMedia('gt-sm') ? 'overflow-auto' : ''">
           <emerge-prefs></emerge-prefs>
         </va-canvas>
-      </md-content>
+      </div>
 
       <va-submit-button hide show-gt-sm class="submit-fab"></va-submit-button>
     </div>
