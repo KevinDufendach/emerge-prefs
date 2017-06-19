@@ -26,7 +26,8 @@
   function EmergePrefsController(vandaidFieldService, $scope, conditionFactory, $log, $mdMedia, $mdColors) {
     var vm = this;
 
-    vm.getConditions = getConditions;
+    vm.getCategories = getCategories;
+    vm.getConditionsByCategory = getConditionsByCategory;
     vm.getShownStatus = getShownStatus;
     vm.getImageUrl = getImageUrl;
     vm.$onInit = initialize;
@@ -51,8 +52,17 @@
       );
     }
 
-    function getConditions() {
-      return conditionFactory.conditions;
+    function getCategories() {
+      return conditionFactory.categoryList;
+    }
+
+    function getConditionsByCategory(category) {
+      if (angular.isDefined(conditionFactory.data[category])) {
+        return conditionFactory.data[category];
+      } else {
+        $log.warn('requested category [' + category + '] that does not exist');
+        return [];
+      }
     }
 
     /**

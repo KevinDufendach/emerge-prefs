@@ -1,28 +1,60 @@
 <link href="/content/style.css" rel="stylesheet">
 
-<h1>My Report</h1>
-<div layout="row">
-  <h4>A sample of conditions which may appear on a report</h4>
-  <span flex></span>
-  <md-button hide-gt-sm
-             aria-label="Include All"
-             ng-click="vm.setAll(true)"
-             class="md-icon-button"
-             ng-class="{'md-primary md-raised': includeAll}">
-    <md-tooltip>Include All</md-tooltip>
-    <md-icon md-svg-src="/content/img/pin.svg" class="s24" aria-label="pin"></md-icon>
-  </md-button>
-  <md-button hide-gt-sm
-             aria-label="Exclude All"
-             ng-click="vm.setAll(false)"
-             class="md-icon-button"
-             ng-class="{'md-warn md-raised': excludeAll}">
-    <md-tooltip>Exclude All</md-tooltip>
-    <md-icon class="s24" aria-label="exclude">close</md-icon>
-  </md-button>
+<md-toolbar md-scroll-shrink layout-padding>
+  <h1>My Report</h1>
+  <div layout="row">
+    <h4>A sample of conditions which may appear on a report</h4>
+    <span flex></span>
+    <md-button hide-gt-sm
+               aria-label="Include All"
+               ng-click="vm.setAll(true)"
+               class="md-icon-button"
+               ng-class="{'md-primary md-raised': includeAll}">
+      <md-tooltip>Include All</md-tooltip>
+      <md-icon md-svg-src="/content/img/pin.svg" class="s24" aria-label="pin"></md-icon>
+    </md-button>
+    <md-button hide-gt-sm
+               aria-label="Exclude All"
+               ng-click="vm.setAll(false)"
+               class="md-icon-button"
+               ng-class="{'md-warn md-raised': excludeAll}">
+      <md-tooltip>Exclude All</md-tooltip>
+      <md-icon class="s24" aria-label="exclude">close</md-icon>
+    </md-button>
+  </div>
+
+</md-toolbar>
+
+<div>
+  <md-list>
+    <section ng-repeat="category in vm.getCategories()">
+      <md-subheader><h3>{{category}}</h3></md-subheader>
+      <md-list-item ng-repeat="condition in vm.getConditionsByCategory(category)">
+        <h4 class="condition-header">{{::condition.condition}}</h4>
+        <p class="condition-description">{{::condition.description}}</p>
+        <div hide-gt-md>
+          <!--<div class="md-warn" md-colors="::{color: 'warn'}"-->
+          <!--ng-show="(condition.carrier && va.adol_carrier != '1'-->
+          <!--&& vm.getShownStatus(condition))">Carrier status would not be reported.-->
+          <!--</div>-->
+          <ul class="tags">
+            <li><span ng-class="::{'opacity-10': !condition.preventable}">Preventable</span></li>
+            <li><span ng-class="::{'opacity-10': !condition.treatable}">Treatable</span></li>
+            <li><span ng-class="::{'opacity-10': !condition.adult_onset}">Adult Onset</span></li>
+            <li><span ng-class="::{'opacity-10': !condition.carrier}">Carrier Status</span></li>
+          </ul>
+        </div>
+        <div ng-if="::condition.carrier" class="center"
+             ng-class="(condition.carrier && (va.adol_carrier != '1') ? 'not-shown' : 'shown')">
+          <span>Carrier status would <span ng-show="va.adol_carrier != '1'">not </span>be reported</span>
+        </div>
+      </md-list-item>
+    </section>
+  </md-list>
+
 </div>
 
-<table class="condition-table" ng-if="$mdMedia('gt-sm')">
+<table class="condition-table" ng-if="false && $mdMedia('gt-sm')">
   <tbody>
   <tr>
     <th>
@@ -83,8 +115,8 @@
       <p class="condition-description">{{::condition.description}}</p>
       <div hide-gt-md>
         <!--<div class="md-warn" md-colors="::{color: 'warn'}"-->
-             <!--ng-show="(condition.carrier && va.adol_carrier != '1'-->
-            <!--&& vm.getShownStatus(condition))">Carrier status would not be reported.-->
+        <!--ng-show="(condition.carrier && va.adol_carrier != '1'-->
+        <!--&& vm.getShownStatus(condition))">Carrier status would not be reported.-->
         <!--</div>-->
         <ul class="tags">
           <li><span ng-class="::{'opacity-10': !condition.preventable}">Preventable</span></li>
@@ -111,7 +143,7 @@
   </tbody>
 </table>
 
-<md-list ng-if="!$mdMedia('gt-sm')" flex>
+<md-list ng-if="false && !$mdMedia('gt-sm')" flex>
   <md-card ng-repeat="condition in vm.getConditions()" ng-class="{'not-shown': !vm.getShownStatus(condition)}">
     <md-card-title layout="row">
       <md-card-title-text>

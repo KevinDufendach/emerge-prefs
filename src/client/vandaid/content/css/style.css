@@ -56,7 +56,7 @@ va-canvas {
     /*-webkit-overflow-scrolling: touch;*/
 
     background-color: inherit;
-    padding: 16px 16px 86px;
+    /*padding: 16px 16px 86px;*/
     min-height: 100%;
 }
 
@@ -240,4 +240,8 @@ va-identity-bar {
 
 .opacity-10 {
     opacity: 0.1;
+}
+
+va-top-bar {
+    z-index: 80;
 }

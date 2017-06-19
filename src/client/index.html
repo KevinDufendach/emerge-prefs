@@ -79,35 +79,38 @@
 <!-- BROWSE HAPPY ENDS HERE -->
 
 
-<md-content layout="column" flex>
-<va-top-bar><h3>Loading...</h3></va-top-bar>
-<div layout="row" flex>
-  <expandable hide show-gt-sm direction="horizontal" md-whiteframe="3" ng-class="{'h-expanded': sidebarExpanded || $mdMedia('gt-md')}"
-              md-colors="::{background: $vaThemingService.getSideBarBackground()}"
-              layout="row">
-    <va-sidenav flex></va-sidenav>
-  </expandable>
+<div layout="column" flex>
+  <va-top-bar><h3>Loading...</h3></va-top-bar>
 
-  <div layout-gt-sm="row" flex style="position: relative">
-    <va-collapse-bar hide show-md expanded="sidebarExpanded"></va-collapse-bar>
+  <div layout="row" flex>
+    <expandable hide show-gt-sm direction="horizontal" md-whiteframe="3"
+                ng-class="{'h-expanded': sidebarExpanded || $mdMedia('gt-md')}"
+                md-colors="::{background: $vaThemingService.getSideBarBackground()}"
+                layout="row">
+      <va-sidenav flex></va-sidenav>
+    </expandable>
 
-    <!--Main Space-->
-    <div layout="column" flex ng-cloak>
-      <!--Header-->
-      <md-toolbar hide-gt-sm class="md-whiteframe-3dp">
-        <va-field-tabs></va-field-tabs>
-      </md-toolbar>
+    <div layout-gt-sm="row" flex style="position: relative">
+      <va-collapse-bar hide show-md expanded="sidebarExpanded"></va-collapse-bar>
 
-      <!--Main Content-->
-      <va-canvas flex layout-fill ng-class="$mdMedia('gt-sm') ? 'overflow-auto' : ''">
-        <emerge-prefs></emerge-prefs>
-      </va-canvas>
+      <!--Main Space-->
+      <md-content layout="column" flex ng-cloak layout-fill>
+        <!--Header-->
+        <md-toolbar hide-gt-sm class="md-whiteframe-2dp">
+          <va-field-tabs></va-field-tabs>
+        </md-toolbar>
+
+        <!--Main Content-->
+        <va-canvas flex layout-fill
+                   ng-class="false && $mdMedia('gt-sm') ? 'overflow-auto' : ''">
+          <emerge-prefs></emerge-prefs>
+        </va-canvas>
+      </md-content>
+
+      <va-submit-button hide show-gt-sm class="submit-fab"></va-submit-button>
     </div>
-
-    <va-submit-button hide show-gt-sm class="submit-fab"></va-submit-button>
   </div>
 </div>
-</md-content>
 
 <!-- Angular Material Dependencies -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
