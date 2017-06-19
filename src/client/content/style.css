@@ -18,16 +18,28 @@
     transition: background-color 0.5s, color 0.3s;
 }
 
-.not-shown {
-    background-color: lightgray;
-    color: rgba(100, 100, 100, 0.4);
+.shown {
+    background-color: white;
+    opacity: 1;
+
+    -webkit-transition: all 0.5s, color 0.3s;
+    transition: all 0.5s, color 0.3s;
 }
 
-.shown {
-    /*text-shadow: 0 0 10px #FFFFFF;*/
-    color: black;
-    background-color: white;
+/*.shown {*/
+    /*!*text-shadow: 0 0 10px #FFFFFF;*!*/
+    /*color: black;*/
+    /*background-color: white;*/
+/*}*/
+
+.not-shown {
+    background-color: lightgray;
+    opacity: 0.8;
+
+    -webkit-transition: background-color 0.5s, color 0.3s;
+    transition: background-color 0.5s, color 0.3s;
 }
+
 
 .center {
     text-align: center;

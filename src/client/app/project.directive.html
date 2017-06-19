@@ -26,29 +26,54 @@
 </md-toolbar>
 
 <div>
-  <md-list>
+  <md-list class="md-dense" flex>
     <section ng-repeat="category in vm.getCategories()">
-      <md-subheader><h3>{{category}}</h3></md-subheader>
-      <md-list-item ng-repeat="condition in vm.getConditionsByCategory(category)">
-        <h4 class="condition-header">{{::condition.condition}}</h4>
-        <p class="condition-description">{{::condition.description}}</p>
-        <div hide-gt-md>
-          <!--<div class="md-warn" md-colors="::{color: 'warn'}"-->
-          <!--ng-show="(condition.carrier && va.adol_carrier != '1'-->
-          <!--&& vm.getShownStatus(condition))">Carrier status would not be reported.-->
-          <!--</div>-->
+      <md-subheader>
+        <h1>{{category}}</h1>
+      </md-subheader>
+      <md-card class="shown"
+               ng-repeat="condition in vm.getConditionsByCategory(category)"
+               ng-class="{'not-shown': !vm.getShownStatus(condition)}">
+        <md-card-title layout="row">
+          <md-card-title-text>
+            <h4 class="condition-header">{{::condition.condition}}</h4>
+          </md-card-title-text>
+          <span flex></span>
+          <img ng-repeat="organ in condition.organs" class="organ-img" ng-src="{{::vm.getImageUrl(organ)}}"/>
+        </md-card-title>
+        <md-card-content>
+          <p class="condition-description">{{::condition.description}}</p>
+        </md-card-content>
+        <md-card-actions layout="row">
           <ul class="tags">
             <li><span ng-class="::{'opacity-10': !condition.preventable}">Preventable</span></li>
             <li><span ng-class="::{'opacity-10': !condition.treatable}">Treatable</span></li>
             <li><span ng-class="::{'opacity-10': !condition.adult_onset}">Adult Onset</span></li>
             <li><span ng-class="::{'opacity-10': !condition.carrier}">Carrier Status</span></li>
           </ul>
-        </div>
-        <div ng-if="::condition.carrier" class="center"
-             ng-class="(condition.carrier && (va.adol_carrier != '1') ? 'not-shown' : 'shown')">
+          <span flex></span>
+          <md-button
+              aria-label="Always include {{::condition.condition}}"
+              ng-class="{'md-primary md-raised': va['manual_include___' + condition.id]}"
+              ng-click="vm.setManual(condition.id, true)"
+              class="md-icon-button">
+            <md-tooltip>Always Include</md-tooltip>
+            <md-icon md-svg-src="/content/img/pin.svg" class="s24" aria-label="pin"></md-icon>
+          </md-button>
+          <md-button
+              aria-label="Always exclude {{::condition.condition}}"
+              ng-class="{'md-warn md-raised': va['manual_exclude___' + condition.id]}"
+              ng-click="vm.setManual(condition.id, false)"
+              class="md-icon-button">
+            <md-tooltip>Always Exclude</md-tooltip>
+            <md-icon class="s24" aria-label="exclude">close</md-icon>
+          </md-button>
+        </md-card-actions>
+        <div ng-if="::condition.carrier" class="center shown"
+             ng-class="{'not-shown': (condition.carrier && (va.adol_carrier != '1'))}">
           <span>Carrier status would <span ng-show="va.adol_carrier != '1'">not </span>be reported</span>
         </div>
-      </md-list-item>
+      </md-card>
     </section>
   </md-list>
 
