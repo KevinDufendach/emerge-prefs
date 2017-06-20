@@ -1,29 +1,31 @@
 .condition-table {
     border-collapse: collapse;
-    border: 3px solid gray;
+    background-color: white;
 }
 
 .condition-table td, .condition-table th {
     border: 1px solid gray;
 
+    padding: 0;
+
 }
 
-.condition-table th {
-    background-color: rgb(0, 174, 199);
-    color: white;
-}
+/*.condition-table th {*/
+    /*background-color: rgb(0, 174, 199);*/
+    /*color: white;*/
+/*}*/
 
-.condition-table td {
-    -webkit-transition: background-color 0.5s, color 0.3s;
-    transition: background-color 0.5s, color 0.3s;
-}
+/*.condition-table td {*/
+    /*-webkit-transition: background-color 0.5s, opacity 0.3s;*/
+    /*transition: background-color 0.5s, opacity 0.3s;*/
+/*}*/
 
 .shown {
     background-color: white;
-    opacity: 1;
+    color: rgba(0,0,0,1);
 
-    -webkit-transition: all 0.5s, color 0.3s;
-    transition: all 0.5s, color 0.3s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
 }
 
 /*.shown {*/
@@ -34,12 +36,19 @@
 
 .not-shown {
     background-color: lightgray;
-    opacity: 0.7;
+    color: rgba(0,0,0,0.5);
 
-    -webkit-transition: background-color 0.5s, color 0.3s;
-    transition: background-color 0.5s, color 0.3s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
 }
 
+
+.not-shown img {
+    opacity: 0.7;
+
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+}
 
 .center {
     text-align: center;
@@ -56,59 +65,59 @@
     /*opacity: 0.5;*/
 /*}*/
 
-md-checkbox.explicit_negative.md-focused .md-container:before {
-    background-color: darkred;
-}
+/*md-checkbox.explicit_negative.md-focused .md-container:before {*/
+    /*background-color: darkred;*/
+/*}*/
 
-md-checkbox.explicit_negative .md-ink-ripple {
-    color: lightcoral;
-}
+/*md-checkbox.explicit_negative .md-ink-ripple {*/
+    /*color: lightcoral;*/
+/*}*/
 
-md-checkbox.explicit_negative .md-icon {
-    background-color: red;
-}
+/*md-checkbox.explicit_negative .md-icon {*/
+    /*background-color: red;*/
+/*}*/
 
-md-checkbox.explicit_negative .md-icon:after {
-    border-color: rgba(255, 255, 255, 0.87);
-}
+/*md-checkbox.explicit_negative .md-icon:after {*/
+    /*border-color: rgba(255, 255, 255, 0.87);*/
+/*}*/
 
-/* ************************ */
+/*!* ************************ *!*/
 
-md-checkbox.explicit_negative.md-checked.md-focused .md-container:before {
-    background-color: rgba(144, 238, 144, .87);
-}
+/*md-checkbox.explicit_negative.md-checked.md-focused .md-container:before {*/
+    /*background-color: rgba(144, 238, 144, .87);*/
+/*}*/
 
-md-checkbox.explicit_negative.md-checked .md-ink-ripple {
-    color: rgb(144, 238, 144);
-}
+/*md-checkbox.explicit_negative.md-checked .md-ink-ripple {*/
+    /*color: rgb(144, 238, 144);*/
+/*}*/
 
-md-checkbox.explicit_negative.md-checked .md-icon {
-    background-color: green;
-}
+/*md-checkbox.explicit_negative.md-checked .md-icon {*/
+    /*background-color: green;*/
+/*}*/
 
-md-checkbox.explicit_negative.md-checked .md-icon:after {
-    border-color: rgba(255, 255, 255, 0.87);
-}
+/*md-checkbox.explicit_negative.md-checked .md-icon:after {*/
+    /*border-color: rgba(255, 255, 255, 0.87);*/
+/*}*/
 
-/* ************************ */
+/*!* ************************ *!*/
 
-md-checkbox.explicit_negative.md-indeterminate.md-focused .md-container:before {
-    background-color: rgba(0, 174, 199, 0.26);
-}
+/*md-checkbox.explicit_negative.md-indeterminate.md-focused .md-container:before {*/
+    /*background-color: rgba(0, 174, 199, 0.26);*/
+/*}*/
 
-md-checkbox.explicit_negative.md-indeterminate .md-ink-ripple {
-    color: rgba(0, 174, 199, 0.87);
-}
+/*md-checkbox.explicit_negative.md-indeterminate .md-ink-ripple {*/
+    /*color: rgba(0, 174, 199, 0.87);*/
+/*}*/
 
-md-checkbox.explicit_negative.md-indeterminate .md-icon {
-    background-color: rgba(0, 0, 0, 0.38);
-}
+/*md-checkbox.explicit_negative.md-indeterminate .md-icon {*/
+    /*background-color: rgba(0, 0, 0, 0.38);*/
+/*}*/
 
-md-checkbox.explicit_negative.md-indeterminate .md-icon:after {
-    border-color: rgba(255, 255, 255, 0.87);
-}
+/*md-checkbox.explicit_negative.md-indeterminate .md-icon:after {*/
+    /*border-color: rgba(255, 255, 255, 0.87);*/
+/*}*/
 
-/* ***************************** */
+/*!* ***************************** *!*/
 
 ul.tags {
     display: inline;
@@ -136,7 +145,7 @@ ul.tags li:last-child:after {
 
 .category-header {
     /*background-color: rgba(84,88,90,.6);*/
-    background-color: rgba(229,230,230,.8);
+    /*background-color: rgba(229,230,230,.8);*/
     /*color: white;*/
 }
 
