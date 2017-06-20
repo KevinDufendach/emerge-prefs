@@ -482,7 +482,7 @@
       {
         "id": "CARN",
         "return_phenotype": "Carnitine Palmitoyltransferase II Deficiency",
-        "condition": "metabolism disorders",
+        "condition": "Metabolism disorders",
         "organs": [
           "LIVER",
           "HEART",

@@ -34,7 +34,7 @@
 
 .not-shown {
     background-color: lightgray;
-    opacity: 0.8;
+    opacity: 0.7;
 
     -webkit-transition: background-color 0.5s, color 0.3s;
     transition: background-color 0.5s, color 0.3s;
@@ -52,9 +52,9 @@
     width: auto;
 }
 
-.not-shown img {
-    opacity: 0.5;
-}
+/*.not-shown img {*/
+    /*opacity: 0.5;*/
+/*}*/
 
 md-checkbox.explicit_negative.md-focused .md-container:before {
     background-color: darkred;
@@ -135,8 +135,9 @@ ul.tags li:last-child:after {
 }
 
 .category-header {
-    background-color: rgba(84,88,90,.6);
-    color: white;
+    /*background-color: rgba(84,88,90,.6);*/
+    background-color: rgba(229,230,230,.8);
+    /*color: white;*/
 }
 
 .condition-header {
