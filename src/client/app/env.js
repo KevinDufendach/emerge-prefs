@@ -28,6 +28,9 @@
   // Title
   window.__va.title = 'Decision Aid for Return of Genetic Results';
 
+  // Instructions
+  window.__va.instructionsTemplateHtml = '/app/instructions-template.html';
+
   // Form name
   window.__va.formName = 'adolescent_preferences';
 

@@ -186,8 +186,12 @@
         case 'CANCER':
         case 'TUMOR':
           return prefix + 'cancer.png';
+        case 'COLON':
+          return prefix + 'colon.png';
         case 'EYE':
           return prefix + 'eye.png';
+        case 'GI':
+          return prefix + 'gi_tract.png';
         case 'HEART':
           return prefix + 'heart.png';
         case 'IMMUNE':

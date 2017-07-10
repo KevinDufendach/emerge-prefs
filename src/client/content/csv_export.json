@@ -38,11 +38,12 @@
     ],
     "Bleeding Risk Increased": [
       {
-        "id": "AORTA",
-        "return_phenotype": "Abnormalities of the Aorta,",
+        "id": "EDSVASC",
+        "return_phenotype": "Ehlers Danlos syndrome, vascular type",
         "condition": "Connective tissue disorders with serious bleeding risk",
         "organs": [
-          "VESSEL"
+          "VESSEL",
+          "JOINT"
         ],
         "description": "Many different types of conditions that include possibility of weak blood vessel walls and life threatening vessel rupture and bleeding",
         "preventable": false,
@@ -51,7 +52,7 @@
         "developmental": false,
         "degenerative": false,
         "carrier": false,
-        "genes": "SMAD4, ACTA2, MYLK, MYH11",
+        "genes": "COL3A1",
         "caw_approved": "N/A",
         "snv_references": ""
       },
@@ -90,32 +91,14 @@
         "genes": "N/A",
         "caw_approved": "FVL rs6025, c.1601G>A homozygous only",
         "snv_references": "https://ghr.nlm.nih.gov/condition/factor-v-leiden-thrombophilia#; http://www.ncbi.nlm.nih.gov/books/NBK1368/; http://circ.ahajournals.org/content/107/15/e94.full"
-      },
-      {
-        "id": "EDSVASC",
-        "return_phenotype": "Ehlers Danlos syndrome, vascular type",
-        "condition": "Connective tissue disorders with serious bleeding risk",
-        "organs": [
-          "VESSEL",
-          "JOINT"
-        ],
-        "description": "Many different types of conditions that include possibility of weak blood vessel walls and life threatening vessel rupture and bleeding",
-        "preventable": false,
-        "treatable": true,
-        "adult_onset": false,
-        "developmental": false,
-        "degenerative": false,
-        "carrier": false,
-        "genes": "COL3A1",
-        "caw_approved": "N/A",
-        "snv_references": ""
       }
+
     ],
     "Bones": [
       {
         "id": "OSTEOPET",
-        "return_phenotype": "osteopetrosis",
-        "condition": "osteopetrosis",
+        "return_phenotype": "Osteopetrosis",
+        "condition": "Osteopetrosis",
         "organs": [
           "BONE"
         ],
@@ -152,15 +135,15 @@
         "snv_references": ""
       }
     ],
-    "Cancer Risk Increase": [
+    "Cancer Risk Increased": [
       {
         "id": "BREASTCA",
         "return_phenotype": "Breast cancer",
-        "condition": "Cancer that might start during adulthood - preventable",
+        "condition": "Preventable cancer that might start during adulthood",
         "organs": [
           "CANCER"
         ],
-        "description": "",
+        "description": "e.g. breast, ovaries, prostate, some colon cancers",
         "preventable": true,
         "treatable": true,
         "adult_onset": true,
@@ -172,13 +155,31 @@
         "snv_references": ""
       },
       {
-        "id": "FMTC",
-        "return_phenotype": "Familial medullary thyroid cancer",
-        "condition": "cancers that might start during childhood or adulthood- preventable",
+        "id": "PANCRCA",
+        "return_phenotype": "Pancreatic cancer",
+        "condition": "Non-preventable cancers that might start during adulthood",
         "organs": [
           "CANCER"
         ],
-        "description": "",
+        "description": "e.g. pancreatic cancer",
+        "preventable": false,
+        "treatable": true,
+        "adult_onset": true,
+        "developmental": false,
+        "degenerative": false,
+        "carrier": false,
+        "genes": "PALB2",
+        "caw_approved": "N/A",
+        "snv_references": ""
+      },
+      {
+        "id": "FMTC",
+        "return_phenotype": "Familial medullary thyroid cancer",
+        "condition": "Preventable cancers that might start during childhood or adulthood",
+        "organs": [
+          "CANCER"
+        ],
+        "description": "e.g. cancers of thyroid, parathyroids",
         "preventable": true,
         "treatable": true,
         "adult_onset": false,
@@ -190,27 +191,9 @@
         "snv_references": ""
       },
       {
-        "id": "COLONCA",
-        "return_phenotype": "Colon cancer  (Not Juvenile Polyposis or FAP related)",
-        "condition": "Cancer that might start during adulthood - preventable",
-        "organs": [
-          "CANCER"
-        ],
-        "description": "",
-        "preventable": true,
-        "treatable": true,
-        "adult_onset": true,
-        "developmental": false,
-        "degenerative": false,
-        "carrier": false,
-        "genes": "MLH1, MSH2, MSH6, PMS2, POLD1, POLE",
-        "caw_approved": "N/A",
-        "snv_references": ""
-      },
-      {
         "id": "VHL",
         "return_phenotype": "Von Hippel Lindau syndrome",
-        "condition": "cancers that might start during childhood or adulthood",
+        "condition": "Non-preventable cancers that might start during childhood or adulthood",
         "organs": [
           "CANCER"
         ],
@@ -220,29 +203,30 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": true,
         "genes": "VHL",
         "caw_approved": "N/A",
         "snv_references": ""
       },
       {
-        "id": "BLOOM",
-        "return_phenotype": "Bloom syndrome",
-        "condition": "Cancer that might start during childhood or adulthood",
+        "id": "FPS",
+        "return_phenotype": "Polyposis syndromes with risk for colon cancer",
+        "condition": "polyposis syndromes that can start in childhood or adulthood and increase the risk for colon cancer",
         "organs": [
-          "MULTI",
+          "GI",
+          "COLON",
           "CANCER"
         ],
-        "description": "Short stature, skin rash after sun exposure and increased risk for multiple types of cancers",
-        "preventable": false,
+        "description": "",
+        "preventable": true,
         "treatable": true,
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
         "carrier": true,
-        "genes": "N/A",
-        "caw_approved": "BLM rs113993962",
-        "snv_references": "OMIM, https://ghr.nlm.nih.gov/condition/bloom-syndrome, http://www.ncbi.nlm.nih.gov/books/NBK1398/"
+        "genes": "BMPR1A, APC, MUTYH, SMAD4",
+        "caw_approved": "N/A",
+        "snv_references": ""
       }
     ],
     "Eye": [
@@ -282,24 +266,6 @@
         "degenerative": false,
         "carrier": false,
         "genes": "PKP2, DSP, DSC2, TMEM43, DSG2, KCNE1, KCNQ1, KCNH2, SCN5A,KCNJ2",
-        "caw_approved": "N/A",
-        "snv_references": ""
-      },
-      {
-        "id": "CPVT",
-        "return_phenotype": "Catecholaminergic polymorphic ventricular tachycardia ",
-        "condition": "Arrhythmia syndromes with risk for sudden cardiac death",
-        "organs": [
-          "HEART"
-        ],
-        "description": "",
-        "preventable": true,
-        "treatable": true,
-        "adult_onset": false,
-        "developmental": false,
-        "degenerative": false,
-        "carrier": false,
-        "genes": "RYR2",
         "caw_approved": "N/A",
         "snv_references": ""
       },
@@ -427,9 +393,10 @@
         "return_phenotype": "Cystic Fibrosis",
         "condition": "Cystic Fibrosis",
         "organs": [
-          "LUNG"
+          "LUNG",
+          "PANCREAS"
         ],
-        "description": "Inherited disorder that causes thick, sticky mucus that damages the lungs and digestive system",
+        "description": "Inherited condition that causes thick, sticky mucus that damages the lungs and digestive system",
         "preventable": false,
         "treatable": true,
         "adult_onset": false,
@@ -447,7 +414,7 @@
         "organs": [
           "LUNG"
         ],
-        "description": "High blood pressure in the large vessels in the lungs",
+        "description": "High blood pressure in the large vessels in the lungs that can lead to heart failure",
         "preventable": false,
         "treatable": true,
         "adult_onset": true,
@@ -466,7 +433,7 @@
           "LUNG",
           "LIVER"
         ],
-        "description": "Inherited disorder that may cause serious lung disease or liver disease or both",
+        "description": "Inherited condition that may cause serious lung disease or liver disease or both",
         "preventable": true,
         "treatable": true,
         "adult_onset": false,
@@ -486,6 +453,8 @@
         "organs": [
           "LIVER",
           "HEART",
+          "KIDNEY",
+          "PANCREAS",
           "MUSCLE"
         ],
         "description": "Inherited condition that results in an enzyme deficiency. There are many different genetic metabolic conditions. Variant gene is inherited from both parents. Symptoms, treatments, and prognoses vary widely.",
@@ -546,7 +515,6 @@
         "return_phenotype": "Cowden syndrome",
         "condition": "Cowden syndrome",
         "organs": [
-          "MULTI",
           "CANCER"
         ],
         "description": "Benign tumors of the skin and mucous membranes. Increased risk for cancer in the thyroid, colon, uterus lining, kidney or skin",
@@ -565,7 +533,6 @@
         "return_phenotype": "Tuberous sclerosis",
         "condition": "Tuberous sclerosis",
         "organs": [
-          "MULTI",
           "TUMOR"
         ],
         "description": "Tumors can develop in brain, eyes, heart, kidney, skin and lungs. Some people may have seizures, developmental delay and intellectual disability",
@@ -676,7 +643,25 @@
         "snv_references": ""
       }
     ],
-    "Other": [
+    "Other/Uncategorized": [
+      {
+        "id": "AORTA",
+        "return_phenotype": "Abnormalities of the Aorta,",
+        "condition": "Connective tissue disorders with serious bleeding risk",
+        "organs": [
+          "VESSEL"
+        ],
+        "description": "Many different types of conditions that include possibility of weak blood vessel walls and life threatening vessel rupture and bleeding",
+        "preventable": false,
+        "treatable": true,
+        "adult_onset": false,
+        "developmental": false,
+        "degenerative": false,
+        "carrier": false,
+        "genes": "SMAD4, ACTA2, MYLK, MYH11",
+        "caw_approved": "N/A",
+        "snv_references": ""
+      },
       {
         "id": "EDS",
         "return_phenotype": "Ehlers Danlos syndrome",
@@ -899,24 +884,7 @@
         "caw_approved": "N/A",
         "snv_references": ""
       },
-      {
-        "id": "PANCRCA",
-        "return_phenotype": "Pancreatic cancer",
-        "condition": "cancers that might start during adulthood",
-        "organs": [
-          "CANCER"
-        ],
-        "description": "",
-        "preventable": false,
-        "treatable": true,
-        "adult_onset": true,
-        "developmental": false,
-        "degenerative": false,
-        "carrier": false,
-        "genes": "PALB2",
-        "caw_approved": "N/A",
-        "snv_references": ""
-      },
+
       {
         "id": "PEUTZJEGHERS",
         "return_phenotype": "Peutz-Jeghers syndrome",
@@ -935,24 +903,7 @@
         "caw_approved": "N/A",
         "snv_references": ""
       },
-      {
-        "id": "FPS",
-        "return_phenotype": "Polyposis syndromes with risk for colon cancer",
-        "condition": "polyposis syndromes that can start in childhood or adulthood and increase the risk for colon cancer",
-        "organs": [
-          "CANCER"
-        ],
-        "description": "",
-        "preventable": true,
-        "treatable": true,
-        "adult_onset": false,
-        "developmental": false,
-        "degenerative": false,
-        "carrier": true,
-        "genes": "BMPR1A, APC, MUTYH, SMAD4",
-        "caw_approved": "N/A",
-        "snv_references": ""
-      },
+
       {
         "id": "PROSTATECA",
         "return_phenotype": "Prostate cancer",
@@ -990,6 +941,62 @@
         "genes": "N/A",
         "caw_approved": "FAH rs80338898",
         "snv_references": "OMIM, https://ghr.nlm.nih.gov/condition/tyrosinemia#diagnosis, http://www.ncbi.nlm.nih.gov/books/NBK1515/, http://www.babysfirsttest.org/newborn-screening/conditions/tyrosinemia-type-i"
+      },
+
+      {
+        "id": "BLOOM",
+        "return_phenotype": "Bloom syndrome",
+        "condition": "Cancer that might start during childhood or adulthood",
+        "organs": [
+          "MULTI",
+          "CANCER"
+        ],
+        "description": "Short stature, skin rash after sun exposure and increased risk for multiple types of cancers",
+        "preventable": false,
+        "treatable": true,
+        "adult_onset": false,
+        "developmental": false,
+        "degenerative": false,
+        "carrier": true,
+        "genes": "N/A",
+        "caw_approved": "BLM rs113993962",
+        "snv_references": "OMIM, https://ghr.nlm.nih.gov/condition/bloom-syndrome, http://www.ncbi.nlm.nih.gov/books/NBK1398/"
+      },
+      {
+        "id": "COLONCA",
+        "return_phenotype": "Colon cancer  (Not Juvenile Polyposis or FAP related)",
+        "condition": "Preventable cancer that might start during adulthood",
+        "organs": [
+          "CANCER"
+        ],
+        "description": "",
+        "preventable": true,
+        "treatable": true,
+        "adult_onset": true,
+        "developmental": false,
+        "degenerative": false,
+        "carrier": false,
+        "genes": "MLH1, MSH2, MSH6, PMS2, POLD1, POLE",
+        "caw_approved": "N/A",
+        "snv_references": ""
+      },
+      {
+        "id": "CPVT",
+        "return_phenotype": "Catecholaminergic polymorphic ventricular tachycardia ",
+        "condition": "Arrhythmia syndromes with risk for sudden cardiac death",
+        "organs": [
+          "HEART"
+        ],
+        "description": "",
+        "preventable": true,
+        "treatable": true,
+        "adult_onset": false,
+        "developmental": false,
+        "degenerative": false,
+        "carrier": false,
+        "genes": "RYR2",
+        "caw_approved": "N/A",
+        "snv_references": ""
       }
     ]
   }
