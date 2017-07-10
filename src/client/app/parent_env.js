@@ -26,14 +26,14 @@
   window.__va.logo = '/content/img/CCHMC_logo_ht128px.png';
 
   // Title
-  window.__va.title = 'Decision Aid for Return of Genetic Results';
+  window.__va.title = 'Decision Aid for Return of Genetic Results - Parent';
 
   // Instructions
-  window.__va.instructionsTemplateHtml = '/app/instructions-template.html';
+  window.__va.instructionsTemplateHtml = '/app/parent-instructions-template.html';
 
   // REDCap
-  window.__va.formName = 'adolescent_preferences';
-  window.__va.fieldSuffix = '_adol';
+  window.__va.formName = 'parent_preferences';
+  window.__va.fieldSuffix = '_parent';
 
   // Whether or not to enable debug mode
   // Setting this to false will disable console output

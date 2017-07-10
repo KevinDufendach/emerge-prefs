@@ -20,20 +20,22 @@
     return directive;
   }
 
-  EmergePrefsController.$inject = ['vandaidFieldService', '$scope', 'conditionFactory', '$log', '$mdMedia', '$mdColors'];
+  EmergePrefsController.$inject = ['vandaidFieldService', '$scope', 'conditionFactory', '$log', '$mdMedia', '$mdColors', '__va', '$mdDialog'];
 
   /* @ngInject */
-  function EmergePrefsController(vandaidFieldService, $scope, conditionFactory, $log, $mdMedia, $mdColors) {
+  function EmergePrefsController(vandaidFieldService, $scope, conditionFactory, $log, $mdMedia, $mdColors, __va, $mdDialog) {
     var vm = this;
 
     vm.getCategories = getCategories;
     vm.getConditionsByCategory = getConditionsByCategory;
     vm.getShownStatus = getShownStatus;
     vm.getImageUrl = getImageUrl;
-    vm.$onInit = initialize;
     vm.cycleManual = cycleManual;
     vm.setManual = setManual;
     vm.setAll = setAll;
+    vm.showInstructions = showInstructions;
+
+    vm.$onInit = initialize;
 
     $scope.includeAll = false;
     $scope.excludeAll = false;
@@ -43,6 +45,10 @@
 
     function initialize() {
       $scope.$mdMedia = $mdMedia;
+
+      $scope.fieldSuffix = __va.fieldSuffix;
+
+      showInstructions();
 
       vandaidFieldService.getFields().then(
         function () {
@@ -81,25 +87,25 @@
         return true;
       }
 
-      if (vm.va.include_all === "0") {
+      if (vm.va['include_all' + __va.fieldSuffix] === "0") {
         return false;
       }
 
       if (!ignoreOverrides) {
-        if (vm.va['manual_exclude___' + condition.id]) {
+        if (vm.va['manual_exclude' + __va.fieldSuffix + '___' + condition.id]) {
           return false;
         }
-        if (vm.va['manual_include___' + condition.id]) {
+        if (vm.va['manual_include' + __va.fieldSuffix + '___' + condition.id]) {
           return true;
         }
       }
 
       return (
-        (condition.preventable || vm.va.adol_preventable == "1")
+        (condition.preventable || vm.va['preventable' + __va.fieldSuffix] === "1")
         &&
-        (condition.treatable || vm.va.adol_treatable == "1")
+        (condition.treatable || vm.va['treatable' + __va.fieldSuffix] === "1")
         &&
-        (!condition.adult_onset || vm.va.adol_adult_onset == "1")
+        (!condition.adult_onset || vm.va['adult_onset' + __va.fieldSuffix] === "1")
       )
     }
 
@@ -107,15 +113,15 @@
       if (!conditionId) return;
 
       try {
-        if (vm.va['manual_include___' + conditionId]) {
-          vm.va['manual_include___' + conditionId] = false;
-          vm.va['manual_exclude___' + conditionId] = true;
-        } else if (vm.va['manual_exclude___' + conditionId]) {
-          vm.va['manual_include___' + conditionId] = false;
-          vm.va['manual_exclude___' + conditionId] = false;
+        if (vm.va['manual_include' + __va.fieldSuffix + '___' + conditionId]) {
+          vm.va['manual_include' + __va.fieldSuffix + '___' + conditionId] = false;
+          vm.va['manual_exclude' + __va.fieldSuffix + '___' + conditionId] = true;
+        } else if (vm.va['manual_exclude' + __va.fieldSuffix + '___' + conditionId]) {
+          vm.va['manual_include' + __va.fieldSuffix + '___' + conditionId] = false;
+          vm.va['manual_exclude' + __va.fieldSuffix + '___' + conditionId] = false;
         } else {
-          vm.va['manual_include___' + conditionId] = true;
-          vm.va['manual_exclude___' + conditionId] = false;
+          vm.va['manual_include' + __va.fieldSuffix + '___' + conditionId] = true;
+          vm.va['manual_exclude' + __va.fieldSuffix + '___' + conditionId] = false;
         }
 
         $scope.includeAll = false;
@@ -130,14 +136,14 @@
 
       try {
         if (value) { // true is for manual include
-          vm.va['manual_include___' + conditionId] = !vm.va['manual_include___' + conditionId];
-          if (vm.va['manual_include___' + conditionId]) {
-            vm.va['manual_exclude___' + conditionId] = false;
+          vm.va['manual_include' + __va.fieldSuffix + '___' + conditionId] = !vm.va['manual_include' + __va.fieldSuffix + '___' + conditionId];
+          if (vm.va['manual_include' + __va.fieldSuffix + '___' + conditionId]) {
+            vm.va['manual_exclude' + __va.fieldSuffix + '___' + conditionId] = false;
           }
         } else {
-          vm.va['manual_exclude___' + conditionId] = !vm.va['manual_exclude___' + conditionId];
-          if (vm.va['manual_exclude___' + conditionId]) {
-            vm.va['manual_include___' + conditionId] = false;
+          vm.va['manual_exclude' + __va.fieldSuffix + '___' + conditionId] = !vm.va['manual_exclude' + __va.fieldSuffix + '___' + conditionId];
+          if (vm.va['manual_exclude' + __va.fieldSuffix + '___' + conditionId]) {
+            vm.va['manual_include' + __va.fieldSuffix + '___' + conditionId] = false;
           }
         }
 
@@ -157,18 +163,56 @@
         excludeVal = false;
       }
 
+      var manInclPref = 'manual_include' + __va.fieldSuffix + '___';
+      var manExclPref = 'manual_exclude' + __va.fieldSuffix + '___';
+
       angular.forEach(vm.va,
         function (val, key) {
-          if (key.substr(0, 17) === 'manual_include___') {
+
+          if (key.substr(0, manInclPref.length) === manInclPref) {
             vm.va[key] = includeVal;
           }
-          if (key.substr(0, 17) === 'manual_exclude___') {
+          if (key.substr(0, manExclPref.length) === manExclPref) {
             vm.va[key] = excludeVal;
           }
         });
 
       $scope.includeAll = includeVal;
       $scope.excludeAll = excludeVal;
+    }
+
+    function showInstructions (ev) {
+      var instructionDialog = {
+        controller: InstructionDialogCtrl,
+        templateUrl: __va.instructionsTemplateHtml,
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose: true
+      };
+
+      $mdDialog
+        .show(instructionDialog)
+        .then(function (answer) {
+          $log.log('You said the information was "' + answer + '".');
+        }, function () {
+          $log.log('You cancelled the dialog.');
+        });
+    }
+
+    InstructionDialogCtrl.$inject = ['$scope','$mdDialog'];
+
+    function InstructionDialogCtrl($scope, $mdDialog) {
+      $scope.hide = function () {
+        $mdDialog.hide();
+      };
+
+      $scope.cancel = function () {
+        $mdDialog.cancel();
+      };
+
+      $scope.answer = function (answer) {
+        $mdDialog.hide(answer);
+      };
     }
 
     function getImageUrl(value) {

@@ -26,7 +26,7 @@
     var ctrl = this;
 
     ctrl.showInstructions = function (ev) {
-      $log.log('showInstructions button clicked');
+      $log.debug('showInstructions button clicked');
 
       var instructionDialog = {
         controller: InstructionDialogCtrl,
@@ -48,8 +48,6 @@
     InstructionDialogCtrl.$inject = ['$scope','$mdDialog'];
 
     function InstructionDialogCtrl($scope, $mdDialog) {
-      var ctrl = this;
-
       $scope.hide = function () {
         $mdDialog.hide();
       };

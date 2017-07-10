@@ -1,0 +1,51 @@
+<md-dialog aria-label="Instructions">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Decision Aid for Return of Genetic Results</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <p>You have been invited to participate in a research study that gives you the option to learn your adolescent’s
+          genetic results for some health conditions. Some of the conditions are rare, meaning less than 200,000 people
+          in the United States are living with the condition. Some of the rare conditions, like cystic fibrosis, are
+          caused by gene variations inherited from each parent. Other conditions, such as cancer and heart disease are
+          more common and can be caused by environmental, lifestyle and/or genetic factors. For example, most risk
+          factors for heart disease are not genetic. In this study, it is possible to learn some gene results that are
+          known to increase the risk for heart disease. However, if gene variations are not found that increase the risk
+          for heart disease, your adolescent may still be at risk for the condition because of all the other factors
+          that can cause heart disease. Any gene variation found in your adolescent may or may not be present in other
+          family members. In addition, there may be gene variations in your adolescent or family members that are not
+          part of the genetic test being used in this study.</p>
+        <p>The following questions will help you decide what types of genetic research results you would like to
+          receive. For this study, all the genetic results that you can learn about are for conditions that your
+          adolescent or your family members could develop. Some conditions may or may not be preventable and some
+          conditions may or may not be treatable.</p>
+        <p>High cholesterol is an example of a health condition that can be inherited and can begin in childhood or
+          adulthood. Inherited high cholesterol can lead to heart attacks before the age of 40. Heart attacks from high
+          cholesterol are preventable if diet and exercise can keep cholesterol at normal levels. High cholesterol can
+          also be treated with medications. Therefore, inherited high cholesterol is an example of a preventable and
+          treatable condition. Examples of conditions that can be inherited but not prevented are some types of cancer.
+          However, cancer can be treated once it is detected. You will receive a list of the conditions that match your
+          choices for this study after you answer the questions below.</p>
+
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <!--<md-button ng-click="answer('not useful')">-->
+      <!--Not Useful-->
+      <!--</md-button>-->
+      <md-button ng-click="answer('continue')" class="md-raised md-primary">
+        Continue
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
