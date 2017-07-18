@@ -1,13 +1,18 @@
 .condition-table {
-  border-collapse: collapse;
-  background-color: white;
 }
 
-.condition-table td, .condition-table th {
-  border: 1px solid gray;
-
+.condition-table .cell {
+  border: thin solid gray;
   padding: 0;
+}
 
+.report-header {
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 .shown {
@@ -88,21 +93,40 @@ ul.tags li:last-child:after {
   overflow: auto;
 }
 
-.hover-target .hover-content {
+
+.hover-target > .hover-content {
   visibility: hidden;
   opacity: 0;
-
   transition: opacity 0.25s;
 }
 
 .hover-content.show,
-.hover-target:hover .hover-content {
+.hover-target:hover > .hover-content {
   visibility: visible;
   opacity: 1;
 }
 
-.right-actions {
-  /*float: right;*/
-  /*clear: left;*/
-  background-color: rgba(50,69,200,0.2);
+.floating-actions-parent {
+  position: relative;
+  min-height: 40px;
+}
+
+.floating-actions-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  float: right;
+  z-index: 3;
+}
+
+.floating-actions-clear-fixed.show {
+  position: relative;
+  /*float: none;*/
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }
