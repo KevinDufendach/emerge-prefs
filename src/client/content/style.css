@@ -88,21 +88,21 @@ ul.tags li:last-child:after {
   overflow: auto;
 }
 
-.hover-target {
-  position: relative;
-  /*z-index: -1;*/
-  background-clip: padding-box;
-}
-
 .hover-target .hover-content {
-  position: absolute;
-  right: 20px;
-  top: -20px;
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+
+  transition: opacity 0.25s;
 }
 
 .hover-content.show,
 .hover-target:hover .hover-content {
-  display: block;
-  z-index: 200;
+  visibility: visible;
+  opacity: 1;
+}
+
+.right-actions {
+  /*float: right;*/
+  /*clear: left;*/
+  background-color: rgba(50,69,200,0.2);
 }
