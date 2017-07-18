@@ -3,18 +3,18 @@
 <div class="md-toolbar-tools" layout-padding layout="row">
   <h1>Sample Report</h1>
   <span flex></span>
-    <md-button ng-click="vm.showInstructions()">
-      Instructions
-    </md-button>
+  <md-button ng-click="vm.showInstructions()">
+    Instructions
+  </md-button>
 </div>
 
+<!--Format for small displays-->
 <div class="dense" ng-if="!$mdMedia('gt-sm')">
   <section ng-repeat="category in vm.getCategories()">
     <md-subheader class="category-header md-no-sticky">
       <h3>{{::category}}</h3>
     </md-subheader>
 
-    <!--ng-hide="useTableLayout"-->
     <md-card class="shown"
              ng-repeat="condition in vm.getConditionsByCategory(category)"
              ng-class="{'not-shown': !vm.getShownStatus(condition)}">
@@ -33,9 +33,9 @@
           <li><span ng-class="::{'opacity-10': !condition.preventable}">Preventable</span></li>
           <li><span ng-class="::{'opacity-10': !condition.treatable}">Treatable</span></li>
           <li><span ng-class="::{'opacity-10': !condition.adult_onset}">Adult Onset</span></li>
-          <li><span ng-class="::{'opacity-10': !condition.carrier}">Carrier Status</span></li>
+          <li><span ng-class="::{'opacity-10': !condition.carrier.value}">Carrier Status</span></li>
         </ul>
-        <span flex></span>
+        <div flex></div>
         <md-button
             aria-label="Always include {{::condition.condition}}"
             ng-class="{'md-primary md-raised': va['manual_include' + fieldSuffix + '___' + condition.id]}"
@@ -53,14 +53,31 @@
           <md-icon class="s24" aria-label="exclude">close</md-icon>
         </md-button>
       </md-card-actions>
-      <div ng-if="::condition.carrier" class="center shown"
-           ng-class="{'not-shown': (condition.carrier && (va['carrier'  + fieldSuffix] != '1'))}">
-        <span>Carrier status would <span ng-show="va['carrier' + fieldSuffix] != '1'">not </span>be reported</span>
+      <div ng-if="::condition.carrier.value" class="center shown"
+           ng-class="(vm.getShownCarrierStatus(condition) ? 'shown' : 'not-shown')">
+        <span>Carrier status would <span ng-hide="vm.getShownCarrierStatus(condition)">not </span>be reported<span
+            ng-show="condition.carrier.label !== ''"> ({{condition.carrier.label}})</span><md-button
+              aria-label="Always report carrier status for {{::condition.condition}}"
+              ng-class="{'md-primary md-raised': va['man_incl_car' + fieldSuffix + '___' + condition.id]}"
+              ng-click="vm.setManualCarrier(condition.id, true)"
+              class="md-icon-button">
+          <md-tooltip>Always Include {{::condition.condition}}</md-tooltip>
+          <md-icon md-svg-src="/content/img/pin.svg" class="s24" aria-label="pin"></md-icon>
+        </md-button>
+        <md-button
+            aria-label="Never report carrier status for {{::condition.condition}}"
+            ng-class="{'md-warn md-raised': va['man_excl_car' + fieldSuffix + '___' + condition.id]}"
+            ng-click="vm.setManualCarrier(condition.id, false)"
+            class="md-icon-button">
+          <md-tooltip>Always Exclude {{::condition.condition}}</md-tooltip>
+          <md-icon class="s24" aria-label="exclude">close</md-icon>
+        </md-button></span>
       </div>
     </md-card>
   </section>
 </div>
 
+<!--Format for larger displays-->
 <table class="condition-table" md-whiteframe="2" ng-if="$mdMedia('gt-sm')" layout-margin>
   <tbody>
   <tr md-colors="{background: 'primary-A400'}">
@@ -81,7 +98,7 @@
           class="md-icon-button"
           ng-class="{'md-warn md-raised': excludeAll}">
         <md-tooltip>Exclude All</md-tooltip>
-        <md-icon class="s24" aria-label="exclude">close</md-icon>
+        <md-icon class="s24" aria-label="exclude">block</md-icon>
       </md-button>
     </th>
     <th>Primary Organ(s) or Cancer</th>
@@ -116,7 +133,7 @@
           ng-click="vm.setManual(condition.id, false)"
           class="md-icon-button">
         <md-tooltip>Always Exclude</md-tooltip>
-        <md-icon class="s24" aria-label="exclude">close</md-icon>
+        <md-icon class="s24" aria-label="exclude">block</md-icon>
       </md-button>
     </td>
     <td class="center">
@@ -127,19 +144,36 @@
       <p class="condition-description">{{::condition.description}}</p>
       <div hide-gt-md>
         <!--<div class="md-warn" md-colors="::{color: 'warn'}"-->
-        <!--ng-show="(condition.carrier && va.adol_carrier != '1'-->
+        <!--ng-show="(condition.carrier.value && va.adol_carrier != '1'-->
         <!--&& vm.getShownStatus(condition))">Carrier status would not be reported.-->
         <!--</div>-->
         <ul class="tags">
           <li><span ng-class="::{'opacity-10': !condition.preventable}">Preventable</span></li>
           <li><span ng-class="::{'opacity-10': !condition.treatable}">Treatable</span></li>
           <li><span ng-class="::{'opacity-10': !condition.adult_onset}">Adult Onset</span></li>
-          <li><span ng-class="::{'opacity-10': !condition.carrier}">Carrier Status</span></li>
+          <li><span ng-class="::{'opacity-10': !condition.carrier.value}">Carrier Status</span></li>
         </ul>
       </div>
-      <div ng-if="::condition.carrier" class="center"
-           ng-class="(condition.carrier && (va['carrier' + fieldSuffix] != '1') ? 'not-shown' : 'shown')">
-        <span>Carrier status would <span ng-show="va['carrier' + fieldSuffix] != '1'">not </span>be reported</span>
+      <div ng-if="::condition.carrier.value"
+           ng-class="(vm.getShownCarrierStatus(condition) ? 'shown' : 'not-shown')">
+        <span>Carrier status would <span ng-hide="vm.getShownCarrierStatus(condition)">not </span>be reported<span
+            ng-show="condition.carrier.label !== ''"> ({{condition.carrier.label}})</span></span>
+        <md-button
+            aria-label="Always report carrier status for {{::condition.condition}}"
+            ng-class="{'md-primary md-raised': va['man_incl_car' + fieldSuffix + '___' + condition.id]}"
+            ng-click="vm.setManualCarrier(condition.id, true)"
+            class="md-icon-button">
+          <md-tooltip>Always Include {{::condition.condition}}</md-tooltip>
+          <md-icon md-svg-src="/content/img/pin.svg" class="s24" aria-label="pin"></md-icon>
+        </md-button>
+        <md-button
+            aria-label="Never report carrier status for {{::condition.condition}}"
+            ng-class="{'md-warn md-raised': va['man_excl_car' + fieldSuffix + '___' + condition.id]}"
+            ng-click="vm.setManualCarrier(condition.id, false)"
+            class="md-icon-button">
+          <md-tooltip>Always Exclude {{::condition.condition}}</md-tooltip>
+          <md-icon class="s24" aria-label="exclude">close</md-icon>
+        </md-button>
       </div>
     </td>
     <td ng-if="$mdMedia('gt-md')" class="center">
@@ -155,46 +189,47 @@
   </tbody>
 </table>
 
-<md-list ng-if="false && !$mdMedia('gt-sm')" flex>
-  <md-card ng-repeat="condition in vm.getConditions()" ng-class="{'not-shown': !vm.getShownStatus(condition)}">
-    <md-card-title layout="row">
-      <md-card-title-text>
-        <h4 class="condition-header">{{::condition.condition}}</h4>
-      </md-card-title-text>
-      <span flex></span>
-      <img ng-repeat="organ in condition.organs" class="organ-img" ng-src="{{::vm.getImageUrl(organ)}}"/>
-    </md-card-title>
-    <md-card-content>
-      <p class="condition-description">{{::condition.description}}</p>
-      <div ng-if="::condition.carrier" class="center"
-           ng-class="(condition.carrier && (va['carrier' + fieldSuffix] != '1') ? 'not-shown' : 'shown')">
-        <span>Carrier status would <span ng-show="va['carrier' + fieldSuffix] != '1'">not </span>be reported</span>
-      </div>
-    </md-card-content>
-    <md-card-actions layout="row">
-      <ul class="tags">
-        <li><span ng-class="::{'opacity-10': !condition.preventable}">Preventable</span></li>
-        <li><span ng-class="::{'opacity-10': !condition.treatable}">Treatable</span></li>
-        <li><span ng-class="::{'opacity-10': !condition.adult_onset}">Adult Onset</span></li>
-        <li><span ng-class="::{'opacity-10': !condition.carrier}">Carrier Status</span></li>
-      </ul>
-      <span flex></span>
-      <md-button
-          aria-label="Always include {{::condition.condition}}"
-          ng-class="{'md-primary md-raised': va['manual_include' + fieldSuffix + '___' + condition.id]}"
-          ng-click="vm.setManual(condition.id, true)"
-          class="md-icon-button">
-        <md-tooltip>Always Include</md-tooltip>
-        <md-icon md-svg-src="/content/img/pin.svg" class="s24" aria-label="pin"></md-icon>
-      </md-button>
-      <md-button
-          aria-label="Always exclude {{::condition.condition}}"
-          ng-class="{'md-warn md-raised': va['manual_exclude' + fieldSuffix + '___' + condition.id]}"
-          ng-click="vm.setManual(condition.id, false)"
-          class="md-icon-button">
-        <md-tooltip>Always Exclude</md-tooltip>
-        <md-icon class="s24" aria-label="exclude">close</md-icon>
-      </md-button>
-    </md-card-actions>
-  </md-card>
-</md-list>
+<!--<md-list ng-if="false && !$mdMedia('gt-sm')" flex>-->
+  <!--<md-card ng-repeat="condition in vm.getConditions()" ng-class="{'not-shown': !vm.getShownStatus(condition)}">-->
+    <!--<md-card-title layout="row">-->
+      <!--<md-card-title-text>-->
+        <!--<h4 class="condition-header">{{::condition.condition}}</h4>-->
+      <!--</md-card-title-text>-->
+      <!--<span flex></span>-->
+      <!--<img ng-repeat="organ in condition.organs" class="organ-img" ng-src="{{::vm.getImageUrl(organ)}}"/>-->
+    <!--</md-card-title>-->
+    <!--<md-card-content>-->
+      <!--<p class="condition-description">{{::condition.description}}</p>-->
+      <!--<div ng-if="::condition.carrier.value" class="center"-->
+           <!--ng-class="(condition.carrier.value && (va['carrier' + fieldSuffix] != '1') ? 'not-shown' : 'shown')">-->
+        <!--<span>Carrier status would <span ng-show="va['carrier' + fieldSuffix] != '1'">not </span>be reported<span-->
+            <!--ng-show="condition.carrier.label !== ''"> ({{condition.carrier.label}})</span></span>-->
+      <!--</div>-->
+    <!--</md-card-content>-->
+    <!--<md-card-actions layout="row">-->
+      <!--<ul class="tags">-->
+        <!--<li><span ng-class="::{'opacity-10': !condition.preventable}">Preventable</span></li>-->
+        <!--<li><span ng-class="::{'opacity-10': !condition.treatable}">Treatable</span></li>-->
+        <!--<li><span ng-class="::{'opacity-10': !condition.adult_onset}">Adult Onset</span></li>-->
+        <!--<li><span ng-class="::{'opacity-10': !condition.carrier.value}">Carrier Status</span></li>-->
+      <!--</ul>-->
+      <!--<span flex></span>-->
+      <!--<md-button-->
+          <!--aria-label="Always include {{::condition.condition}}"-->
+          <!--ng-class="{'md-primary md-raised': va['manual_include' + fieldSuffix + '___' + condition.id]}"-->
+          <!--ng-click="vm.setManual(condition.id, true)"-->
+          <!--class="md-icon-button">-->
+        <!--<md-tooltip>Always Include</md-tooltip>-->
+        <!--<md-icon md-svg-src="/content/img/pin.svg" class="s24" aria-label="pin"></md-icon>-->
+      <!--</md-button>-->
+      <!--<md-button-->
+          <!--aria-label="Always exclude {{::condition.condition}}"-->
+          <!--ng-class="{'md-warn md-raised': va['manual_exclude' + fieldSuffix + '___' + condition.id]}"-->
+          <!--ng-click="vm.setManual(condition.id, false)"-->
+          <!--class="md-icon-button">-->
+        <!--<md-tooltip>Always Exclude</md-tooltip>-->
+        <!--<md-icon class="s24" aria-label="exclude">block</md-icon>-->
+      <!--</md-button>-->
+    <!--</md-card-actions>-->
+  <!--</md-card>-->
+<!--</md-list>-->

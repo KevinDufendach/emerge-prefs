@@ -29,9 +29,11 @@
     vm.getCategories = getCategories;
     vm.getConditionsByCategory = getConditionsByCategory;
     vm.getShownStatus = getShownStatus;
+    vm.getShownCarrierStatus = getShownCarrierStatus;
     vm.getImageUrl = getImageUrl;
     vm.cycleManual = cycleManual;
     vm.setManual = setManual;
+    vm.setManualCarrier = setManualCarrier;
     vm.setAll = setAll;
     vm.showInstructions = showInstructions;
 
@@ -109,6 +111,38 @@
       )
     }
 
+    /**
+     * Returns whether or not a condition should be shown based on the currently selected logic
+     *
+     * @param condition The specific condition to be shown
+     * @param ignoreOverrides {boolean} if set to TRUE, will ignore global override settings and only use conditional
+     * logic
+     * @returns {*} boolean of whether or not the condition should be shown
+     */
+    function getShownCarrierStatus(condition, ignoreOverrides) {
+      if (!angular.isDefined(ignoreOverrides)) {
+        ignoreOverrides = false;
+      }
+      if (!vandaidFieldService.isReady()) {
+        return true;
+      }
+
+      if (vm.va['include_all' + __va.fieldSuffix] === "0") {
+        return false;
+      }
+
+      if (!ignoreOverrides) {
+        if (vm.va['man_excl_car' + __va.fieldSuffix + '___' + condition.id]) {
+          return false;
+        }
+        if (vm.va['man_incl_car' + __va.fieldSuffix + '___' + condition.id]) {
+          return true;
+        }
+      }
+
+      return (vm.va['carrier' + __va.fieldSuffix] === "1")
+    }
+
     function cycleManual(conditionId) {
       if (!conditionId) return;
 
@@ -154,6 +188,27 @@
       }
     }
 
+    function setManualCarrier(conditionId, value) {
+      if (!conditionId || typeof(conditionId) !== 'string') return;
+
+      try {
+        if (value) { // true is for manual include
+          vm.va['man_incl_car' + __va.fieldSuffix + '___' + conditionId] = !vm.va['man_incl_car' + __va.fieldSuffix + '___' + conditionId];
+
+          if (vm.va['man_incl_car' + __va.fieldSuffix + '___' + conditionId]) {
+            vm.va['man_excl_car' + __va.fieldSuffix + '___' + conditionId] = false;
+          }
+        } else {
+          vm.va['man_excl_car' + __va.fieldSuffix + '___' + conditionId] = !vm.va['man_excl_car' + __va.fieldSuffix + '___' + conditionId];
+          if (vm.va['man_excl_car' + __va.fieldSuffix + '___' + conditionId]) {
+            vm.va['man_incl_car' + __va.fieldSuffix + '___' + conditionId] = false;
+          }
+        }
+      } catch (e) {
+        $log.log('Error setting manual carrier *clusion: ' + e);
+      }
+    }
+
     function setAll(value) {
       var includeVal = value, excludeVal = !value;
 
@@ -181,7 +236,7 @@
       $scope.excludeAll = excludeVal;
     }
 
-    function showInstructions (ev) {
+    function showInstructions(ev) {
       var instructionDialog = {
         controller: InstructionDialogCtrl,
         templateUrl: __va.instructionsTemplateHtml,
@@ -199,7 +254,7 @@
         });
     }
 
-    InstructionDialogCtrl.$inject = ['$scope','$mdDialog'];
+    InstructionDialogCtrl.$inject = ['$scope', '$mdDialog'];
 
     function InstructionDialogCtrl($scope, $mdDialog) {
       $scope.hide = function () {

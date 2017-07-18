@@ -30,7 +30,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": true,
+        "carrier": {
+          "value": true,
+          "label": ""
+        },
         "genes": "N/A",
         "caw_approved": "CYP21A2, rs6467",
         "snv_references": "OMIM, https://ghr.nlm.nih.gov/condition/21-hydroxylase-deficiency#diagnosis, http://www.ncbi.nlm.nih.gov/books/NBK1171/"
@@ -51,7 +54,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "COL3A1",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -69,7 +75,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "SMAD4",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -87,12 +96,14 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "N/A",
         "caw_approved": "FVL rs6025, c.1601G>A homozygous only",
         "snv_references": "https://ghr.nlm.nih.gov/condition/factor-v-leiden-thrombophilia#; http://www.ncbi.nlm.nih.gov/books/NBK1368/; http://circ.ahajournals.org/content/107/15/e94.full"
       }
-
     ],
     "Bones": [
       {
@@ -108,7 +119,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": " false",
-        "carrier": true,
+        "carrier": {
+          "value": true,
+          "label": ""
+        },
         "genes": "*TCIRG1",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -129,7 +143,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "*CACNA1A",
         "caw_approved": "",
         "snv_references": ""
@@ -149,7 +166,10 @@
         "adult_onset": true,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "BRCA1, BRCA2, CHEK2, PALB2",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -167,7 +187,10 @@
         "adult_onset": true,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "PALB2",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -185,7 +208,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "RET",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -203,7 +229,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": true,
+        "carrier": {
+          "value": true,
+          "label": "applies to Bloom syndrome, only"
+        },
         "genes": "VHL",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -223,7 +252,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": true,
+        "carrier": {
+          "value": true,
+          "label": ""
+        },
         "genes": "BMPR1A, APC, MUTYH, SMAD4",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -244,7 +276,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "RB1",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -264,7 +299,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "PKP2, DSP, DSC2, TMEM43, DSG2, KCNE1, KCNQ1, KCNH2, SCN5A,KCNJ2",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -282,7 +320,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "LDLR, APOB, PCSK9",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -300,7 +341,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "MYBPC3, MYH7, TNNT2, TNN13, TPM1, MYL3, ACTC1, PRKAG2,  MYL2, LMNA",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -320,7 +364,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "GLA",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -340,7 +387,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": true,
+        "carrier": {
+          "value": true,
+          "label": ""
+        },
         "genes": "*TYK2",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -361,7 +411,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": true,
+        "carrier": {
+          "value": true,
+          "label": ""
+        },
         "genes": "N/A",
         "caw_approved": "MEFV, rs28940579, rs61752717",
         "snv_references": "OMIM, https://ghr.nlm.nih.gov/condition/familial-mediterranean-fever, http://www.ncbi.nlm.nih.gov/books/NBK1227/"
@@ -381,7 +434,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "WT1",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -402,7 +458,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": true,
+        "carrier": {
+          "value": true,
+          "label": ""
+        },
         "genes": "*CFTR",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -417,10 +476,13 @@
         "description": "High blood pressure in the large vessels in the lungs that can lead to heart failure",
         "preventable": false,
         "treatable": true,
-        "adult_onset": true,
+        "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "*BMPR2",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -439,7 +501,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": true,
+        "carrier": {
+          "value": true,
+          "label": ""
+        },
         "genes": "*SERPINA1",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -463,7 +528,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": true,
+        "carrier": {
+          "value": true,
+          "label": ""
+        },
         "genes": "N/A",
         "caw_approved": "CPT2 rs397509431",
         "snv_references": "OMIM, https://ghr.nlm.nih.gov/condition/carnitine-palmitoyltransferase-ii-deficiency, http://www.ncbi.nlm.nih.gov/books/NBK1253/, http://www.babysfirsttest.org/newborn-screening/conditions/carnitine-"
@@ -483,7 +551,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "OTC",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -503,7 +574,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "N/A",
         "caw_approved": "HFE rs1800562 (c282y) homozygotes only",
         "snv_references": "https://ghr.nlm.nih.gov/condition/hereditary-hemochromatosis#diagnosis, https://medlineplus.gov/ency/article/000327.htm, http://www.ncbi.nlm.nih.gov/books/NBK1440/"
@@ -523,7 +597,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "PTEN",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -541,7 +618,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "TSC1, TSC2, ",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -561,7 +641,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "N/A",
         "caw_approved": "DPYD, rs67376798, rs3918290, rs55886062",
         "snv_references": "https://www.pharmgkb.org/guideline/PA166109594"
@@ -579,7 +662,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "RYR1, CACNA1S",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -599,7 +685,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "HNF1A, HNF1B",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -617,7 +706,10 @@
         "adult_onset": false,
         "developmental": false,
         "degenerative": false,
-        "carrier": false,
+        "carrier": {
+          "value": false,
+          "label": ""
+        },
         "genes": "NF2",
         "caw_approved": "N/A",
         "snv_references": ""
@@ -637,12 +729,14 @@
         "adult_onset": true,
         "developmental": false,
         "degenerative": false,
-        "carrier": true,
+        "carrier": {
+          "value": true,
+          "label": ""
+        },
         "genes": "*CFTR",
         "caw_approved": "N/A",
         "snv_references": ""
       }
     ]
-
   }
 }
