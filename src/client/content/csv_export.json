@@ -285,7 +285,7 @@
         "snv_references": ""
       }
     ],
-    "Heart Disease Risk Increase": [
+    "Heart Disease Risk Increased": [
       {
         "id": "ARRHYTHMIA",
         "return_phenotype": "Arrhythmia syndromes with risk for sudden cardiac death (Can this include arrhythmogenic right ventricular cardiomyopathy?)",

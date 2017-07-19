@@ -326,7 +326,6 @@
           return prefix + 'person.png';
       }
     }
-
   }
 
 })();

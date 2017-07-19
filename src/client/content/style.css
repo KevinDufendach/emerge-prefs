@@ -94,14 +94,14 @@ ul.tags li:last-child:after {
 }
 
 
-.hover-target > .hover-content {
+.hover-target .hover-content {
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.25s;
 }
 
 .hover-content.show,
-.hover-target:hover > .hover-content {
+.hover-target:hover .hover-content {
   visibility: visible;
   opacity: 1;
 }
@@ -129,4 +129,8 @@ ul.tags li:last-child:after {
   content: "";
   clear: both;
   display: table;
+}
+
+.condition-row {
+  background-color: white;
 }
