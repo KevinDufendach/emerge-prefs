@@ -35,7 +35,7 @@
         <img ng-repeat="organ in condition.organs" class="organ-img" ng-src="{{::vm.getImageUrl(organ)}}"/>
       </div>
       <div flex layout="column" class="cell">
-        <div flex class="hover-target floating-actions-parent clearfix">
+        <div flex class="hover-target floating-actions-parent clearfix" style="padding: 0 6px">
           <div class="hover-content floating-actions-right floating-actions-clear-fixed"
                ng-class="{'show': va['manual_include' + fieldSuffix + '___' + condition.id]
                 || va['manual_exclude' + fieldSuffix + '___' + condition.id]}" layout="row">
