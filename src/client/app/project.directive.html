@@ -52,7 +52,7 @@
                 ng-class="{'md-warn': va['manual_exclude' + fieldSuffix + '___' + condition.id]}"
                 ng-click="vm.setManual(condition.id, false)"
                 class="md-icon-button">
-              <md-tooltip>Always report {{::condition.condition}}</md-tooltip>
+              <md-tooltip>Never report {{::condition.condition}}</md-tooltip>
               <md-icon class="s24" aria-label="exclude">block</md-icon>
             </md-button>
           </div>
@@ -88,7 +88,7 @@
                 ng-class="{'md-warn': va['man_excl_car' + fieldSuffix + '___' + condition.id]}"
                 ng-click="vm.setManualCarrier(condition.id, false)"
                 class="md-icon-button">
-              <md-tooltip>Always report carrier status for {{::condition.condition}}</md-tooltip>
+              <md-tooltip>Never report carrier status for {{::condition.condition}}</md-tooltip>
               <md-icon class="s24" aria-label="exclude">block</md-icon>
             </md-button>
           </div>
@@ -139,7 +139,7 @@
                 aria-label="Never report {{::condition.condition}}"
                 ng-click="vm.setManual(condition.id, false)"
                 class="md-warn md-icon-button">
-              <md-tooltip>Always report {{::condition.condition}}</md-tooltip>
+              <md-tooltip>Never report {{::condition.condition}}</md-tooltip>
               <md-icon class="s24" aria-label="exclude">block</md-icon>
             </md-button>
           </div>
@@ -226,7 +226,7 @@
                 aria-label="Never report carrier status for {{::condition.condition}}"
                 ng-click="vm.setManualCarrier(condition.id, false)"
                 class="md-warn md-icon-button">
-              <md-tooltip>Always report carrier status for {{::condition.condition}}</md-tooltip>
+              <md-tooltip>Never report carrier status for {{::condition.condition}}</md-tooltip>
               <md-icon class="s24" aria-label="exclude">block</md-icon>
             </md-button>
           </div>
