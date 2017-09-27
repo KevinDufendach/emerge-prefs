@@ -42,7 +42,7 @@
           return '<md-radio-group ng-model="vm.va[vm.field.id]" ng-switch="fieldAlign">' +
             '<div ng-switch-default>' +
             '<md-radio-button ng-repeat="option in vm.field.options"' +
-            'ng-value="option.value">{{option.label}}' +
+            ' ng-value="option.value">{{option.label}}' +
             '</md-radio-button>' +
             '</div>' +
             '<div ng-switch-when="horizontal">' +
@@ -56,7 +56,7 @@
             '<div layout="row">' +
             '<span flex></span>' +
             '<md-radio-button ng-value="option.value" align="center"' +
-            'aria-label="{{option.value}}"></md-radio-button>' +
+            ' aria-label="{{option.value}}"></md-radio-button>' +
             '<span flex></span>' +
             '</div>' +
             '</td>' +

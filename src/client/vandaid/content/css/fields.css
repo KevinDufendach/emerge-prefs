@@ -1,3 +1,7 @@
 .field-note {
   font-size: small;
 }
+
+.field-label {
+  font-weight: bold;
+}
