@@ -75,7 +75,7 @@ class RedcapImportRecordsHandler(RestHandler):
         myUser = r['user']
         
         if not(validate_user.validateUser(myUser['id'], myUser['key'])):
-#             logging.exception('Unauthorized user')
+            # logging.exception('Unauthorized user')
             self.response.out.write('Unauthorized user')
             return
                 
@@ -150,9 +150,10 @@ class RedcapExportRecordsHandler(RestHandler):
             self.response.write(result.content)
         except urlfetch.Error:
             logging.exception('Caught exception fetching url') 
-			
+
+
 class ValidateUser(RestHandler):
-    
+
     def post(self):
         r = json.loads(self.request.body)
                 

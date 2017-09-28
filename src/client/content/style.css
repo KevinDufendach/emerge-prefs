@@ -1,9 +1,14 @@
 .condition-table {
+  background-color: white;
 }
 
 .condition-table .cell {
   border: thin solid gray;
   padding: 0;
+}
+
+.condition-row {
+  /*background-color: white;*/
 }
 
 .report-header {
@@ -129,8 +134,4 @@ ul.tags li:last-child:after {
   content: "";
   clear: both;
   display: table;
-}
-
-.condition-row {
-  background-color: white;
 }
