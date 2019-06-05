@@ -132,3 +132,4 @@ config.json
 /users.py
 /config.py
 /project_users.py
+/venv

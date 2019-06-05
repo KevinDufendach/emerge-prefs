@@ -74,7 +74,7 @@ class RedcapImportRecordsHandler(RestHandler):
         
         myUser = r['user']
         
-        if not(validate_user.validateUser(myUser['id'], myUser['key'])):
+        if not(validate_user.validate_user(myUser['id'], myUser['key'])):
             # logging.exception('Unauthorized user')
             self.response.out.write('Unauthorized user')
             return
@@ -115,7 +115,7 @@ class RedcapExportRecordsHandler(RestHandler):
             myUser = r['user']
             myForm = r['formName']
             
-            if not(myUser['id'] == 'default' or validate_user.validateUser(myUser['id'], myUser['key'])):
+            if not(myUser['id'] == 'default' or validate_user.validate_user(myUser['id'], myUser['key'])):
                 self.response.out.write('Unauthorized user')
                 return
         except urlfetch.Error:
@@ -157,7 +157,7 @@ class ValidateUser(RestHandler):
     def post(self):
         r = json.loads(self.request.body)
                 
-        if (validate_user.validateUser(r['id'], r['key'])):
+        if (validate_user.validate_user(r['id'], r['key'])):
             self.response.out.write('AUTHORIZED')
         else:
             self.response.out.write('UNAUTHORIZED')
